@@ -89,8 +89,11 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 
 ### Post-type marks
 
-One accent colour, so each type has a shape, shown before its small-caps label:
-essay a sunflower disc, project an ink diamond, note an ink ring.
+Each type has a mark from a printed book, shown before its small-caps label: essay the
+section sign § in sunflower, project the printer's pointing hand (manicule) in the label's
+colour, note the pilcrow ¶ in the label's colour. Each mark is as tall as the small caps and
+sits on their baseline. § and ¶ are Alegreya's own glyphs set at 0.8em; Alegreya has no
+hand, so it is an SVG mask in `global.css`.
 
 ## Pages
 
@@ -136,6 +139,9 @@ reader picks "Most popular". Nothing else.
 11. Joey set the post types to Essays, Projects and Notes (TIL and Link dropped; a project is
     a write-up with an optional repo or demo link, marked with the diamond TILs had) and the
     sort to Newest and Most popular, fetched from the view counter in the browser.
+12. Joey dropped reading times and found the type marks too big and off the label's line. The
+    shapes became printer's marks (§ essay, manicule project, ¶ note), sized to the small caps
+    and set on their baseline.
 
 ## Notes
 
