@@ -16,7 +16,7 @@ export const SUBSTACK_URL = 'https://joesposito8.substack.com';
 export const PROFILES = [
   { label: 'GitHub', href: 'https://github.com/joesposito8' },
   { label: 'X', href: 'https://x.com/joesposito8' },
-  { label: 'LessWrong', href: 'https://www.lesswrong.com/users/joesposito8' },
+  { label: 'LessWrong', href: 'https://www.lesswrong.com/users/joey-esposito' },
   { label: 'Substack', href: SUBSTACK_URL },
 ];
 
