@@ -1,0 +1,36 @@
+/* Design tokens. Colours resolve with light-dark() against color-scheme, which follows the
+   reader's system setting unless the theme button pins data-theme on <html>. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Type */
+  --font-text: 'Alegreya Variable', 'Iowan Old Style', Palatino, 'Palatino Linotype', Georgia, serif;
+  /* Alegreya ships small caps as a separate family; lowercase text set in it reads as small caps. */
+  --font-sc: 'Alegreya SC', var(--font-text);
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --fs: 20px;
+  --lh: 1.55;
+
+  /* Layout */
+  --measure: 700px;
+  --rail: 10.5rem;
+  --rail-gap: 1.5rem;
+  --space: 1.5rem;
+  --radius: 6px;
+
+  /* Colour: white and navy ink with one sunflower accent by day; lamplit navy at night. */
+  --bg: light-dark(#fcfcfe, #10172a);
+  --fg: light-dark(#1b2436, #e9edf5);
+  --muted: light-dark(#5a6477, #9ba6bb);
+  --rule: light-dark(#e2e6ee, #28324a);
+  --accent: light-dark(#2343a0, #a3b8ff);
+  --sun: light-dark(#f2b600, #f5c84c);
+  --hl: light-dark(#ffd84d, rgb(245 200 76 / 0.35));
+  --code-bg: light-dark(#f4f6fa, #19223a);
+  /* Text on a sunflower fill stays navy in both themes. */
+  --on-sun: #1b2436;
+}
+
+:root[data-theme='light'] { color-scheme: light; }
+:root[data-theme='dark'] { color-scheme: dark; }

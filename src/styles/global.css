@@ -1,0 +1,247 @@
+/* Theme styles. Tokens (colour, type, measure) live in tokens.css. */
+
+*, *::before, *::after { box-sizing: border-box; }
+/* Component display rules must not override the hidden attribute. */
+[hidden] { display: none !important; }
+
+html {
+  font-size: var(--fs);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-text);
+  line-height: var(--lh);
+  font-kerning: normal;
+  font-variant-numeric: oldstyle-nums;
+  overflow-wrap: break-word;
+}
+
+::selection { background: var(--hl); color: var(--fg); }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }
+a:hover { text-decoration-color: var(--sun); text-decoration-thickness: 0.12em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+h1, h2, h3, h4 { font-weight: 500; line-height: 1.2; margin: 2em 0 0.6em; }
+h1 { font-size: clamp(1.8rem, 1.2rem + 2.4vw, 2.3rem); line-height: 1.12; margin-top: 0; }
+h2 { font-size: 1.55rem; }
+h3 { font-size: 1.2rem; }
+
+p, ul, ol, pre, figure, table, blockquote { margin: 0 0 var(--space); }
+ul, ol { padding-left: 1.4em; }
+li + li { margin-top: 0.25em; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+
+/* Small capitals for labels: type names, legends, section labels. */
+.sc { font-family: var(--font-sc); font-weight: 500; text-transform: lowercase; letter-spacing: 0.04em; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* ---------- Code, math, figures, tables, footnotes ---------- */
+code, kbd, pre { font-family: var(--font-mono); font-variant-numeric: normal; }
+:not(pre) > code { font-size: 0.8em; background: var(--code-bg); padding: 0.1em 0.3em; border-radius: 3px; }
+pre { font-size: 0.72rem; line-height: 1.6; padding: 0.9rem 1rem; overflow-x: auto; border-radius: var(--radius); background: var(--code-bg); }
+/* Shiki emits both themes as CSS variables; pick by the active colour scheme. */
+.astro-code { background-color: var(--code-bg) !important; }
+.astro-code span { color: light-dark(var(--shiki-light), var(--shiki-dark)); }
+
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.25rem 0; }
+
+blockquote { margin-left: 0; padding-left: 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
+figure { margin-inline: 0; }
+img { display: block; max-width: 100%; height: auto; }
+figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; display: block; overflow-x: auto; font-variant-numeric: lining-nums tabular-nums; }
+th, td { padding: 0.35rem 0.9rem 0.35rem 0; border-bottom: 1px solid var(--rule); text-align: left; }
+th { font-weight: 600; }
+
+.footnotes { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--rule); margin-top: 2.5rem; padding-top: 1rem; }
+.footnotes ol { padding-left: 1.2em; }
+.footnotes li p { margin: 0; }
+[data-footnote-ref] { text-decoration: none; padding: 0 0.1em; }
+sup { line-height: 0; }
+
+/* ---------- Site chrome ---------- */
+.skip-link { position: absolute; left: 1rem; top: -3rem; padding: 0.3rem 0.8rem; background: var(--bg); border: 1px solid var(--rule); z-index: 10; }
+.skip-link:focus { top: 1rem; }
+
+.site-header, .page, .site-footer { width: 100%; max-width: calc(var(--measure) + 2rem); margin-inline: auto; padding-inline: 1rem; }
+
+.site-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1.25rem; padding-block: 1.25rem 0.5rem; }
+.site-name { display: inline-flex; align-items: center; gap: 0.65rem; font-size: 1.3rem; font-weight: 500; color: var(--fg); text-decoration: none; }
+.avatar { display: inline-grid; place-items: center; flex: none; width: 2rem; height: 2rem; border-radius: 50%; background: var(--sun); color: var(--on-sun); font: 700 0.7rem/1 var(--font-text); box-shadow: 0 0 0 3px var(--bg), 0 0 0 4.5px var(--sun); }
+.site-nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 1rem; }
+.site-nav a { color: var(--muted); text-decoration: none; }
+.site-nav a:hover { color: var(--fg); }
+.site-nav a[aria-current='page'] { color: var(--fg); text-decoration: underline 0.12em var(--sun); text-underline-offset: 0.25em; }
+.theme-toggle { font-size: 0.85rem; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; }
+.theme-toggle:hover { color: var(--fg); }
+
+.page { padding-block: 1.75rem 0; min-height: 60vh; }
+
+.site-footer { margin-top: 4rem; padding-block: 1.25rem 3rem; border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--muted); }
+.site-footer a { color: var(--muted); }
+
+@media (min-width: 80rem) {
+  /* A book's margins: the site's name and pages sit in the left one; pages that need it
+     (the writing list's controls, an essay's contents) use the right one. */
+  body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--rail) var(--measure) var(--rail) minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+    column-gap: var(--rail-gap);
+  }
+  .site-header { grid-column: 2; grid-row: 1 / 3; align-self: start; position: sticky; top: 0; flex-direction: column; align-items: flex-end; gap: 1.1rem; max-width: none; margin: 0; padding: 4rem 0 2rem; text-align: right; }
+  .site-name { flex-direction: column; align-items: flex-end; gap: 0.9rem; font-size: 1.45rem; line-height: 1.15; }
+  .site-name .avatar { width: 4.25rem; height: 4.25rem; font-size: 1.2rem; box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--sun); }
+  .site-nav { flex-direction: column; align-items: flex-end; gap: 0.2rem; }
+  .theme-toggle { margin-top: 0.8rem; }
+  .page { grid-column: 3 / 5; grid-row: 1; max-width: none; margin: 0; padding: 4rem 0 0; }
+  .page > * { max-width: var(--measure); }
+  .page > .with-rail { max-width: none; display: grid; grid-template-columns: var(--measure) var(--rail); column-gap: var(--rail-gap); }
+  .with-rail > * { grid-column: 1; }
+  .with-rail > .rail { grid-column: 2; grid-row: 1 / span 3; align-self: start; position: sticky; top: 2rem; max-height: calc(100vh - 4rem); overflow-y: auto; }
+  .site-footer { grid-column: 3; grid-row: 2; max-width: none; margin-inline: 0; padding-inline: 0; }
+}
+
+/* ---------- Post-type marks ---------- */
+/* One accent colour, so types differ by shape: a sun disc for essays, an ink ring for notes,
+   an ink diamond for TILs and a small grey dot for links. */
+.type::before { content: ''; display: inline-block; width: 0.42rem; height: 0.42rem; margin-right: 0.4rem; border-radius: 50%; background: var(--fg); vertical-align: 0.1em; }
+.type.t-essay::before { width: 0.55rem; height: 0.55rem; background: var(--sun); vertical-align: 0.06em; }
+.type.t-note::before { background: transparent; border: 1.5px solid var(--fg); }
+.type.t-til::before { width: 0.36rem; height: 0.36rem; border-radius: 1px; transform: rotate(45deg); }
+.type.t-link::before { width: 0.3rem; height: 0.3rem; background: var(--muted); vertical-align: 0.14em; }
+
+/* ---------- Home ---------- */
+.intro { margin: 0 0 2.75rem; }
+.intro p { margin: 0 0 0.9rem; }
+.intro p:last-child { margin-bottom: 0; }
+.lede { font-size: 1.15rem; line-height: 1.5; }
+.lede strong { font-family: var(--font-sc); font-weight: 500; text-transform: lowercase; letter-spacing: 0.03em; }
+.intro a { color: var(--fg); text-decoration: underline 0.12em var(--sun); text-underline-offset: 0.2em; }
+.intro a:hover { background: var(--hl); }
+
+.writing-title { font-size: 1.8rem; margin: 0 0 0.6rem; }
+
+.filters { display: grid; gap: 0.35rem; margin: 0 0 0.25rem; padding: 0.7rem 0; border-block: 1px solid var(--rule); font-size: 0.9rem; }
+.filters fieldset { display: grid; grid-template-columns: 4.25rem minmax(0, 1fr); align-items: baseline; min-width: 0; margin: 0; padding: 0; border: 0; }
+/* Floated, the legend becomes an ordinary grid item, so it lines up as a label column. */
+.filters legend { float: left; padding: 0; color: var(--muted); }
+.filters .options { display: flex; flex-wrap: wrap; gap: 0 1.1rem; }
+/* The radios stay in the page for keyboard and screen-reader use; their labels are what shows. */
+.filters input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.filters label { cursor: pointer; }
+.filters label > span { position: relative; color: var(--muted); }
+.filters label:hover > span { color: var(--fg); }
+.filters label:has(input:checked) > span { color: var(--fg); font-weight: 600; }
+.filters label:has(input:checked) > span::before { content: ''; position: absolute; left: -0.7rem; top: 0.62em; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--sun); }
+.filters label:has(input:focus-visible) > span { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.filters label.none > span { opacity: 0.45; }
+.filters .n { font-size: 0.8em; font-weight: 400; color: var(--muted); font-variant-numeric: lining-nums tabular-nums; }
+.f-status { margin: 0; font-size: 0.85rem; font-style: italic; color: var(--muted); }
+.f-empty { margin: 1.5rem 0; color: var(--muted); font-style: italic; }
+.f-empty button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+
+@media (min-width: 80rem) {
+  .writing > .filters { gap: 1.1rem; margin: 0; padding: 0.5rem 0 0 0.7rem; border: 0; font-size: 0.85rem; }
+  .filters fieldset { display: block; }
+  .filters legend { float: none; margin-bottom: 0.1rem; }
+  .filters .options { flex-direction: column; }
+}
+
+/* Years divide the list; an entry is a date column and a title column, ruled beneath. */
+.year { display: flex; align-items: center; gap: 1rem; margin: 1.6rem 0 0.2rem; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); }
+.year::before, .year::after { content: ''; flex: 1; border-top: 1px solid var(--rule); }
+
+.entry { padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
+.entry .meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.7rem; font-size: 0.85rem; color: var(--muted); }
+.entry .type { font-size: 0.9rem; }
+.entry h3 { font-size: 1.12rem; font-weight: 500; line-height: 1.3; margin: 0.1rem 0 0; }
+.entry.essay h3 { font-size: 1.32rem; }
+.entry .host { font: 0.6em var(--font-mono); color: var(--muted); }
+.entry .summary { margin: 0.15rem 0 0; font-style: italic; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 0 0.8rem; margin: 0.3rem 0 0; padding: 0; list-style: none; font: 0.66rem var(--font-mono); }
+.tags li { margin: 0; }
+.tags a { color: var(--muted); text-decoration: none; }
+.tags a:hover { color: var(--fg); text-decoration: underline 0.12em var(--sun); }
+/* A date carries its year only when the list is sorted by length and the year dividers are gone. */
+.yr { display: none; }
+.post-list[data-sort='longest'] .yr { display: inline; }
+
+@media (min-width: 40rem) {
+  .entry { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); column-gap: 1.25rem; }
+  .entry .meta { flex-direction: column; align-items: flex-end; gap: 0; padding-top: 0.12rem; text-align: right; }
+  .entry h3 { margin-top: 0; }
+}
+
+/* ---------- Posts ---------- */
+.post-header { margin-bottom: 2rem; }
+.post-header h1 a { color: inherit; }
+.post-subtitle { margin: 0.45rem 0 0.8rem; font-size: 1.2rem; font-style: italic; line-height: 1.35; color: var(--muted); }
+.post-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.45rem; margin: 0.6rem 0 0; font-size: 0.92rem; color: var(--muted); }
+.post-meta a { color: var(--muted); }
+.post-meta .type { font-size: 0.95rem; color: var(--fg); }
+.post-tags { display: inline-flex; gap: 0.6rem; }
+.epistemic { margin: 1.25rem 0 0; padding-left: 0.9rem; border-left: 3px solid var(--sun); font-size: 0.92rem; font-style: italic; color: var(--muted); }
+.post-body :is(h2, h3) { scroll-margin-top: 1.5rem; }
+
+.toc { margin: 0 0 2.25rem; padding: 0.8rem 1.1rem; font-size: 0.9rem; line-height: 1.45; background: var(--code-bg); border: 1px solid var(--rule); border-radius: var(--radius); }
+.toc summary { cursor: pointer; font-size: 1rem; }
+.toc ol { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+.toc li { margin: 0; }
+.toc li + li { margin-top: 0.35rem; }
+.toc .depth-3 { padding-left: 1rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--fg); text-decoration: underline 0.12em var(--sun); text-underline-offset: 0.2em; }
+@media (min-width: 80rem) {
+  .post > .toc { margin: 0; padding: 0.55rem 0 0 0.7rem; font-size: 0.82rem; background: none; border: 0; }
+  .post > .toc summary { list-style: none; pointer-events: none; color: var(--muted); }
+  .post > .toc summary::-webkit-details-marker { display: none; }
+}
+
+.end-mark { display: flex; justify-content: center; align-items: center; gap: 1rem; margin: 3rem 0 1.5rem; color: var(--sun); }
+.end-mark::before, .end-mark::after { content: ''; flex: 0 0 4rem; border-top: 1px solid var(--rule); }
+.end-mark svg { flex: none; }
+
+.discuss { margin: 2.5rem 0 0; text-align: center; font-style: italic; }
+.end-mark + .discuss { margin-top: 0; }
+.cite { margin-top: 2rem; }
+.cite summary { cursor: pointer; font-size: 0.95rem; color: var(--muted); }
+.cite pre { margin-top: 0.75rem; white-space: pre-wrap; }
+
+.signup { margin-top: 2.5rem; padding: 1.1rem 1.25rem; background: var(--code-bg); border: 1px solid var(--rule); border-radius: var(--radius); }
+.signup p { margin: 0 0 0.75rem; font-size: 0.95rem; }
+.signup form { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.signup input { flex: 1 1 12rem; min-width: 0; padding: 0.4rem 0.65rem; font: inherit; font-size: 0.9rem; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; }
+.signup button { padding: 0.4rem 1.1rem; font: inherit; font-size: 0.9rem; color: var(--bg); background: var(--fg); border: 0; border-radius: 4px; cursor: pointer; }
+.signup button:hover { background: var(--accent); }
+
+/* ---------- Archive, about, evals, 404 ---------- */
+.archive-year h2.year { margin-top: 2rem; }
+.archive-list { list-style: none; margin: 0.4rem 0 0; padding: 0; }
+.archive-list li { display: grid; grid-template-columns: 4rem minmax(0, 1fr) auto; column-gap: 1rem; align-items: baseline; margin: 0; padding: 0.3rem 0; }
+.archive-list time { text-align: right; font-size: 0.85rem; color: var(--muted); }
+.archive-list .type { font-size: 0.85rem; color: var(--muted); }
+
+.profiles { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; padding: 0; list-style: none; }
+.profiles li { margin: 0; }
+
+.page-intro { color: var(--muted); }
+.eval-card { margin-top: 2rem; padding: 1.1rem 1.3rem 1.2rem; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--code-bg); }
+.eval-kind { margin: 0; font-size: 0.9rem; color: var(--muted); }
+.eval-card h2 { margin: 0.1rem 0 0.4rem; font-size: 1.45rem; }
+.eval-card h2 a { color: var(--fg); }
+.eval-summary { margin-bottom: 1rem; }
+.eval-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); gap: 0.75rem; margin: 0 0 1rem; padding: 0.8rem 0; border-block: 1px solid var(--rule); }
+.eval-stats dt { font-size: 0.85rem; color: var(--muted); }
+.eval-stats dd { margin: 0; font-size: 1.3rem; font-variant-numeric: lining-nums tabular-nums; }
+.eval-links { margin: 0; font-size: 0.95rem; color: var(--muted); }
+
+.not-found { padding-top: 2rem; }
+.not-found-code { margin: 0 0 0.3rem; color: var(--muted); }

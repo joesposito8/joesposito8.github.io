@@ -1,0 +1,55 @@
+---
+import { TYPE_LABELS, formatDate, groupBy, hostname, postUrl, readingMinutes, type Post } from '../lib/posts';
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+const years = groupBy(posts, (p) => String(p.data.date.getUTCFullYear()));
+---
+
+{/* The data attributes feed PostFilters; without script the list stays newest first. */}
+<div class="post-list">
+  {
+    years.map(([year, items]) => (
+      <>
+        <p class="year" data-year={year}>
+          <span>{year}</span>
+        </p>
+        {items.map((p) => {
+          const { type, title, subtitle, date, tags, url } = p.data;
+          const minutes = readingMinutes(p);
+          return (
+            <article class={`entry ${type}`} data-type={type} data-tags={tags.join(' ')} data-date={date.toISOString()} data-minutes={minutes}>
+              <div class="meta">
+                <time datetime={date.toISOString()}>
+                  {formatDate(date, 'day-month')}
+                  <span class="yr"> {year}</span>
+                </time>
+                <span class={`type sc t-${type}`}>{TYPE_LABELS[type]}</span>
+                {type === 'essay' && <span>{minutes} min</span>}
+              </div>
+              <div class="content">
+                <h3>
+                  <a href={type === 'link' ? url : postUrl(p)}>{title}</a>
+                  {type === 'link' && url && <span class="host"> → {hostname(url)}</span>}
+                </h3>
+                {subtitle && <p class="summary">{subtitle}</p>}
+                {tags.length > 0 && (
+                  <ul class="tags" aria-label="Topics">
+                    {tags.map((t) => (
+                      <li>
+                        <a href={`/?tag=${encodeURIComponent(t)}#writing`}>{t}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </>
+    ))
+  }
+</div>

@@ -1,0 +1,39 @@
+---
+// Joey writes this page; the lorem shows its length, rhythm and furniture only.
+import Base from '../layouts/Base.astro';
+import { PROFILES } from '../config';
+---
+
+<Base title="About" description="Lorem ipsum dolor sit amet.">
+  <article class="prose-page">
+    <h1>About</h1>
+    <p class="lede">
+      <strong>Lorem ipsum dolor sit amet,</strong> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+    </p>
+    <p>
+      Duis aute irure dolor in <a href="#">reprehenderit in voluptate</a> velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+      occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <h2>Lorem ipsum</h2>
+    <p>
+      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+      ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+    </p>
+    <ul>
+      <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</li>
+      <li>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</li>
+      <li>Ut enim ad minima veniam, quis nostrum exercitationem.</li>
+    </ul>
+    <h2>Elsewhere</h2>
+    <ul class="profiles">
+      {
+        PROFILES.map(({ label, href }) => (
+          <li>
+            <a href={href}>{label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</Base>

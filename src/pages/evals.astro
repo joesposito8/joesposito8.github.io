@@ -1,0 +1,26 @@
+---
+// One placeholder card shows the layout; the real evals and their numbers are added later.
+import Base from '../layouts/Base.astro';
+import EvalCard from '../components/EvalCard.astro';
+---
+
+<Base title="Evals" description="Lorem ipsum dolor sit amet.">
+  <h1>Evals</h1>
+  <p class="page-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  <EvalCard
+    kind="Lorem benchmark"
+    title="Lorem ipsum eval"
+    href="#"
+    summary="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam."
+    stats={[
+      { label: 'Tasks', value: '000' },
+      { label: 'Models', value: '00' },
+      { label: 'Updated', value: 'Mon 2026' },
+    ]}
+    links={[
+      { label: 'Write-up', href: '#' },
+      { label: 'Code', href: '#' },
+      { label: 'Results', href: '#' },
+    ]}
+  />
+</Base>

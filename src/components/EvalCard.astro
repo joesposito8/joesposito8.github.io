@@ -1,0 +1,38 @@
+---
+interface Props {
+  kind: string;
+  title: string;
+  href: string;
+  summary: string;
+  stats: { label: string; value: string }[];
+  links: { label: string; href: string }[];
+}
+
+const { kind, title, href, summary, stats, links } = Astro.props;
+---
+
+<article class="eval-card">
+  <p class="eval-kind sc">{kind}</p>
+  <h2><a href={href}>{title}</a></h2>
+  <p class="eval-summary">{summary}</p>
+  <dl class="eval-stats">
+    {
+      stats.map(({ label, value }) => (
+        <div>
+          <dt class="sc">{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  <p class="eval-links">
+    {
+      links.map(({ label, href }, i) => (
+        <>
+          {i > 0 && <span class="sep"> · </span>}
+          <a href={href}>{label}</a>
+        </>
+      ))
+    }
+  </p>
+</article>

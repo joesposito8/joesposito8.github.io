@@ -1,0 +1,104 @@
+---
+// Fonts are bundled with the site, so no request leaves it; browsers fetch only the faces a page uses.
+import '@fontsource-variable/alegreya/wght.css';
+import '@fontsource-variable/alegreya/wght-italic.css';
+import '@fontsource/alegreya-sc/500.css';
+import '@fontsource-variable/jetbrains-mono/wght.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import { NAV, PROFILES, SITE } from '../config';
+
+interface Props {
+  /** Page title; the site name is appended except on the home page. */
+  title?: string;
+  description?: string;
+  /** Social card image path, relative to the site root. */
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const { title, description = SITE.description, image, type = 'website' } = Astro.props;
+const fullTitle = title ? `${title} · ${SITE.name}` : SITE.name;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = image ? new URL(image, Astro.site) : undefined;
+const current = (href: string) => (href === '/' ? Astro.url.pathname === '/' : Astro.url.pathname.startsWith(href));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title ?? SITE.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+    {/* Profile verification links (rel="me") go here when the accounts are known. */}
+    <slot name="head" />
+    <script is:inline>
+      // Runs before first paint so a pinned theme never flashes the other one.
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="site-name" href="/">
+        <span class="avatar" aria-hidden="true">JE</span>
+        <span>{SITE.name}</span>
+      </a>
+      <nav class="site-nav" aria-label="Site">
+        {
+          NAV.map(({ href, label }) => (
+            <a href={href} aria-current={current(href) ? 'page' : undefined}>
+              {label}
+            </a>
+          ))
+        }
+        <button class="theme-toggle sc" type="button" hidden>Theme: <span>auto</span></button>
+      </nav>
+    </header>
+    <main id="main" class="page">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      {SITE.name}
+      {
+        PROFILES.map(({ label, href }) => (
+          <>
+            {' · '}
+            <a href={href}>{label}</a>
+          </>
+        ))
+      }
+    </footer>
+    <script is:inline>
+      // Cycles the colour theme: follow the system, then light, then dark.
+      const root = document.documentElement;
+      const toggle = document.querySelector('.theme-toggle');
+      const ORDER = ['auto', 'light', 'dark'];
+      const show = () => (toggle.querySelector('span').textContent = root.dataset.theme ?? 'auto');
+      toggle.addEventListener('click', () => {
+        const next = ORDER[(ORDER.indexOf(root.dataset.theme ?? 'auto') + 1) % ORDER.length];
+        if (next === 'auto') delete root.dataset.theme;
+        else root.dataset.theme = next;
+        try {
+          next === 'auto' ? localStorage.removeItem('theme') : localStorage.setItem('theme', next);
+        } catch {}
+        show();
+      });
+      show();
+      toggle.hidden = false;
+    </script>
+  </body>
+</html>
