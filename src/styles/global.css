@@ -165,19 +165,21 @@ body:has(.writing) .site-footer { margin-top: 0; }
 .f-empty { margin: 1.5rem 0; color: var(--muted); font-style: italic; }
 .f-empty button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
 
-/* Narrow screens: each group is a row of pills running the full width of the screen (out
-   through the page gutters), scrolling sideways when it overflows, with fades at the edges.
-   Pills are 44px tall, the touch-target minimum, and the chosen one fills with sunflower. */
+/* Narrow screens: each group is a row running the full width of the screen (out through the
+   page gutters), scrolling sideways when it overflows under a fade at the right edge. Each
+   option is plain text with the sunflower dot when chosen, as in the wide margin, inside an
+   invisible 44px touch target whose left padding holds the dot, so the text lines up with
+   the page while the first dot hangs in the gutter. */
 @media not all and (min-width: 80rem) {
-  .filters { display: grid; gap: 0.75rem; margin: 0.2rem 0 0; font-size: 0.9rem; }
-  .filters legend { margin-bottom: 0.35rem; font-size: 0.85rem; }
-  .filters .options { display: flex; gap: 0.45rem; overflow-x: auto; scrollbar-width: none; margin-inline: -1rem; padding-inline: 1rem; mask-image: linear-gradient(to right, transparent, #000 1rem, #000 calc(100% - 1rem), transparent); }
+  .filters { display: grid; gap: 0.5rem; margin: 0.2rem 0 0; font-size: 0.95rem; }
+  .filters legend { margin-bottom: 0.1rem; font-size: 0.85rem; }
+  .filters .options { display: flex; gap: 0.35rem; overflow-x: auto; scrollbar-width: none; margin-inline: -1rem; padding: 0 1rem 0 0.1rem; mask-image: linear-gradient(to right, #000 calc(100% - 1rem), transparent); }
   .filters .options::-webkit-scrollbar { display: none; }
-  .filters label > span { display: inline-flex; align-items: center; gap: 0.35em; min-height: 2.2rem; padding: 0 0.95rem; white-space: nowrap; color: var(--fg); border: 1px solid var(--rule); border-radius: 999px; transition: background-color 0.15s, border-color 0.15s, transform 0.1s; }
-  .filters label:active > span { transform: scale(0.95); }
-  .filters label:has(input:checked) > span { color: var(--on-sun); font-weight: 600; background: var(--sun); border-color: var(--sun); }
-  .filters label:has(input:checked) .n { color: var(--on-sun); }
-  .filters label:has(input:focus-visible) > span { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .filters label > span { position: relative; display: inline-flex; align-items: center; gap: 0.3em; min-height: 2.2rem; padding: 0 0.4rem 0 0.9rem; white-space: nowrap; color: var(--muted); transition: color 0.15s, transform 0.1s; }
+  .filters label:active > span { transform: scale(0.94); }
+  .filters label:has(input:checked) > span { color: var(--fg); font-weight: 600; }
+  .filters label:has(input:checked) > span::before { content: ''; position: absolute; left: 0.25rem; top: 50%; width: 0.42rem; height: 0.42rem; margin-top: -0.21rem; border-radius: 50%; background: var(--sun); }
+  .filters label:has(input:focus-visible) > span { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 4px; }
 }
 
 /* Wide screens: the controls are a quiet list in the right margin, the choice marked by a dot. */
