@@ -1,12 +1,15 @@
-// Round 1 offered A Log, B Plain and C Mono-meta. Joey preferred C but found its warm
-// palette and setup too Anthropic-like; round 2 keeps C's structure with new palettes
-// and setups. C stays here as the reference point.
+// Round 1 offered A Log, B Plain and C Mono-meta; Joey preferred C but found its warm
+// paper and rust accent too Anthropic-like. Round 2 offered D Log line, E Timeline and
+// F Graphite; Joey preferred E but wants it warmer and more inviting. Round 3 keeps E's
+// timeline and warms it three ways. E stays here as the reference point.
+export type DateStyle = 'iso' | 'day-month';
+
 export const VARIATIONS = {
-  c: { name: 'Mono-meta (round 1)', spec: 'Warm paper, rust accent, mono metadata gutter' },
-  d: { name: 'Log line', spec: 'Pure white, cobalt links, colour-coded type rail, single 700px column' },
-  e: { name: 'Timeline', spec: 'Cool slate, teal accent, dates on a ruled timeline with type dots' },
-  f: { name: 'Graphite', spec: 'Monochrome ink, underlined links, inverted type chips, mono gutter' },
-} as const;
+  e: { name: 'Timeline (round 2)', spec: 'Cool slate, teal accent, ISO dates on a ruled timeline', dates: 'iso', intro: false },
+  g: { name: 'Garden', spec: 'Sage-grey paper, teal + plum, humanist sans, greeting, year markers', dates: 'day-month', intro: true },
+  h: { name: 'Sunroom', spec: 'White + navy ink, sunflower highlighter, essay cards, lamplit dark', dates: 'day-month', intro: true },
+  i: { name: 'Field notes', spec: 'Moss-green paper, forest greens, rounded headings, dashed timeline, postcard intro', dates: 'day-month', intro: true },
+} as const satisfies Record<string, { name: string; spec: string; dates: DateStyle; intro: boolean }>;
 
 export type VariationId = keyof typeof VARIATIONS;
 

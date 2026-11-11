@@ -1,6 +1,7 @@
 ---
 import VariationLayout from '../../../layouts/VariationLayout.astro';
 import Stream from '../../../components/variations/Stream.astro';
+import Intro from '../../../components/variations/Intro.astro';
 import { getPosts } from '../../../lib/posts';
 import { VARIATIONS, type VariationId } from '../../../lib/variations';
 
@@ -13,5 +14,6 @@ const posts = await getPosts();
 ---
 
 <VariationLayout variant={variant} page="home" title={`Variation ${variant.toUpperCase()}: home`}>
-  <Stream posts={posts} base={`/variations/${variant}/`} />
+  {VARIATIONS[variant].intro && <Intro />}
+  <Stream posts={posts} base={`/variations/${variant}/`} dates={VARIATIONS[variant].dates} yearMarkers={VARIATIONS[variant].dates !== 'iso'} />
 </VariationLayout>

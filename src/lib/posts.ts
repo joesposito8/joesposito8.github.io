@@ -18,9 +18,13 @@ export function postUrl(post: Post): string {
   return `/posts/${post.id}/`;
 }
 
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 // Dates render in UTC so a post dated 2026-10-28 never shows as the 27th.
-export function formatDate(date: Date, style: 'long' | 'short' | 'iso' = 'long'): string {
+export function formatDate(date: Date, style: 'long' | 'short' | 'iso' | 'day-month' = 'long'): string {
   if (style === 'iso') return date.toISOString().slice(0, 10);
+  // en-GB abbreviates September as "Sept", which breaks a column of three-letter months.
+  if (style === 'day-month') return `${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]}`;
   return date.toLocaleDateString('en-GB', {
     timeZone: 'UTC',
     day: 'numeric',
