@@ -64,9 +64,11 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 - From 80rem: the body is a five-column grid (`1fr | rail | measure | rail | 1fr`). The
   header sits in the left rail, right-aligned and sticky: a 4.25rem avatar, the name, the
   nav, the theme button. Pages that need it put a sticky panel in the right rail (`.with-rail`
-  and `.rail`): the writing list's controls, an essay's contents. On the home page the
-  controls start level with the intro, and the first year divider sits 0.4rem under the
-  "Writing" heading.
+  and `.rail`): the writing list's controls, an essay's contents.
+- Home page, from 80rem: the intro and the margin's avatar, name, nav and theme button form
+  one top band, and "Writing" with its controls starts below the taller of the two. The
+  header holds only that band here, so it scrolls away with it; the controls stay sticky.
+  The first year divider sits 0.4rem under the "Writing" heading.
 
 ## Components
 
@@ -120,9 +122,10 @@ Client JavaScript: the filter script on `/` and the theme button. Nothing else.
    cards.
 6. For launch, the evals page and its nav item wait for their text, and the home page shows
    only the intro until the first post exists. Joey agreed to both.
-7. Joey found the wide home page's spacing loose. The list's controls now start level with
-   the intro instead of beside "Writing", and the gap between that heading and the first
-   year divider shrank from 2.2rem to 1rem. The 375px layout is unchanged.
+7. Joey found the wide home page's spacing loose: "Writing" began beside the margin's nav.
+   The intro and the margin's name and pages now form one band, the writing list and its
+   controls start below it, and the gap between the "Writing" heading and the first year
+   divider shrank from 2.2rem to 1rem. The 375px layout is unchanged.
 
 ## Notes
 
