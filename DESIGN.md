@@ -63,9 +63,11 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
   bar: avatar and name, then the nav. The list's controls sit under the "Writing" heading
   with no rules: each group is a small-caps label over a row running the full width of the
   screen. Options are plain text with the sunflower dot beside the chosen one, as in the wide
-  margin, each in an invisible 44px touch target that presses in slightly when tapped. A row
-  too long for the screen (usually Topic) scrolls sideways under a fade at its right edge,
-  and a choice made by link is scrolled into view. (Outlined pills were tried; Joey
+  margin, each in an invisible 44px touch target that presses in slightly when tapped. Each
+  option starts with its dot's slot, so a chosen dot sits on the page's left edge under the
+  label. A row too long for the screen (usually Topic) scrolls sideways under a fade at its
+  right edge and snaps, so a swipe settles with an option at that edge; a choice made by
+  link is scrolled into view. (Outlined pills were tried; Joey
   preferred the dots.)
 - From 80rem: the body is a five-column grid (`1fr | rail | measure | rail | 1fr`). The
   header sits in the left rail, right-aligned and sticky: a 4.25rem avatar, the name, the
