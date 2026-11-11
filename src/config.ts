@@ -11,7 +11,7 @@ export const NAV = [
 
 export const SUBSTACK_URL = 'https://joesposito8.substack.com';
 
-/** Shown in the footer and on /about, and declared as rel="me" in every page head. */
+/** Shown in the footer and declared as rel="me" in every page head. */
 export const PROFILES = [
   { label: 'GitHub', href: 'https://github.com/joesposito8' },
   { label: 'X', href: 'https://x.com/joesposito8' },

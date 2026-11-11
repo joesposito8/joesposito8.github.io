@@ -1,7 +1,6 @@
 ---
 // Joey writes this page; the lorem shows its length, rhythm and furniture only.
 import Base from '../layouts/Base.astro';
-import { PROFILES } from '../config';
 ---
 
 <Base title="About" description="Lorem ipsum dolor sit amet.">
@@ -24,16 +23,6 @@ import { PROFILES } from '../config';
       <li>Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</li>
       <li>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</li>
       <li>Ut enim ad minima veniam, quis nostrum exercitationem.</li>
-    </ul>
-    <h2>Elsewhere</h2>
-    <ul class="profiles">
-      {
-        PROFILES.map(({ label, href }) => (
-          <li>
-            <a href={href}>{label}</a>
-          </li>
-        ))
-      }
     </ul>
   </article>
 </Base>

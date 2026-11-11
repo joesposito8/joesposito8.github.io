@@ -108,7 +108,7 @@ set at 0.8em; Alegreya has no lozenge, so it is an SVG mask in `global.css`.
 |---|---|
 | `/` | Intro, then "Writing": filters and the full list. With no posts yet, the Writing section is left out and the page is the intro alone. |
 | `/posts/<slug>/` | Essay, project or note. A project's meta line links its repo or demo. KaTeX's stylesheet loads only when the post contains math. |
-| `/about/` | Prose page with an "Elsewhere" list of profiles |
+| `/about/` | Prose page; the footer, 2rem below the last paragraph, carries the profile links |
 | `/evals/` | Intro line and eval cards. Unpublished until its text is written: the page is `src/pages/_evals.astro` and Evals is out of the nav. The `evals-*` screenshots show its design. |
 | `/404` | "Page not found" with a link to the list |
 | `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, avatar mark, title in Alegreya, "Joey Esposito · joesposito.com" |

@@ -87,6 +87,10 @@ sup { line-height: 0; }
    at an entry's spacing, however short a filter makes the list. */
 body:has(.writing) .site-footer { margin-top: 0; }
 .page:has(.writing) { min-height: 0; }
+/* A prose page (about) ends a short paragraph's gap above the footer. */
+body:has(.prose-page) .site-footer { margin-top: 2rem; }
+.page:has(.prose-page) { min-height: 0; }
+.prose-page > :last-child { margin-bottom: 0; }
 .site-footer a { color: var(--muted); }
 
 @media (min-width: 80rem) {
@@ -268,10 +272,7 @@ body:has(.writing) .site-footer { margin-top: 0; }
 .signup button { padding: 0.4rem 1.1rem; font: inherit; font-size: 0.9rem; color: var(--bg); background: var(--fg); border: 0; border-radius: 4px; cursor: pointer; }
 .signup button:hover { background: var(--accent); }
 
-/* ---------- About, evals, 404 ---------- */
-.profiles { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; padding: 0; list-style: none; }
-.profiles li { margin: 0; }
-
+/* ---------- Evals, 404 ---------- */
 .page-intro { color: var(--muted); }
 .eval-card { margin-top: 2rem; padding: 1.1rem 1.3rem 1.2rem; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--code-bg); }
 .eval-kind { margin: 0; font-size: 0.9rem; color: var(--muted); }
