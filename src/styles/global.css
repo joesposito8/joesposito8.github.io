@@ -105,7 +105,17 @@ sup { line-height: 0; }
   .page > * { max-width: var(--measure); }
   .page > .with-rail { max-width: none; display: grid; grid-template-columns: var(--measure) var(--rail); column-gap: var(--rail-gap); }
   .with-rail > * { grid-column: 1; }
-  .with-rail > .rail { grid-column: 2; grid-row: 1 / span 3; align-self: start; position: sticky; top: 2rem; max-height: calc(100vh - 4rem); overflow-y: auto; }
+  .with-rail > .rail,
+  .home > .writing > .rail { grid-column: 2; grid-row: 1 / span 3; align-self: start; position: sticky; top: 2rem; max-height: calc(100vh - 4rem); overflow-y: auto; }
+  /* On the home page the list's controls start level with the intro: the writing section's
+     children join the home grid, and the last row (the list) takes up the rail's extra
+     height so it never pushes the heading away from the list. */
+  .page > .home { grid-template-rows: auto auto 1fr; }
+  .home > .writing { display: contents; }
+  .home > .writing > * { grid-column: 1; }
+  .home > .writing > .rail { grid-row: 1 / -1; }
+  /* With the controls out in the rail, the first year divider sits right under the heading. */
+  .home .post-list > .year:first-child { margin-top: 0.4rem; }
   .site-footer { grid-column: 3; grid-row: 2; max-width: none; margin-inline: 0; padding-inline: 0; }
 }
 

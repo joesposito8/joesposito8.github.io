@@ -11,14 +11,17 @@ const posts = await getPosts();
 
 <Base>
   <h1 class="sr-only">{SITE.name}</h1>
-  <Intro />
-  {
-    posts.length > 0 && (
-      <section class="writing with-rail" id="writing" aria-labelledby="writing-title">
-        <h2 id="writing-title" class="writing-title">Writing</h2>
-        <PostFilters posts={posts} />
-        <PostList posts={posts} />
-      </section>
-    )
-  }
+  <div class="home with-rail">
+    <Intro />
+    {
+      posts.length > 0 && (
+        <section class="writing" aria-labelledby="writing">
+          {/* The heading carries the #writing anchor: on wide screens the section has no box of its own to scroll to. */}
+          <h2 id="writing" class="writing-title">Writing</h2>
+          <PostFilters posts={posts} />
+          <PostList posts={posts} />
+        </section>
+      )
+    }
+  </div>
 </Base>
