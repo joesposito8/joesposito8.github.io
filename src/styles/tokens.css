@@ -1,5 +1,5 @@
 /* Design tokens. Colours resolve with light-dark() against color-scheme, which follows the
-   reader's system setting unless the theme button pins data-theme on <html>. */
+   reader's system setting. */
 
 :root {
   color-scheme: light dark;
@@ -31,6 +31,3 @@
   /* Text on a sunflower fill stays navy in both themes. */
   --on-sun: #1b2436;
 }
-
-:root[data-theme='light'] { color-scheme: light; }
-:root[data-theme='dark'] { color-scheme: dark; }

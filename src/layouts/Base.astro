@@ -42,14 +42,8 @@ const current = (href: string) => (href === '/' ? Astro.url.pathname === '/' : A
     <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name}: all posts`} href="/feeds/all.xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name}: essays`} href="/feeds/essays.xml" />
-    {[...PROFILES.map((p) => p.href), ...EXTRA_REL_ME].map((href) => <link rel="me" href={href} />)}    <slot name="head" />
-    <script is:inline>
-      // Runs before first paint so a pinned theme never flashes the other one.
-      try {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
-      } catch {}
-    </script>
+    {[...PROFILES.map((p) => p.href), ...EXTRA_REL_ME].map((href) => <link rel="me" href={href} />)}
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -66,7 +60,6 @@ const current = (href: string) => (href === '/' ? Astro.url.pathname === '/' : A
             </a>
           ))
         }
-        <button class="theme-toggle sc" type="button" hidden>Theme: <span>auto</span></button>
       </nav>
     </header>
     <main id="main" class="page">
@@ -83,23 +76,5 @@ const current = (href: string) => (href === '/' ? Astro.url.pathname === '/' : A
         ))
       }
     </footer>
-    <script is:inline>
-      // Cycles the colour theme: follow the system, then light, then dark.
-      const root = document.documentElement;
-      const toggle = document.querySelector('.theme-toggle');
-      const ORDER = ['auto', 'light', 'dark'];
-      const show = () => (toggle.querySelector('span').textContent = root.dataset.theme ?? 'auto');
-      toggle.addEventListener('click', () => {
-        const next = ORDER[(ORDER.indexOf(root.dataset.theme ?? 'auto') + 1) % ORDER.length];
-        if (next === 'auto') delete root.dataset.theme;
-        else root.dataset.theme = next;
-        try {
-          next === 'auto' ? localStorage.removeItem('theme') : localStorage.setItem('theme', next);
-        } catch {}
-        show();
-      });
-      show();
-      toggle.hidden = false;
-    </script>
   </body>
 </html>

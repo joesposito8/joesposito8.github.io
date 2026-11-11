@@ -79,8 +79,6 @@ sup { line-height: 0; }
 .site-nav a { color: var(--muted); text-decoration: none; }
 .site-nav a:hover { color: var(--fg); }
 .site-nav a[aria-current='page'] { color: var(--fg); text-decoration: underline 0.12em var(--sun); text-underline-offset: 0.25em; }
-.theme-toggle { font-size: 0.85rem; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; }
-.theme-toggle:hover { color: var(--fg); }
 
 .page { padding-block: 1.75rem 0; min-height: 60vh; }
 
@@ -100,7 +98,6 @@ sup { line-height: 0; }
   .site-name { flex-direction: column; align-items: flex-end; gap: 0.9rem; font-size: 1.45rem; line-height: 1.15; }
   .site-name .avatar { width: 4.25rem; height: 4.25rem; font-size: 1.2rem; box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--sun); }
   .site-nav { flex-direction: column; align-items: flex-end; gap: 0.2rem; }
-  .theme-toggle { margin-top: 0.8rem; }
   .page { grid-column: 3 / 5; grid-row: 1; max-width: none; margin: 0; padding: 4rem 0 0; }
   .page > * { max-width: var(--measure); }
   .page > .with-rail,
