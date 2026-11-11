@@ -181,6 +181,8 @@ sup { line-height: 0; }
 .year::before, .year::after { content: ''; flex: 1; border-top: 1px solid var(--rule); }
 
 .entry { padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
+/* The footer's rule closes the list, so the last entry needs none of its own. */
+.entry:last-child { border-bottom: 0; }
 .entry .meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.7rem; font-size: 0.85rem; color: var(--muted); }
 .entry .type { font-size: 0.9rem; }
 .entry h3 { font-size: 1.12rem; font-weight: 500; line-height: 1.3; margin: 0.1rem 0 0; }
