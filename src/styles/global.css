@@ -82,7 +82,11 @@ sup { line-height: 0; }
 
 .page { padding-block: 1.75rem 0; min-height: 60vh; }
 
-.site-footer { margin-top: 4rem; padding-block: 1.25rem 3rem; border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--muted); }
+.site-footer { margin-top: 4rem; padding-block: 1.25rem; border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--muted); }
+/* Under the writing list the footer's rule is the last entry's rule, so it follows the list
+   at an entry's spacing, however short a filter makes the list. */
+body:has(.writing) .site-footer { margin-top: 0; }
+.page:has(.writing) { min-height: 0; }
 .site-footer a { color: var(--muted); }
 
 @media (min-width: 80rem) {
