@@ -23,7 +23,7 @@ there is no theme switch.
 | `--muted` | `#5a6477` | `#9ba6bb` | Dates, labels, secondary text |
 | `--rule` | `#e2e6ee` | `#28324a` | Hairlines, borders |
 | `--accent` | `#2343a0` | `#a3b8ff` | Links |
-| `--sun` | `#f2b600` | `#f5c84c` | The one accent: essay marks, avatar, link underlines on hover, selected filters, end mark |
+| `--sun` | `#f2b600` | `#f5c84c` | The one accent: avatar, link underlines on hover, selected filters, end mark |
 | `--hl` | `#ffd84d` | `rgb(245 200 76 / 0.35)` | Text selection, intro link hover |
 | `--code-bg` | `#f4f6fa` | `#19223a` | Code blocks, contents box, signup box, eval card |
 | `--on-sun` | `#1b2436` | `#1b2436` | Text on a sunflower fill |
@@ -89,11 +89,10 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 
 ### Post-type marks
 
-Each type has a mark from a printed book, shown before its small-caps label: essay the
-section sign § in sunflower, project the printer's pointing hand (manicule) in the label's
-colour, note the pilcrow ¶ in the label's colour. Each mark is as tall as the small caps and
-sits on their baseline. § and ¶ are Alegreya's own glyphs set at 0.8em; Alegreya has no
-hand, so it is an SVG mask in `global.css`.
+Each type has a mark from a printed book, shown before its small-caps label in the label's
+colour: essay the section sign §, project an open lozenge ◊, note the pilcrow ¶. Each mark
+is as tall as the small caps and sits on their baseline. § and ¶ are Alegreya's own glyphs
+set at 0.8em; Alegreya has no lozenge, so it is an SVG mask in `global.css`.
 
 ## Pages
 
@@ -141,7 +140,9 @@ reader picks "Most popular". Nothing else.
     sort to Newest and Most popular, fetched from the view counter in the browser.
 12. Joey dropped reading times and found the type marks too big and off the label's line. The
     shapes became printer's marks (§ essay, manicule project, ¶ note), sized to the small caps
-    and set on their baseline.
+    and set on their baseline. Joey then chose the open lozenge over the hand for projects
+    (from asterism, lozenge, four-pointed star, reference mark and #) and the label's colour
+    for §, so all three marks are ink.
 
 ## Notes
 
