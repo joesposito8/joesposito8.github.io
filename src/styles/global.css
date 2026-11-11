@@ -154,34 +154,42 @@ body:has(.writing) .site-footer { margin-top: 0; }
 
 .writing-title { font-size: 1.8rem; margin: 0 0 0.6rem; }
 
-.filters { display: grid; gap: 0.3rem; margin: 0; font-size: 0.88rem; }
-.filters fieldset { display: grid; grid-template-columns: 3.1rem minmax(0, 1fr); align-items: baseline; min-width: 0; margin: 0; padding: 0; border: 0; }
-/* Floated, the legend becomes an ordinary grid item, so it lines up as a label column. */
-.filters legend { float: left; padding: 0; color: var(--muted); }
-/* On narrow screens each group stays on one line and scrolls sideways when it overflows; the
-   fade at the right edge says there is more. The end padding sits under the fade, so a group
-   that fits shows no fade. The start padding leaves room for the selected dot. */
-.filters .options { display: flex; gap: 0 0.7rem; overflow-x: auto; scrollbar-width: none; white-space: nowrap; padding: 0 0.8rem 0 0.75rem; mask-image: linear-gradient(to right, #000 calc(100% - 0.8rem), transparent); }
-.filters .options::-webkit-scrollbar { display: none; }
+.filters fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.filters legend { padding: 0; color: var(--muted); }
 /* The radios stay in the page for keyboard and screen-reader use; their labels are what shows. */
 .filters input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
-.filters label { cursor: pointer; }
-.filters label > span { position: relative; color: var(--muted); }
-.filters label:hover > span { color: var(--fg); }
-.filters label:has(input:checked) > span { color: var(--fg); font-weight: 600; }
-.filters label:has(input:checked) > span::before { content: ''; position: absolute; left: -0.7rem; top: 0.62em; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--sun); }
-.filters label:has(input:focus-visible) > span { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.filters label { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .filters label.none > span { opacity: 0.45; }
 .filters .n { font-size: 0.8em; font-weight: 400; color: var(--muted); font-variant-numeric: lining-nums tabular-nums; }
 .f-status { margin: 0; font-size: 0.85rem; font-style: italic; color: var(--muted); }
 .f-empty { margin: 1.5rem 0; color: var(--muted); font-style: italic; }
 .f-empty button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
 
+/* Narrow screens: each group is a row of pills running the full width of the screen (out
+   through the page gutters), scrolling sideways when it overflows, with fades at the edges.
+   Pills are 44px tall, the touch-target minimum, and the chosen one fills with sunflower. */
+@media not all and (min-width: 80rem) {
+  .filters { display: grid; gap: 0.75rem; margin: 0.2rem 0 0; font-size: 0.9rem; }
+  .filters legend { margin-bottom: 0.35rem; font-size: 0.85rem; }
+  .filters .options { display: flex; gap: 0.45rem; overflow-x: auto; scrollbar-width: none; margin-inline: -1rem; padding-inline: 1rem; mask-image: linear-gradient(to right, transparent, #000 1rem, #000 calc(100% - 1rem), transparent); }
+  .filters .options::-webkit-scrollbar { display: none; }
+  .filters label > span { display: inline-flex; align-items: center; gap: 0.35em; min-height: 2.2rem; padding: 0 0.95rem; white-space: nowrap; color: var(--fg); border: 1px solid var(--rule); border-radius: 999px; transition: background-color 0.15s, border-color 0.15s, transform 0.1s; }
+  .filters label:active > span { transform: scale(0.95); }
+  .filters label:has(input:checked) > span { color: var(--on-sun); font-weight: 600; background: var(--sun); border-color: var(--sun); }
+  .filters label:has(input:checked) .n { color: var(--on-sun); }
+  .filters label:has(input:focus-visible) > span { outline: 2px solid var(--accent); outline-offset: 2px; }
+}
+
+/* Wide screens: the controls are a quiet list in the right margin, the choice marked by a dot. */
 @media (min-width: 80rem) {
-  .writing > .filters { gap: 1.1rem; margin: 0; padding: 0.5rem 0 0 0.7rem; border: 0; font-size: 0.85rem; }
-  .filters fieldset { display: block; }
-  .filters legend { float: none; margin-bottom: 0.1rem; }
-  .filters .options { flex-direction: column; overflow: visible; white-space: normal; padding: 0; mask-image: none; }
+  .writing > .filters { display: grid; gap: 1.1rem; margin: 0; padding: 0.5rem 0 0 0.7rem; font-size: 0.85rem; }
+  .filters legend { margin-bottom: 0.1rem; }
+  .filters .options { display: flex; flex-direction: column; }
+  .filters label > span { position: relative; color: var(--muted); }
+  .filters label:hover > span { color: var(--fg); }
+  .filters label:has(input:checked) > span { color: var(--fg); font-weight: 600; }
+  .filters label:has(input:checked) > span::before { content: ''; position: absolute; left: -0.7rem; top: 0.62em; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--sun); }
+  .filters label:has(input:focus-visible) > span { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
 }
 
 /* Years divide the list; an entry is a date column and a title column, ruled beneath. */

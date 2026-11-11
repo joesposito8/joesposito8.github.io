@@ -165,6 +165,12 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
       apply();
     });
     form.hidden = false;
+    // On narrow screens a choice made by link can start off-screen in its sideways row.
+    for (const input of form.querySelectorAll<HTMLInputElement>('input:checked')) {
+      const row = input.closest<HTMLElement>('.options')!.getBoundingClientRect();
+      const pill = input.closest('label')!.getBoundingClientRect();
+      if (pill.right > row.right) input.closest<HTMLElement>('.options')!.scrollLeft += pill.left - row.left - (row.width - pill.width) / 2;
+    }
     apply();
   }
 </script>
