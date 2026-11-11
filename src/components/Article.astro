@@ -1,6 +1,6 @@
 ---
 import { render } from 'astro:content';
-import { TYPE_LABELS, formatDate, readingMinutes, hostname, type Post } from '../lib/posts';
+import { TYPE_LABELS, formatDate, hostname, type Post } from '../lib/posts';
 import { SUBSTACK_SIGNUP } from '../config';
 import DiscussLinks from './DiscussLinks.astro';
 import CiteBlock from './CiteBlock.astro';
@@ -33,14 +33,6 @@ const essay = type === 'essay';
             <span>
               updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
             </span>
-          </>
-        )
-      }
-      {
-        essay && (
-          <>
-            <span class="sep">·</span>
-            <span>{readingMinutes(post)} min read</span>
           </>
         )
       }

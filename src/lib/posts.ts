@@ -32,11 +32,6 @@ export function formatDate(date: Date, style: 'long' | 'short' | 'iso' | 'day-mo
   });
 }
 
-export function readingMinutes(post: Post): number {
-  const words = (post.body ?? '').split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.round(words / 230));
-}
-
 export function hostname(url: string): string {
   return new URL(url).hostname.replace(/^www\./, '');
 }

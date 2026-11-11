@@ -1,5 +1,5 @@
 ---
-import { TYPE_LABELS, formatDate, groupBy, hostname, postUrl, readingMinutes, type Post } from '../lib/posts';
+import { TYPE_LABELS, formatDate, groupBy, hostname, postUrl, type Post } from '../lib/posts';
 
 interface Props {
   posts: Post[];
@@ -19,7 +19,6 @@ const years = groupBy(posts, (p) => String(p.data.date.getUTCFullYear()));
         </p>
         {items.map((p) => {
           const { type, title, subtitle, date, tags, url } = p.data;
-          const minutes = readingMinutes(p);
           return (
             <article class={`entry ${type}`} data-type={type} data-tags={tags.join(' ')} data-date={date.toISOString()} data-path={postUrl(p)}>
               <div class="meta">
@@ -28,7 +27,6 @@ const years = groupBy(posts, (p) => String(p.data.date.getUTCFullYear()));
                   <span class="yr"> {year}</span>
                 </time>
                 <span class={`type sc t-${type}`}>{TYPE_LABELS[type]}</span>
-                {type === 'essay' && <span>{minutes} min</span>}
               </div>
               <div class="content">
                 <h3>
