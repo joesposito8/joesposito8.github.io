@@ -1,0 +1,157 @@
+{
+  "compiledAt": "2026-11-11T19:13:02.443Z",
+  "repos": [
+    {
+      "name": "inspect_swarm",
+      "url": "https://github.com/joesposito8/inspect_swarm",
+      "description": "Evals with multi-agent swarms (experimental)",
+      "language": "Python",
+      "fork": true,
+      "stars": 0,
+      "pushedAt": "2026-11-02T14:24:09Z"
+    },
+    {
+      "name": "inspect_scout",
+      "url": "https://github.com/joesposito8/inspect_scout",
+      "description": "In-depth analysis of AI agent transcripts.",
+      "language": null,
+      "fork": true,
+      "stars": 0,
+      "pushedAt": "2026-10-27T21:53:16Z"
+    },
+    {
+      "name": "abliteration-prefill",
+      "url": "https://github.com/joesposito8/abliteration-prefill",
+      "description": null,
+      "language": "Python",
+      "fork": false,
+      "stars": 0,
+      "pushedAt": "2026-09-25T00:22:11Z"
+    },
+    {
+      "name": "joesposito8",
+      "url": "https://github.com/joesposito8/joesposito8",
+      "description": "Profile README",
+      "language": null,
+      "fork": false,
+      "stars": 0,
+      "pushedAt": "2026-08-29T03:11:22Z"
+    },
+    {
+      "name": "inspect_ai",
+      "url": "https://github.com/joesposito8/inspect_ai",
+      "description": "Inspect: A framework for large language model evaluations",
+      "language": "Python",
+      "fork": true,
+      "stars": 0,
+      "pushedAt": "2026-08-12T00:30:44Z"
+    },
+    {
+      "name": "inspect_petri",
+      "url": "https://github.com/joesposito8/inspect_petri",
+      "description": "An alignment auditing agent capable of quickly exploring alignment hypothesis",
+      "language": null,
+      "fork": true,
+      "stars": 0,
+      "pushedAt": "2026-06-26T18:59:41Z"
+    },
+    {
+      "name": "TarantuBench",
+      "url": "https://github.com/joesposito8/TarantuBench",
+      "description": "The full repo of all the labs available as part of the benchmark",
+      "language": null,
+      "fork": true,
+      "stars": 0,
+      "pushedAt": "2026-05-06T20:02:05Z"
+    },
+    {
+      "name": "inspect_evals",
+      "url": "https://github.com/joesposito8/inspect_evals",
+      "description": "Collection of evals for Inspect AI",
+      "language": null,
+      "fork": true,
+      "stars": 0,
+      "pushedAt": "2026-04-27T02:54:46Z"
+    }
+  ],
+  "mergedPullRequests": [
+    {
+      "repo": "meridianlabs-ai/inspect_swarm",
+      "title": "fix: validate member limit dicts",
+      "url": "https://github.com/meridianlabs-ai/inspect_swarm/pull/88",
+      "mergedAt": "2026-10-26T12:53:26Z"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_ai",
+      "title": "Add Krippendorff's α metric and collect reducer",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai/pull/4035",
+      "mergedAt": "2026-08-12T00:38:20Z"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_ai",
+      "title": "Memory tool: canonicalize paths, add instance scoping",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai/pull/4380",
+      "mergedAt": "2026-07-21T16:42:02Z"
+    },
+    {
+      "repo": "meridianlabs-ai/inspect_scout",
+      "title": "fix: resolve ModelEvent input_refs from events_data pool schema",
+      "url": "https://github.com/meridianlabs-ai/inspect_scout/pull/455",
+      "mergedAt": "2026-06-02T14:02:50Z"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_ai",
+      "title": "feat(scorer): add pass_k reducer (τ-bench pass^k consistency metric)",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai/pull/3969",
+      "mergedAt": "2026-05-19T10:42:43Z"
+    },
+    {
+      "repo": "Trivulzianus/TarantuBench",
+      "title": "Restore per-run randomized flag in Inspect AI task",
+      "url": "https://github.com/Trivulzianus/TarantuBench/pull/1",
+      "mergedAt": "2026-05-13T21:11:22Z"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_evals",
+      "title": "cyberseceval_4: tolerate fenced and prose-wrapped judge JSON",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_evals/pull/1501",
+      "mergedAt": "2026-04-27T06:00:28Z"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_evals",
+      "title": "Fix CodeIPI exfiltration scorer to check tool result messages",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_evals/pull/1429",
+      "mergedAt": "2026-04-15T02:03:53Z"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_ai",
+      "title": "Add vLLM chat template controls for base-model evals",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai/pull/3709",
+      "mergedAt": "2026-04-24T17:46:03Z"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_evals",
+      "title": "Fix mean_of on_missing=\"skip\" to also skip None-valued samples",
+      "url": "https://github.com/UKGovernmentBEIS/inspect_evals/pull/1503",
+      "mergedAt": "2026-04-24T17:16:54Z"
+    },
+    {
+      "repo": "ooloo-io/github-flow-joesposito8",
+      "title": "content-container",
+      "url": "https://github.com/ooloo-io/github-flow-joesposito8/pull/5",
+      "mergedAt": "2022-06-28T21:56:25Z"
+    },
+    {
+      "repo": "ooloo-io/github-flow-joesposito8",
+      "title": "Footer",
+      "url": "https://github.com/ooloo-io/github-flow-joesposito8/pull/2",
+      "mergedAt": "2022-06-28T21:27:32Z"
+    },
+    {
+      "repo": "ooloo-io/github-flow-joesposito8",
+      "title": "Header",
+      "url": "https://github.com/ooloo-io/github-flow-joesposito8/pull/1",
+      "mergedAt": "2022-06-28T20:59:19Z"
+    }
+  ]
+}

@@ -8,7 +8,6 @@ export const NAV = [
   { href: '/', label: 'Writing' },
   { href: '/archive/', label: 'Archive' },
   { href: '/about/', label: 'About' },
-  { href: '/evals/', label: 'Evals' },
 ];
 
 export const SUBSTACK_URL = 'https://joesposito8.substack.com';

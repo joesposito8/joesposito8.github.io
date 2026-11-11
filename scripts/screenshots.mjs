@@ -21,7 +21,6 @@ const PAGES = {
   til: '/posts/til-duis-aute-irure/',
   link: '/posts/link-excepteur-sint-occaecat/',
   about: '/about/',
-  evals: '/evals/',
   404: '/this-page-does-not-exist/',
 };
 const WIDTHS = [375, 1280];
