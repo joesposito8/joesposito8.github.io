@@ -11,6 +11,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "screenshots": "node scripts/screenshots.mjs",
+    "check": "node scripts/check-dist.mjs",
+    "check:feeds": "node scripts/check-feeds.mjs",
+    "evals-facts": "node scripts/evals-facts.mjs",
     "astro": "astro"
   },
   "dependencies": {

@@ -1,0 +1,13 @@
+# Link check for the built site (dist/). The root directory is passed on the command line,
+# since it differs between CI and a local run.
+
+max_retries = 2
+
+exclude = [
+    # X and LinkedIn answer automated requests with errors whether or not the page exists.
+    '^https://(www\.)?(x|twitter)\.com',
+    '^https://(www\.)?linkedin\.com',
+    # The site's own absolute URLs (canonical, Open Graph) repeat its internal links, which
+    # are checked as files, and do not resolve before the first deploy.
+    '^https://joesposito\.com',
+]
