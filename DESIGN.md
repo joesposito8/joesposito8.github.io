@@ -23,7 +23,7 @@ there is no theme switch.
 | `--muted` | `#5a6477` | `#9ba6bb` | Dates, labels, secondary text |
 | `--rule` | `#e2e6ee` | `#28324a` | Hairlines, borders |
 | `--accent` | `#2343a0` | `#a3b8ff` | Links |
-| `--sun` | `#f2b600` | `#f5c84c` | The one accent: avatar, link underlines on hover, selected filters, end mark |
+| `--sun` | `#f2b600` | `#f5c84c` | The one accent: link underlines on hover, selected filters, end mark |
 | `--hl` | `#ffd84d` | `rgb(245 200 76 / 0.35)` | Text selection, intro link hover |
 | `--code-bg` | `#f4f6fa` | `#19223a` | Code blocks, contents box, signup box, eval card |
 | `--on-sun` | `#1b2436` | `#1b2436` | Text on a sunflower fill |
@@ -59,8 +59,10 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 | `--space` | 1.5rem paragraph spacing |
 | `--radius` | 6px |
 
-- Below 80rem (1280px): one column, `--measure` wide plus 1rem gutters. The header is a top
-  bar: avatar and name, then the nav. The list's controls sit under the "Writing" heading
+- The header is the same on every page: the name, with the nav (Writing, About) beneath it.
+  There is no avatar.
+- Below 80rem (1280px): one column, `--measure` wide plus 1rem gutters. The header is at
+  the top, left-aligned. The list's controls sit under the "Writing" heading
   with no rules: each group is a small-caps label over a row running the full width of the
   screen. Options are plain text with the sunflower dot beside the chosen one, as in the wide
   margin, each in an invisible 44px touch target that presses in slightly when tapped. Each
@@ -70,14 +72,14 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
   link is scrolled into view. (Outlined pills were tried; Joey
   preferred the dots.)
 - From 80rem: the body is a five-column grid (`1fr | rail | measure | rail | 1fr`). The
-  header sits in the left rail, right-aligned and sticky: a 4.25rem avatar, the name, the
-  nav. Pages that need it put a sticky panel in the right rail (`.with-rail`
-  and `.rail`): the writing list's controls, an essay's contents.
-- Home page: the header shows the name without the avatar.
-- Home page, from 80rem: the intro and the margin's name and nav form
-  one top band, the two centred on each other, and "Writing" with its controls starts below
-  the band. The
-  header holds only that band here, so it scrolls away with it; the controls stay sticky.
+  header sits in the left rail, right-aligned and sticky, its top 4rem down on every page.
+  Pages that need it put a sticky panel in the right rail (`.with-rail` and `.rail`): the
+  writing list's controls, an essay's contents.
+- Home page, from 80rem: the intro and the margin's name and nav form one top band, and
+  "Writing" with its controls starts below the band. The header keeps its usual top; the
+  intro centres in the band, so its top is level with the header's whenever it is the
+  taller. The header holds only that band here, so it scrolls away with it; the controls
+  stay sticky.
   The first year divider sits 0.4rem under the "Writing" heading.
 
 ## Components
@@ -112,7 +114,7 @@ set at 0.8em; Alegreya has no lozenge, so it is an SVG mask in `global.css`.
 | `/about/` | Prose page opening on its first paragraph (the "About" heading is for screen readers only; the nav names the page); the footer, 2rem below the last paragraph, carries the profile links |
 | `/evals/` | Intro line and eval cards. Unpublished until its text is written: the page is `src/pages/_evals.astro` and Evals is out of the nav. The `evals-*` screenshots show its design. |
 | `/404` | "Page not found" with a link to the list |
-| `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, avatar mark, title in Alegreya, "Joey Esposito · joesposito.com" |
+| `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, title in Alegreya, "Joey Esposito · joesposito.com" |
 
 Client JavaScript: the filter script on `/`, which requests the view counts only when a
 reader picks "Most popular". Nothing else.
@@ -152,6 +154,9 @@ reader picks "Most popular". Nothing else.
     and set on their baseline. Joey then chose the open lozenge over the hand for projects
     (from asterism, lozenge, four-pointed star, reference mark and #) and the label's colour
     for §, so all three marks are ink.
+13. Joey removed the JE avatar everywhere (header and social cards) and asked for one header
+    on every page: the name with Writing and About beneath it. On the home page the header
+    now keeps the same top as elsewhere rather than centring on the intro.
 
 ## Notes
 

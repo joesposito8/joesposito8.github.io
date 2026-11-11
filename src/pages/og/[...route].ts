@@ -23,8 +23,6 @@ export const { getStaticPaths, GET } = await OGImageRoute({
     bgGradient: [PAPER],
     border: { color: SUN, width: 24, side: 'inline-start' },
     padding: 80,
-    // The avatar placeholder, rendered from the same sunflower disc the site header uses.
-    logo: { path: './src/assets/og-mark.png', size: [104] },
     // The card renderer loads font files directly, so it uses static Alegreya weights.
     fonts: ['./node_modules/@fontsource/alegreya/files/alegreya-latin-500-normal.woff', './node_modules/@fontsource/alegreya/files/alegreya-latin-400-normal.woff'],
     font: {
