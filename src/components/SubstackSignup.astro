@@ -1,11 +1,12 @@
 ---
-// Placement and look of the email signup. The live form (Substack embed or a form
-// posting to Substack) is wired when the site is built; this is the slot.
+// The designed signup box, submitting to the Substack publication rather than embedding
+// Substack's iframe, so the box keeps the site's look and loads nothing from Substack.
+import { SUBSTACK_URL } from '../config';
 ---
 
 <aside class="signup" aria-label="Email subscription">
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
-  <form action="https://joesposito8.substack.com/subscribe" method="get">
+  <form action={`${SUBSTACK_URL}/subscribe`} method="get">
     <label class="sr-only" for="signup-email">Email address</label>
     <input id="signup-email" type="email" name="email" placeholder="you@example.com" required />
     <button type="submit">Subscribe</button>

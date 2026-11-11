@@ -6,7 +6,7 @@ import '@fontsource/alegreya-sc/500.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
-import { NAV, PROFILES, SITE } from '../config';
+import { EXTRA_REL_ME, GOATCOUNTER_CODE, NAV, PROFILES, SITE } from '../config';
 
 interface Props {
   /** Page title; the site name is appended except on the home page. */
@@ -40,7 +40,10 @@ const current = (href: string) => (href === '/' ? Astro.url.pathname === '/' : A
     <meta property="og:site_name" content={SITE.name} />
     {imageUrl && <meta property="og:image" content={imageUrl} />}
     <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
-    {/* Profile verification links (rel="me") go here when the accounts are known. */}
+    <link rel="alternate" type="application/rss+xml" title={`${SITE.name}: all posts`} href="/feeds/all.xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE.name}: essays`} href="/feeds/essays.xml" />
+    {[...PROFILES.map((p) => p.href), ...EXTRA_REL_ME].map((href) => <link rel="me" href={href} />)}
+    {GOATCOUNTER_CODE && <script is:inline data-goatcounter={`https://${GOATCOUNTER_CODE}.goatcounter.com/count`} async src="//gc.zgo.at/count.js" />}
     <slot name="head" />
     <script is:inline>
       // Runs before first paint so a pinned theme never flashes the other one.
@@ -77,7 +80,7 @@ const current = (href: string) => (href === '/' ? Astro.url.pathname === '/' : A
         PROFILES.map(({ label, href }) => (
           <>
             {' · '}
-            <a href={href}>{label}</a>
+            <a href={href} rel="me">{label}</a>
           </>
         ))
       }
