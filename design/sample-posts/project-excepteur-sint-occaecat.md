@@ -1,5 +1,5 @@
 ---
-type: link
+type: project
 title: Excepteur sint occaecat cupidatat non proident
 date: 2026-10-30
 url: https://example.com/excepteur-sint-occaecat

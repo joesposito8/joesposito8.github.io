@@ -1,5 +1,5 @@
 ---
-type: link
+type: project
 title: Itaque earum rerum hic tenetur a sapiente
 date: 2025-11-20
 url: https://example.net/itaque-earum-rerum

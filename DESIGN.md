@@ -77,8 +77,8 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 |---|---|---|
 | Base layout | `src/layouts/Base.astro` | Head (title, description, canonical, Open Graph and Twitter card tags, feed discovery links, `rel="me"` profile links, a `head` slot), header, footer with profile links |
 | Intro | `src/components/Intro.astro` | Prose paragraph in Joey's voice. The first words are set in small capitals (`.lede strong`). Links are underlined in sunflower; topic links open the list pre-filtered (`/?tag=…#writing`). No drop cap. |
-| PostFilters | `src/components/PostFilters.astro` | Radio groups Show (All/Essays/Notes/TILs/Links with counts), Topic (tags by frequency), Sort (Newest/Oldest/Longest), plus a live count. Hidden until its script runs. Counts follow the chosen topic; options with zero matches fade. State is mirrored in the query string, so filtered views are linkable. |
-| PostList | `src/components/PostList.astro` | Year dividers (centred year between hairlines) and ruled entries: date column (date, type mark, minutes for essays) and title column (title link, essay subtitle in italic, topic links in mono). Sorted by length, the dividers disappear and each date shows its year. |
+| PostFilters | `src/components/PostFilters.astro` | Radio groups Show (All/Essays/Projects/Notes with counts), Topic (tags by frequency), Sort (Newest/Most popular), plus a live count. Hidden until its script runs. Counts follow the chosen topic; options with zero matches fade. State is mirrored in the query string, so filtered views are linkable. Sort appears only when `VIEWS_URL` is set; "Most popular" fetches the view counts once, and if they fail to load the list falls back to newest and says so. |
+| PostList | `src/components/PostList.astro` | Year dividers (centred year between hairlines) and ruled entries: date column (date, type mark, minutes for essays) and title column (title link, a project's "→ host" repo link in mono, essay subtitle in italic, topic links in mono). Sorted by views, the dividers disappear and each date shows its year. |
 | Article | `src/components/Article.astro` | Post header (title, subtitle, meta line, epistemic status), contents, body, end mark, discussion links, citation, signup. |
 | Contents | `src/components/Contents.astro` | Essays with two or more headings. Box above the text on narrow screens; sticky right rail on wide ones. |
 | EndMark | `src/components/EndMark.astro` | Small sun between two short rules, closing an essay. |
@@ -90,20 +90,21 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 ### Post-type marks
 
 One accent colour, so each type has a shape, shown before its small-caps label:
-essay a sunflower disc, note an ink ring, TIL an ink diamond, link a small grey dot.
+essay a sunflower disc, project an ink diamond, note an ink ring.
 
 ## Pages
 
 | Route | Content |
 |---|---|
 | `/` | Intro, then "Writing": filters and the full list. With no posts yet, the Writing section is left out and the page is the intro alone. |
-| `/posts/<slug>/` | Essay, note, TIL or link post. Link posts' titles point to the linked page. KaTeX's stylesheet loads only when the post contains math. |
+| `/posts/<slug>/` | Essay, project or note. A project's meta line links its repo or demo. KaTeX's stylesheet loads only when the post contains math. |
 | `/about/` | Prose page with an "Elsewhere" list of profiles |
 | `/evals/` | Intro line and eval cards. Unpublished until its text is written: the page is `src/pages/_evals.astro` and Evals is out of the nav. The `evals-*` screenshots show its design. |
 | `/404` | "Page not found" with a link to the list |
 | `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, avatar mark, title in Alegreya, "Joey Esposito · joesposito.com" |
 
-Client JavaScript: the filter script on `/`. Nothing else.
+Client JavaScript: the filter script on `/`, which requests the view counts only when a
+reader picks "Most popular". Nothing else.
 
 ## Design history
 
@@ -132,6 +133,9 @@ Client JavaScript: the filter script on `/`. Nothing else.
 10. The home band's two sides differ in height and line spacing, so only one edge can match.
     Joey compared top, bottom, centred and both-edges alignment on the preview and chose
     centred.
+11. Joey set the post types to Essays, Projects and Notes (TIL and Link dropped; a project is
+    a write-up with an optional repo or demo link, marked with the diamond TILs had) and the
+    sort to Newest and Most popular, fetched from the view counter in the browser.
 
 ## Notes
 

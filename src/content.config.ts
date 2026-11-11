@@ -2,7 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-export const POST_TYPES = ['essay', 'note', 'til', 'link'] as const;
+export const POST_TYPES = ['essay', 'project', 'note'] as const;
 
 const posts = defineCollection({
   // SAMPLE_POSTS points a build at a folder of sample posts (design/sample-posts for the
@@ -21,7 +21,7 @@ const posts = defineCollection({
       lesswrong: z.boolean().default(false),
       // Marks a report-style essay: adds citation_* meta tags so Google Scholar can index it.
       report: z.boolean().default(false),
-      // The page a link post points at.
+      // A project's repo or demo.
       url: z.url().optional(),
       syndication: z
         .object({
@@ -34,8 +34,8 @@ const posts = defineCollection({
         .default({}),
     })
     .strict()
-    .refine((post) => post.type !== 'link' || post.url, {
-      message: 'link posts need a `url`',
+    .refine((post) => !post.url || post.type === 'project', {
+      message: 'only project posts take a `url`',
       path: ['url'],
     }),
 });

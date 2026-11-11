@@ -1,5 +1,6 @@
 ---
 import { POST_TYPES } from '../content.config';
+import { VIEWS_URL } from '../config';
 import type { Post } from '../lib/posts';
 
 interface Props {
@@ -7,11 +8,10 @@ interface Props {
 }
 
 const { posts } = Astro.props;
-const PLURALS = { essay: 'Essays', note: 'Notes', til: 'TILs', link: 'Links' } as const;
+const PLURALS = { essay: 'Essays', project: 'Projects', note: 'Notes' } as const;
 const SORTS = [
   ['newest', 'Newest'],
-  ['oldest', 'Oldest'],
-  ['longest', 'Longest'],
+  ['popular', 'Most popular'],
 ] as const;
 
 const tagCounts = new Map<string, number>();
@@ -51,19 +51,21 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
       }
     </div>
   </fieldset>
-  <fieldset>
-    <legend class="sc">Sort</legend>
-    <div class="options">
-      {
-        SORTS.map(([value, label], i) => (
-          <label>
-            <input type="radio" name="sort" value={value} checked={i === 0} />
-            <span>{label}</span>
-          </label>
-        ))
-      }
-    </div>
-  </fieldset>
+  {
+    VIEWS_URL && (
+      <fieldset data-views={VIEWS_URL}>
+        <legend class="sc">Sort</legend>
+        <div class="options">
+          {SORTS.map(([value, label], i) => (
+            <label>
+              <input type="radio" name="sort" value={value} checked={i === 0} />
+              <span>{label}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    )
+  }
   <p class="f-status" aria-live="polite"></p>
 </form>
 <p class="f-empty" hidden>Nothing matches. <button type="button">Show everything</button></p>
@@ -81,13 +83,24 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
     const entries = [...list.querySelectorAll<HTMLElement>('.entry')];
     const yearMarkers = new Map([...list.querySelectorAll<HTMLElement>('.year')].map((el) => [el.dataset.year, el]));
     const status = form.querySelector<HTMLElement>('.f-status')!;
+    const viewsUrl = form.querySelector<HTMLElement>('[data-views]')?.dataset.views;
 
-    const byDate = (a: HTMLElement, b: HTMLElement) => a.dataset.date!.localeCompare(b.dataset.date!);
-    const ORDERS: Record<string, (a: HTMLElement, b: HTMLElement) => number> = {
-      newest: (a, b) => byDate(b, a),
-      oldest: byDate,
-      longest: (a, b) => Number(b.dataset.minutes) - Number(a.dataset.minutes) || byDate(b, a),
+    // View counts are fetched once, the first time a reader sorts by them.
+    let views: Promise<Map<string, number> | null> | undefined;
+    const loadViews = async () => {
+      try {
+        const res = await fetch(viewsUrl!, { credentials: 'omit' });
+        const data: unknown = res.ok ? await res.json() : null;
+        if (!data || typeof data !== 'object') return null;
+        return new Map(Object.entries(data).map(([path, n]) => [path, Number(n) || 0]));
+      } catch {
+        return null;
+      }
     };
+
+    const newestFirst = (a: HTMLElement, b: HTMLElement) => b.dataset.date!.localeCompare(a.dataset.date!);
+    const mostViewed = (counts: Map<string, number>) => (a: HTMLElement, b: HTMLElement) =>
+      (counts.get(b.dataset.path!) ?? 0) - (counts.get(a.dataset.path!) ?? 0) || newestFirst(a, b);
 
     const read = () => {
       const data = new FormData(form);
@@ -101,8 +114,22 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
       }
     };
 
-    const apply = () => {
+    const apply = async () => {
       const state = read();
+      let order = newestFirst;
+      let note = '';
+      if (state.sort === 'popular') {
+        status.textContent = 'Loading view counts…';
+        const counts = await (views ??= loadViews());
+        if (counts) order = mostViewed(counts);
+        else {
+          // Let a later choice of "Most popular" try again.
+          views = undefined;
+          select({ ...state, sort: 'newest' });
+          state.sort = 'newest';
+          note = 'View counts are unavailable. ';
+        }
+      }
       const inTopic = entries.filter((el) => state.tag === 'all' || el.dataset.tags!.split(' ').includes(state.tag));
       // Type counts follow the chosen topic, so each option says how many posts it would show.
       for (const n of form.querySelectorAll<HTMLElement>('[data-count]')) {
@@ -111,10 +138,10 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
         n.textContent = String(count);
         n.closest('label')!.classList.toggle('none', count === 0);
       }
-      const shown = inTopic.filter((el) => state.type === 'all' || el.dataset.type === state.type).sort(ORDERS[state.sort] ?? ORDERS.newest);
+      const shown = inTopic.filter((el) => state.type === 'all' || el.dataset.type === state.type).sort(order);
 
-      // Year markers only make sense in date order; sorted by length, each date shows its year instead.
-      const byYear = state.sort !== 'longest';
+      // Year markers only make sense in date order; sorted by views, each date shows its year instead.
+      const byYear = order === newestFirst;
       const nodes: HTMLElement[] = [];
       let year: string | undefined;
       for (const el of shown) {
@@ -125,7 +152,8 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
       }
       list.replaceChildren(...nodes);
       list.dataset.sort = state.sort;
-      status.textContent = shown.length === entries.length ? `${entries.length} posts` : `${shown.length} of ${entries.length} posts`;
+      const count = shown.length === entries.length ? `${entries.length} posts` : `${shown.length} of ${entries.length} posts`;
+      status.textContent = note + count;
       empty.hidden = shown.length > 0;
 
       const query = new URLSearchParams(KEYS.filter((k) => state[k] !== DEFAULTS[k]).map((k) => [k, state[k]])).toString();

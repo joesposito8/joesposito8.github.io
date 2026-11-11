@@ -24,3 +24,10 @@ export const EXTRA_REL_ME = ['https://www.linkedin.com/in/joseph-esposito8'];
 
 /** Shows the email signup at the end of every essay. */
 export const SUBSTACK_SIGNUP = true;
+
+/**
+ * The view counter's public read endpoint: a JSON object mapping each page path
+ * ("/posts/<slug>/") to its view count. When set, the list offers "Most popular", which
+ * fetches it in the reader's browser; null hides the Sort control.
+ */
+export const VIEWS_URL: string | null = null;

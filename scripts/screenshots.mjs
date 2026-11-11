@@ -17,8 +17,7 @@ const PAGES = {
   home: '/',
   essay: '/posts/lorem-ipsum-dolor-sit-amet/',
   note: '/posts/note-ut-enim-ad-minim/',
-  til: '/posts/til-duis-aute-irure/',
-  link: '/posts/link-excepteur-sint-occaecat/',
+  project: '/posts/project-excepteur-sint-occaecat/',
   about: '/about/',
   404: '/this-page-does-not-exist/',
 };

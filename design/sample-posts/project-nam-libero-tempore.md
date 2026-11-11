@@ -1,5 +1,5 @@
 ---
-type: link
+type: project
 title: Nam libero tempore cum soluta nobis
 date: 2026-09-03
 url: https://example.org/nam-libero-tempore

@@ -21,7 +21,7 @@ const years = groupBy(posts, (p) => String(p.data.date.getUTCFullYear()));
           const { type, title, subtitle, date, tags, url } = p.data;
           const minutes = readingMinutes(p);
           return (
-            <article class={`entry ${type}`} data-type={type} data-tags={tags.join(' ')} data-date={date.toISOString()} data-minutes={minutes}>
+            <article class={`entry ${type}`} data-type={type} data-tags={tags.join(' ')} data-date={date.toISOString()} data-path={postUrl(p)}>
               <div class="meta">
                 <time datetime={date.toISOString()}>
                   {formatDate(date, 'day-month')}
@@ -32,8 +32,12 @@ const years = groupBy(posts, (p) => String(p.data.date.getUTCFullYear()));
               </div>
               <div class="content">
                 <h3>
-                  <a href={type === 'link' ? url : postUrl(p)}>{title}</a>
-                  {type === 'link' && url && <span class="host"> → {hostname(url)}</span>}
+                  <a href={postUrl(p)}>{title}</a>
+                  {url && (
+                    <a class="host" href={url}>
+                      → {hostname(url)}
+                    </a>
+                  )}
                 </h3>
                 {subtitle && <p class="summary">{subtitle}</p>}
                 {tags.length > 0 && (

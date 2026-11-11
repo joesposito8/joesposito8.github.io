@@ -1,5 +1,5 @@
 ---
-type: til
+type: note
 title: Duis aute irure dolor in reprehenderit
 date: 2026-11-02
 tags: [ipsum]

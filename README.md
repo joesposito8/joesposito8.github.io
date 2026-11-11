@@ -26,14 +26,14 @@ Posts are Markdown files in `src/content/posts/`. The file name is the URL slug
 
 | Field | Type | Notes |
 |---|---|---|
-| `type` | `essay`, `note`, `til` or `link` | Required |
+| `type` | `essay`, `project` or `note` | Required |
 | `title` | text | Required |
 | `subtitle` | text | Shown under the title and in the feeds |
 | `date` | `YYYY-MM-DD` | Required |
 | `updated` | `YYYY-MM-DD` | |
 | `epistemic` | text | Epistemic status line |
 | `tags` | list | Topics; the home page filters by them |
-| `url` | URL | Required for `link` posts: the page linked to |
+| `url` | URL | Projects only: the repo or demo, shown as "→ host" in the list and the post header |
 | `lesswrong` | `true`/`false` | Adds the post to `/feeds/lesswrong.xml`, which LessWrong imports |
 | `report` | `true`/`false` | On an essay, adds `citation_*` meta tags for Google Scholar |
 | `syndication` | `lesswrong`, `substack`, `x`, `linkedin` URLs | LessWrong and X show as "Discuss on" links |
@@ -49,6 +49,10 @@ between `$…$` or `$$…$$`; KaTeX's stylesheet loads only on posts that use it
 - `SUBSTACK_SIGNUP`: `true` shows the signup box at the end of each essay.
 - `PROFILES`, `EXTRA_REL_ME`: profile links for the footer and the `rel="me"` tags.
 - `NAV`: the pages in the site menu.
+- `VIEWS_URL`: the view counter's public read endpoint, a JSON object mapping each page
+  path (`/posts/<slug>/`) to its view count. When set, the home list offers "Most popular",
+  which fetches it in the reader's browser (no credentials); while `null`, the Sort control
+  is hidden and the list is newest first.
 
 ## Feeds and other generated files
 

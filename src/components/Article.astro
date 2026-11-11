@@ -20,7 +20,7 @@ const essay = type === 'essay';
 
 <article class:list={['post', type, { 'with-rail': essay }]}>
   <header class="post-header">
-    <h1>{type === 'link' && url ? <a href={url}>{title}</a> : title}</h1>
+    <h1>{title}</h1>
     {subtitle && <p class="post-subtitle">{subtitle}</p>}
     <p class="post-meta">
       <span class={`type sc t-${type}`}>{TYPE_LABELS[type]}</span>
@@ -45,7 +45,7 @@ const essay = type === 'essay';
         )
       }
       {
-        type === 'link' && url && (
+        url && (
           <>
             <span class="sep">·</span>
             <a href={url}>{hostname(url)}</a>

@@ -4,9 +4,8 @@ export type Post = CollectionEntry<'posts'>;
 
 export const TYPE_LABELS: Record<Post['data']['type'], string> = {
   essay: 'Essay',
+  project: 'Project',
   note: 'Note',
-  til: 'TIL',
-  link: 'Link',
 };
 
 export async function getPosts(): Promise<Post[]> {

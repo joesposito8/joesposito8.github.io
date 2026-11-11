@@ -1,5 +1,5 @@
 ---
-type: til
+type: note
 title: Neque porro quisquam est qui dolorem
 date: 2026-09-20
 tags: [ipsum]
