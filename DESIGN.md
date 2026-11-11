@@ -5,8 +5,9 @@ near-white paper, one sunflower accent, the site's name and pages in the left ma
 list of everything written that readers can filter and sort.
 
 Screenshots of every page type at 375px and 1280px, light and dark, are in
-`design/screenshots/` (regenerate with `npm run screenshots`, see below). All text in this
-repository's sample content and pages is placeholder lorem ipsum.
+`design/screenshots/` (regenerate with `npm run screenshots`, see below). The sample posts
+in `design/sample-posts/` are placeholder lorem ipsum and build only when `SAMPLE_POSTS`
+names their folder; the live site shows only real posts.
 
 ## Tokens (`src/styles/tokens.css`)
 
@@ -69,7 +70,7 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 
 | Component | File | Notes |
 |---|---|---|
-| Base layout | `src/layouts/Base.astro` | Head (title, description, canonical, Open Graph and Twitter card tags, a `head` slot for `rel="me"` links), header, footer, theme button |
+| Base layout | `src/layouts/Base.astro` | Head (title, description, canonical, Open Graph and Twitter card tags, feed discovery links, `rel="me"` profile links, the GoatCounter counter when `GOATCOUNTER_CODE` is set, a `head` slot), header, footer with profile links, theme button |
 | Intro | `src/components/Intro.astro` | Prose paragraph in Joey's voice. The first words are set in small capitals (`.lede strong`). Links are underlined in sunflower; topic links open the list pre-filtered (`/?tag=…#writing`). No drop cap. |
 | PostFilters | `src/components/PostFilters.astro` | Radio groups Show (All/Essays/Notes/TILs/Links with counts), Topic (tags by frequency), Sort (Newest/Oldest/Longest), plus a live count. Hidden until its script runs. Counts follow the chosen topic; options with zero matches fade. State is mirrored in the query string, so filtered views are linkable. |
 | PostList | `src/components/PostList.astro` | Year dividers (centred year between hairlines) and ruled entries: date column (date, type mark, minutes for essays) and title column (title link, essay subtitle in italic, topic links in mono). Sorted by length, the dividers disappear and each date shows its year. |
@@ -78,8 +79,8 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 | EndMark | `src/components/EndMark.astro` | Small sun between two short rules, closing an essay. |
 | DiscussLinks | `src/components/DiscussLinks.astro` | "Discuss on LessWrong · X", centred italic, from the post's syndication URLs. |
 | CiteBlock | `src/components/CiteBlock.astro` | Folded "Cite this essay (BibTeX)" built from front matter. |
-| SubstackSignup | `src/components/SubstackSignup.astro` | Boxed email form at the end of essays, behind `SUBSTACK_SIGNUP` in `src/config.ts`. |
-| EvalCard | `src/components/EvalCard.astro` | Kind label, title, summary, a row of stats, links. |
+| SubstackSignup | `src/components/SubstackSignup.astro` | Boxed email form at the end of essays, behind `SUBSTACK_SIGNUP` in `src/config.ts`. It submits to the Substack publication (`SUBSTACK_URL`) rather than embedding Substack's iframe, so it keeps the site's look. |
+| EvalCard | `src/components/EvalCard.astro` | Kind label, title, summary, a row of stats, links. Used by the evals page, unpublished for now. |
 
 ### Post-type marks
 
@@ -90,15 +91,17 @@ essay a sunflower disc, note an ink ring, TIL an ink diamond, link a small grey 
 
 | Route | Content |
 |---|---|
-| `/` | Intro, then "Writing": filters and the full list |
+| `/` | Intro, then "Writing": filters and the full list. With no posts yet, the Writing section is left out and the page is the intro alone. |
 | `/posts/<slug>/` | Essay, note, TIL or link post. Link posts' titles point to the linked page. KaTeX's stylesheet loads only when the post contains math. |
 | `/archive/` | Compact list by year: date, title, type |
 | `/about/` | Prose page with an "Elsewhere" list of profiles |
-| `/evals/` | Intro line and eval cards |
+| `/evals/` | Intro line and eval cards. Unpublished until its text is written: the page is `src/pages/_evals.astro` and Evals is out of the nav. The `evals-*` screenshots show its design. |
 | `/404` | "Page not found" with links to the list and archive |
 | `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, avatar mark, title in Alegreya, "Joey Esposito · joesposito.com" |
 
-Client JavaScript: the filter script on `/` and the theme button. Nothing else.
+Client JavaScript: the filter script on `/` and the theme button. When `GOATCOUNTER_CODE`
+is set, GoatCounter's counter script also loads; it is the site's only request to another
+host.
 
 ## Design history
 
@@ -115,6 +118,8 @@ Client JavaScript: the filter script on `/` and the theme button. Nothing else.
 5. Joey asked to drop the drop cap and to clean the design up. Book became the theme at the
    real routes, with the archive, about, evals and 404 pages, the theme button and social
    cards.
+6. For launch, the evals page and its nav item wait for their text, and the home page shows
+   only the intro until the first post exists. Joey agreed to both.
 
 ## Notes
 
@@ -122,6 +127,7 @@ Client JavaScript: the filter script on `/` and the theme button. Nothing else.
   own fonts load from the site, so pages look as they will elsewhere, except for glyphs
   Alegreya lacks: the footnote back-link arrow (↩) shows as a missing-glyph box there, and
   renders from the system font on macOS, Windows and phones.
-- `npm run screenshots` needs `npm run build` and `npm run preview` running first. It uses
+- `npm run screenshots` needs `SAMPLE_POSTS=design/sample-posts npm run build` and
+  `npm run preview` running first. It uses
   the system Chrome and writes `design/screenshots/<page>-<width>-<theme>.png` plus
   `social-card.png`. Set `PREVIEW_URL` to point it at another address.
