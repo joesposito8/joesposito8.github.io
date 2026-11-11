@@ -51,8 +51,8 @@ between `$…$` or `$$…$$`; KaTeX's stylesheet loads only on posts that use it
 - `NAV`: the pages in the site menu.
 - `VIEWS_URL`: the view counter's public read endpoint, a JSON object mapping each page
   path (`/posts/<slug>/`) to its view count. When set, the home list offers "Most popular",
-  which fetches it in the reader's browser (no credentials); while `null`, the Sort control
-  is hidden and the list is newest first.
+  which fetches it in the reader's browser (no credentials); while `null`, Sort offers only
+  "Newest".
 
 ## Feeds and other generated files
 

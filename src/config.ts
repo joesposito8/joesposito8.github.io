@@ -28,6 +28,6 @@ export const SUBSTACK_SIGNUP = true;
 /**
  * The view counter's public read endpoint: a JSON object mapping each page path
  * ("/posts/<slug>/") to its view count. When set, the list offers "Most popular", which
- * fetches it in the reader's browser; null hides the Sort control.
+ * fetches it in the reader's browser; while null, Sort offers only "Newest".
  */
 export const VIEWS_URL: string | null = null;
