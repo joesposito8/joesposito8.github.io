@@ -1,0 +1,53 @@
+---
+import { render } from 'astro:content';
+import { TYPE_LABELS, formatDate, readingMinutes, hostname, groupBy, type Post } from '../../lib/posts';
+
+interface Props {
+  posts: Post[];
+  base: string;
+}
+
+const { posts, base } = Astro.props;
+const days = groupBy(posts, (p) => formatDate(p.data.date));
+const bodies = new Map(await Promise.all(posts.map(async (p) => [p.id, (await render(p)).Content] as const)));
+const href = (p: Post) => `${base}posts/${p.id}/`;
+---
+
+<div class="stream-a">
+  {
+    days.map(([day, items]) => (
+      <section class="day">
+        <h3 class="day-date">{day}</h3>
+        {items.map((p) => {
+          const Body = bodies.get(p.id)!;
+          return (
+            <article class={`item ${p.data.type}`}>
+              <span class="badge">{TYPE_LABELS[p.data.type]}</span>
+              <h2>
+                <a href={p.data.type === 'link' ? p.data.url : href(p)}>{p.data.title}</a>
+              </h2>
+              {p.data.type === 'link' && p.data.url && <span class="muted"> → {hostname(p.data.url)}</span>}
+              {p.data.type === 'essay' ? (
+                <>
+                  {p.data.subtitle && <p class="summary">{p.data.subtitle}</p>}
+                  <div class="foot">
+                    {readingMinutes(p)} min read · <a href={href(p)}>Read the essay</a>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div class="body">
+                    <Body />
+                  </div>
+                  <div class="foot">
+                    <a href={href(p)}>#</a>
+                  </div>
+                </>
+              )}
+            </article>
+          );
+        })}
+      </section>
+    ))
+  }
+</div>

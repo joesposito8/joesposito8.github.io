@@ -1,0 +1,13 @@
+---
+// Placement and look of the email signup. The live form (Substack embed or a form
+// posting to Substack) is wired when the site is built; this is the slot.
+---
+
+<aside class="signup" aria-label="Email subscription">
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+  <form action="https://joesposito8.substack.com/subscribe" method="get">
+    <label class="sr-only" for="signup-email">Email address</label>
+    <input id="signup-email" type="email" name="email" placeholder="you@example.com" required />
+    <button type="submit">Subscribe</button>
+  </form>
+</aside>

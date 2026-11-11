@@ -1,0 +1,27 @@
+---
+import type { Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { lesswrong, x } = Astro.props.post.data.syndication;
+const links = [
+  lesswrong && { label: 'LessWrong', href: lesswrong },
+  x && { label: 'X', href: x },
+].filter(Boolean) as { label: string; href: string }[];
+---
+
+{
+  links.length > 0 && (
+    <p class="discuss">
+      Discuss on{' '}
+      {links.map((l, i) => (
+        <>
+          {i > 0 && ' · '}
+          <a href={l.href}>{l.label}</a>
+        </>
+      ))}
+    </p>
+  )
+}

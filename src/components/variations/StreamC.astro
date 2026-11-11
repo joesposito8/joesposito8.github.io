@@ -1,0 +1,40 @@
+---
+import { render } from 'astro:content';
+import { formatDate, hostname, readingMinutes, type Post } from '../../lib/posts';
+
+interface Props {
+  posts: Post[];
+  base: string;
+}
+
+const { posts, base } = Astro.props;
+const bodies = new Map(await Promise.all(posts.map(async (p) => [p.id, (await render(p)).Content] as const)));
+const href = (p: Post) => `${base}posts/${p.id}/`;
+---
+
+<div class="stream-c">
+  {
+    posts.map((p) => {
+      const Body = p.data.type === 'essay' ? undefined : bodies.get(p.id);
+      return (
+        <article class={`item ${p.data.type}`}>
+          <div class="meta">
+            <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date, 'iso')}</time>
+            <span class="type">{p.data.type}</span>
+            {p.data.type === 'essay' && <span>{readingMinutes(p)} min</span>}
+          </div>
+          <h2>
+            <a href={p.data.type === 'link' ? p.data.url : href(p)}>{p.data.title}</a>
+            {p.data.type === 'link' && p.data.url && <span class="muted mono"> → {hostname(p.data.url)}</span>}
+          </h2>
+          {p.data.type === 'essay' && p.data.subtitle && <p class="summary">{p.data.subtitle}</p>}
+          {Body && (
+            <div class="body">
+              <Body />
+            </div>
+          )}
+        </article>
+      );
+    })
+  }
+</div>

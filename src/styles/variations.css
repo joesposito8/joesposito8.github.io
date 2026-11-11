@@ -1,0 +1,125 @@
+/* Token sets and stream treatments for the three candidate designs.
+   light-dark() resolves against color-scheme, which the theme switch sets on <html>. */
+
+/* A: Log (simonwillison.net, jefftk.com) */
+:root[data-variant='a'] {
+  --font-body: var(--font-sans);
+  --font-heading: var(--font-sans);
+  --fs: 17px;
+  --lh: 1.6;
+  --measure: 700px;
+  --bg: light-dark(#ffffff, #111315);
+  --fg: light-dark(#1f2328, #e4e6e8);
+  --muted: light-dark(#5b6570, #98a2ad);
+  --rule: light-dark(#dde1e6, #2c3138);
+  --accent: light-dark(#0b5cad, #6cb0f5);
+  --code-bg: light-dark(#f4f6f8, #1a1e23);
+  --badge-bg: light-dark(#eef2f6, #1f252c);
+}
+
+/* B: Plain (danluu.com, karpathy.bearblog.dev) */
+:root[data-variant='b'] {
+  --font-body: var(--font-serif);
+  --font-heading: var(--font-serif);
+  --fs: 18px;
+  --lh: 1.55;
+  --measure: 680px;
+  --bg: light-dark(#fffefa, #161514);
+  --fg: light-dark(#222120, #e6e2da);
+  --muted: light-dark(#6b6862, #9d988e);
+  --rule: light-dark(#e6e2d8, #33302c);
+  --accent: light-dark(#1d4f8a, #8fb6ea);
+  --code-bg: light-dark(#f5f3ec, #1f1d1b);
+  --badge-bg: transparent;
+}
+
+/* C: Mono-meta (an engineer's changelog) */
+:root[data-variant='c'] {
+  --font-body: var(--font-sans);
+  --font-heading: var(--font-sans);
+  --font-badge: var(--font-mono);
+  --fs: 17px;
+  --lh: 1.6;
+  --measure: 720px;
+  --gutter: 9.5rem;
+  --bg: light-dark(#fbfaf7, #141312);
+  --fg: light-dark(#262522, #e6e2db);
+  --muted: light-dark(#76726a, #9b968c);
+  --rule: light-dark(#e7e3db, #2e2b27);
+  --accent: light-dark(#a8481f, #e48d5f);
+  --code-bg: light-dark(#f3f1ec, #1d1b19);
+  --badge-bg: transparent;
+}
+
+/* ---------- A: Log ---------- */
+.stream-a .day { margin: 0 0 2.25rem; }
+.stream-a .day-date { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem; margin: 0 0 1rem; }
+.stream-a .item { margin: 0 0 1.75rem; }
+.stream-a .item .badge { display: inline-block; background: var(--badge-bg); padding: 0.1rem 0.4rem; border-radius: var(--radius); margin-right: 0.5rem; vertical-align: 0.15em; }
+.stream-a .item h2 { display: inline; font-size: 1.25rem; margin: 0; }
+.stream-a .item h2 a { color: var(--fg); text-decoration: none; }
+.stream-a .item h2 a:hover { color: var(--accent); }
+.stream-a .item.essay h2 { font-size: 1.45rem; }
+.stream-a .item .summary { margin: 0.4rem 0 0; }
+.stream-a .item .body { margin-top: 0.5rem; }
+.stream-a .item .body > :last-child { margin-bottom: 0; }
+.stream-a .item .foot { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; }
+.stream-a .item .foot a { color: var(--muted); }
+
+/* ---------- B: Plain ---------- */
+:root[data-variant='b'] .site-header .wrap { display: block; }
+:root[data-variant='b'] .site-nav { margin-top: 0.25rem; font-size: 0.95rem; }
+:root[data-variant='b'] .site-nav a { color: var(--accent); text-decoration: underline; }
+:root[data-variant='b'] h1 { font-weight: 700; }
+.stream-b .lede { margin: 0 0 2rem; color: var(--muted); }
+.stream-b .year { font-size: 1.1rem; margin: 2rem 0 0.6rem; }
+.stream-b ul { list-style: none; padding: 0; margin: 0; }
+.stream-b li { display: flex; gap: 1rem; margin: 0 0 0.45rem; }
+.stream-b time { flex: 0 0 4.2rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.stream-b .kind { color: var(--muted); font-size: 0.85rem; font-style: italic; }
+.stream-b .ext { color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- C: Mono-meta ---------- */
+:root[data-variant='c'] .site-name { font-family: var(--font-mono); font-size: 1rem; }
+:root[data-variant='c'] .site-nav { font-family: var(--font-mono); font-size: 0.82rem; }
+.stream-c .item { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+.stream-c .item:last-child { border-bottom: 1px solid var(--rule); }
+.stream-c .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); display: flex; gap: 0.9rem; margin-bottom: 0.3rem; }
+.stream-c .meta .type { color: var(--accent); }
+.stream-c h2 { font-size: 1.15rem; margin: 0; }
+.stream-c .item.essay h2 { font-size: 1.35rem; }
+.stream-c h2 a { color: var(--fg); text-decoration: none; }
+.stream-c h2 a:hover { color: var(--accent); }
+.stream-c .summary { margin: 0.3rem 0 0; color: var(--muted); }
+.stream-c .body { margin-top: 0.4rem; }
+.stream-c .body > :last-child { margin-bottom: 0; }
+
+/* On wide screens C hangs metadata in a gutter left of the text column. */
+@media (min-width: 64rem) {
+  :root[data-variant='c'] .wrap { max-width: calc(var(--measure) + var(--gutter) + 2rem); padding-left: calc(var(--gutter) + 1rem); }
+  :root[data-variant='c'] .site-header .wrap,
+  :root[data-variant='c'] .site-footer .wrap { padding-left: 1rem; max-width: calc(var(--measure) + var(--gutter) + 2rem); }
+  .stream-c .item { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); margin-left: calc(-1 * var(--gutter)); }
+  .stream-c .item > * { grid-column: 2; }
+  .stream-c .item > .meta { grid-column: 1; grid-row: 1 / span 3; flex-direction: column; gap: 0.1rem; padding-top: 0.2rem; margin: 0; }
+  .stream-c .item { border-image: linear-gradient(to right, transparent var(--gutter), var(--rule) var(--gutter)) 1; }
+  :root[data-variant='c'] .post-header .post-meta { position: absolute; left: calc(-1 * var(--gutter)); width: calc(var(--gutter) - 1.5rem); top: 0.4rem; font-family: var(--font-mono); font-size: 0.78rem; display: flex; flex-direction: column; gap: 0.1rem; }
+  :root[data-variant='c'] .post-header { position: relative; }
+}
+:root[data-variant='c'] .post-meta { font-family: var(--font-mono); font-size: 0.8rem; }
+:root[data-variant='c'] .post-meta .sep { display: none; }
+@media (max-width: 63.99rem) {
+  :root[data-variant='c'] .post-meta { display: flex; flex-wrap: wrap; gap: 0 0.9rem; }
+}
+
+/* ---------- Variation banner (preview only) ---------- */
+.vbanner { font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #1b1b1d; color: #e8e8e8; padding: 0.55rem 1rem; }
+.vbanner .vbar > span { display: inline-flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+.vbanner .vbar { max-width: 1100px; display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; align-items: center; }
+.vbanner a { color: #e8e8e8; }
+.vbanner .on { font-weight: 700; text-decoration: none; color: #fff; background: #3a3a3e; padding: 0.05rem 0.4rem; border-radius: 3px; }
+.vbanner button { font: inherit; color: #e8e8e8; background: transparent; border: 1px solid #555; border-radius: 3px; padding: 0.05rem 0.45rem; cursor: pointer; }
+.vbanner button[aria-pressed='true'] { background: #e8e8e8; color: #1b1b1d; }
+.vbanner .swatches { display: flex; gap: 0.3rem; align-items: center; }
+.vbanner .sw { width: 1rem; height: 1rem; border-radius: 2px; border: 1px solid #666; }
+.vbanner .spec { color: #b5b5b5; }

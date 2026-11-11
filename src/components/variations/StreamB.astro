@@ -1,0 +1,35 @@
+---
+import { TYPE_LABELS, formatDate, groupBy, hostname, type Post } from '../../lib/posts';
+
+interface Props {
+  posts: Post[];
+  base: string;
+}
+
+const { posts, base } = Astro.props;
+const years = groupBy(posts, (p) => String(p.data.date.getUTCFullYear()));
+const href = (p: Post) => `${base}posts/${p.id}/`;
+---
+
+<div class="stream-b">
+  <p class="lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+  {
+    years.map(([year, items]) => (
+      <section>
+        <h2 class="year">{year}</h2>
+        <ul>
+          {items.map((p) => (
+            <li>
+              <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date, 'short')}</time>
+              <span>
+                <a href={href(p)}>{p.data.title}</a>
+                {p.data.type !== 'essay' && <span class="kind"> {TYPE_LABELS[p.data.type].toLowerCase()}</span>}
+                {p.data.type === 'link' && p.data.url && <span class="ext"> ({hostname(p.data.url)})</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</div>

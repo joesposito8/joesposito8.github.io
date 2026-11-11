@@ -1,0 +1,66 @@
+---
+import { render } from 'astro:content';
+import { TYPE_LABELS, formatDate, readingMinutes, hostname, type Post } from '../lib/posts';
+import DiscussLinks from './DiscussLinks.astro';
+import CiteBlock from './CiteBlock.astro';
+import SubstackSignup from './SubstackSignup.astro';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { type, title, subtitle, date, updated, epistemic, tags, url } = post.data;
+const { Content } = await render(post);
+---
+
+<article class={`post ${type}`}>
+  <header class="post-header">
+    <h1>{type === 'link' && url ? <a href={url}>{title}</a> : title}</h1>
+    {subtitle && <p class="post-subtitle">{subtitle}</p>}
+    <div class="post-meta">
+      <span class="badge">{TYPE_LABELS[type]}</span>
+      <span class="sep"> · </span>
+      <time datetime={date.toISOString()}>{formatDate(date)}</time>
+      {
+        updated && (
+          <>
+            <span class="sep"> · </span>
+            <span>updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time></span>
+          </>
+        )
+      }
+      {
+        type === 'essay' && (
+          <>
+            <span class="sep"> · </span>
+            <span>{readingMinutes(post)} min read</span>
+          </>
+        )
+      }
+      {
+        type === 'link' && url && (
+          <>
+            <span class="sep"> · </span>
+            <a href={url}>{hostname(url)}</a>
+          </>
+        )
+      }
+      {
+        tags.length > 0 && (
+          <>
+            <span class="sep"> · </span>
+            <span>{tags.map((t) => `#${t}`).join(' ')}</span>
+          </>
+        )
+      }
+    </div>
+    {epistemic && <p class="epistemic">Epistemic status: {epistemic}</p>}
+  </header>
+  <div class="post-body">
+    <Content />
+  </div>
+  <DiscussLinks post={post} />
+  {type === 'essay' && <CiteBlock post={post} />}
+  {type === 'essay' && <SubstackSignup />}
+</article>
