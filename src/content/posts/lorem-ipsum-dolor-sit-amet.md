@@ -5,7 +5,7 @@ subtitle: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
 date: 2026-10-28
 updated: 2026-11-03
 epistemic: Lorem ipsum dolor sit amet, consectetur adipiscing elit; sed do eiusmod tempor.
-tags: [evals, lorem]
+tags: [dolor, lorem]
 lesswrong: true
 syndication:
   lesswrong: https://www.lesswrong.com/posts/placeholder/lorem-ipsum-dolor-sit-amet

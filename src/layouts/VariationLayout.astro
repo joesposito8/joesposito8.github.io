@@ -1,4 +1,16 @@
 ---
+// Self-hosted through Vite: the font files ship with the site, so no request leaves it.
+// Browsers only download the faces a page actually uses.
+import '@fontsource-variable/source-serif-4/opsz.css';
+import '@fontsource-variable/source-serif-4/opsz-italic.css';
+import '@fontsource-variable/instrument-sans/wght.css';
+import '@fontsource-variable/alegreya/wght.css';
+import '@fontsource-variable/alegreya/wght-italic.css';
+import '@fontsource/alegreya-sc/500.css';
+import '@fontsource-variable/bricolage-grotesque/standard.css';
+import '@fontsource-variable/figtree/wght.css';
+import '@fontsource-variable/figtree/wght-italic.css';
+import '@fontsource-variable/jetbrains-mono/wght.css';
 import '../styles/base.css';
 import '../styles/variations.css';
 import { VARIATIONS, SHOWCASE_ESSAY, type VariationId } from '../lib/variations';
@@ -17,7 +29,7 @@ const swatches = ['--bg', '--fg', '--muted', '--rule', '--accent', '--code-bg'];
 ---
 
 <!doctype html>
-<html lang="en" data-variant={variant}>
+<html lang="en" data-variant={variant} data-timeline={v.timeline ? '' : undefined} data-list={v.filters ? '' : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -66,7 +78,7 @@ const swatches = ['--bg', '--fg', '--muted', '--rule', '--accent', '--code-bg'];
     </div>
     <header class="site-header">
       <div class="wrap">
-        <a class="site-name" href={`/variations/${variant}/`}>Joey Esposito</a>
+        <a class="site-name" href={`/variations/${variant}/`}><span class="site-avatar" aria-hidden="true">JE</span>Joey Esposito</a>
         <nav class="site-nav" aria-label="Site">
           <a href={`/variations/${variant}/`}>Archive</a>
           <a href={`/variations/${variant}/`}>About</a>

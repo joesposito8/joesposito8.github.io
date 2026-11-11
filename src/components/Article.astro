@@ -4,14 +4,20 @@ import { TYPE_LABELS, formatDate, readingMinutes, hostname, type Post } from '..
 import DiscussLinks from './DiscussLinks.astro';
 import CiteBlock from './CiteBlock.astro';
 import SubstackSignup from './SubstackSignup.astro';
+import Contents from './Contents.astro';
+import EndMark from './EndMark.astro';
 
 interface Props {
   post: Post;
+  /** Essays get a contents list, expanded or folded; omitted, there is none. */
+  toc?: 'open' | 'closed';
+  /** Close essays with the sun mark before the discussion links. */
+  endMark?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, toc, endMark = false } = Astro.props;
 const { type, title, subtitle, date, updated, epistemic, tags, url } = post.data;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <article class={`post ${type}`}>
@@ -57,10 +63,14 @@ const { Content } = await render(post);
     </div>
     {epistemic && <p class="epistemic">Epistemic status: {epistemic}</p>}
   </header>
-  <div class="post-body">
-    <Content />
+  {toc && type === 'essay' && <Contents headings={headings} open={toc === 'open'} />}
+  <div class="post-main">
+    <div class="post-body">
+      <Content />
+    </div>
+    {endMark && type === 'essay' && <EndMark />}
+    <DiscussLinks post={post} />
+    {type === 'essay' && <CiteBlock post={post} />}
+    {type === 'essay' && <SubstackSignup />}
   </div>
-  <DiscussLinks post={post} />
-  {type === 'essay' && <CiteBlock post={post} />}
-  {type === 'essay' && <SubstackSignup />}
 </article>

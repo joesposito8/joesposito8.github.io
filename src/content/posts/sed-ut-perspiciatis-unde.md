@@ -4,7 +4,7 @@ title: Sed ut perspiciatis unde omnis iste natus
 subtitle: Nemo enim ipsam voluptatem quia voluptas sit aspernatur
 date: 2026-08-14
 epistemic: Lorem ipsum dolor sit amet; consectetur adipiscing elit.
-tags: [interpretability, lorem]
+tags: [ipsum, lorem]
 lesswrong: true
 ---
 

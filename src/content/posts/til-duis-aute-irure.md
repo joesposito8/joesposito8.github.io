@@ -2,7 +2,7 @@
 type: til
 title: Duis aute irure dolor in reprehenderit
 date: 2026-11-02
-tags: [python]
+tags: [ipsum]
 ---
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. Excepteur sint occaecat:

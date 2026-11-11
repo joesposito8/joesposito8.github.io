@@ -1,11 +1,9 @@
-/* Token sets and stream treatments for the candidate designs.
+/* Token sets and list treatments for the candidate designs.
    light-dark() resolves against color-scheme, which the theme switch sets on <html>.
-   Every candidate is a timeline: dates in a gutter, a vertical rule, a dot per post. */
+   Every candidate uses the Sunroom palette: white and navy ink with a sunflower accent,
+   lamplit navy at night. */
 
 :root[data-variant] {
-  /* Stacks from modernfontstacks.com: humanist and rounded system fonts, no downloads. */
-  --font-humanist: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
-  --font-rounded: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
   --font-body: var(--font-sans);
   --font-heading: var(--font-sans);
   --font-meta: var(--font-mono);
@@ -16,47 +14,12 @@
   --gutter: 9.5rem;
   --line: 1px solid var(--rule);
   --dot: 9px;
-  /* Distance from the timeline rule to the text column. */
-  --line-x: 1.25rem;
-}
-
-/* E (round 2 reference): cool slate, teal accent */
-:root[data-variant='e'] {
-  --bg: light-dark(#ffffff, #0f1317);
-  --fg: light-dark(#1b2027, #dfe5ec);
-  --muted: light-dark(#5d6976, #8f9ba8);
-  --rule: light-dark(#dbe1e8, #29323c);
-  --accent: light-dark(#0b7480, #4cc2cc);
-  --code-bg: light-dark(#f3f6f8, #161c22);
-  --t-essay: light-dark(#0b7480, #4cc2cc);
-  --t-note: light-dark(#3b7a2a, #8fd17a);
-  --t-til: light-dark(#6a49c0, #b39cf0);
-  --t-link: light-dark(#6b7480, #9aa4b0);
-}
-
-/* G: Garden. Sage-grey paper, E's teal joined by plum, humanist type. */
-:root[data-variant='g'] {
-  --font-body: var(--font-humanist);
-  --font-heading: var(--font-humanist);
-  --fs: 18px;
-  --lh: 1.65;
-  --bg: light-dark(#f5f6f1, #141917);
-  --fg: light-dark(#24302d, #e2e8e4);
-  --muted: light-dark(#5b6863, #95a39d);
-  --rule: light-dark(#d6ddd6, #2b3531);
-  --accent: light-dark(#0e6b6e, #63c6c4);
-  --plum: light-dark(#7b2d5e, #e394c4);
-  --code-bg: light-dark(#eaeee7, #1b2320);
-  --t-essay: var(--plum);
-  --t-note: var(--accent);
-  --t-til: light-dark(#5b7a1e, #a9cf6a);
-  --t-link: var(--muted);
-  --year-bg: var(--plum);
-}
-
-/* H: Sunroom. White and navy ink with a sunflower highlighter; lamplit navy at night. */
-:root[data-variant='h'] {
+  /* Vertical centre of a post's timeline dot, measured from the top of the post. */
+  --dot-y: calc(1.55rem + 4.5px);
+  /* Distance from the timeline rule to the text column: room for the avatar to sit on the rule. */
   --line-x: 2.25rem;
+  --avatar: 3.25rem;
+
   --bg: light-dark(#ffffff, #121a2b);
   --fg: light-dark(#1b2436, #e9edf5);
   --muted: light-dark(#5a6477, #9ba6bb);
@@ -69,39 +32,34 @@
   --name-fg: light-dark(#1b2436, #f5c84c);
   --card: light-dark(#fff8da, #1a2338);
   --code-bg: light-dark(#f4f6fa, #19223a);
+}
+
+/* H (round 3 reference) tells post types apart by colour. */
+:root[data-variant='h'] {
   --t-essay: var(--sun);
   --t-note: var(--accent);
   --t-til: light-dark(#2f855a, #7fd6a4);
   --t-link: var(--muted);
 }
 
-/* I: Field notes. Moss-green paper, forest greens, rounded headings, soft corners. */
-:root[data-variant='i'] {
-  --font-body: var(--font-humanist);
-  --font-heading: var(--font-rounded);
-  --font-meta: var(--font-humanist);
-  --fs: 18px;
-  --lh: 1.7;
-  --radius: 8px;
-  --line: 2px dashed var(--rule);
-  --dot: 12px;
-  --bg: light-dark(#f2f4ea, #151a13);
-  --fg: light-dark(#1f2a1e, #e3e9da);
-  --muted: light-dark(#5a6754, #9aa68f);
-  --rule: light-dark(#cdd5bf, #343e2d);
-  --accent: light-dark(#2e6b3a, #8fcf8f);
-  --card: light-dark(#e6eada, #1d2419);
-  --code-bg: light-dark(#e8ecde, #1c2219);
-  --t-essay: var(--accent);
-  --t-note: light-dark(#6d8a3a, #b5d27a);
-  --t-til: light-dark(#93700f, #e2c06a);
+/* Round 4 has one accent, so post types differ by size and shape instead: a sun disc for
+   essays, an ink ring for notes, an ink diamond for TILs and a small grey dot for links. */
+:root[data-list] {
+  --t-essay: var(--sun);
+  --t-note: var(--fg);
+  --t-til: var(--fg);
   --t-link: var(--muted);
-  --year-bg: var(--accent);
 }
+:root[data-list] .t-essay { --dot: 11px; }
+:root[data-list] .t-note { --dot: 9px; }
+:root[data-list] .t-til { --dot: 7px; }
+:root[data-list] .t-link { --dot: 6px; }
 
-/* ---------- Shared timeline ---------- */
+/* ---------- Shared list ---------- */
 :root[data-variant] .site-name { font-family: var(--font-meta); font-size: 1rem; }
 :root[data-variant] .site-nav { font-family: var(--font-meta); font-size: 0.82rem; }
+.site-avatar { display: none; }
+.writing { position: relative; }
 .stream .item { padding: 1.1rem 0; position: relative; }
 .stream .meta { font-family: var(--font-meta); font-size: 0.78rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0 0.9rem; margin-bottom: 0.3rem; }
 .stream .type, .post-meta .badge { color: var(--t-type, var(--accent)); }
@@ -110,13 +68,18 @@
 .t-note { --t-type: var(--t-note); }
 .t-til { --t-type: var(--t-til); }
 .t-link { --t-type: var(--t-link); }
-.stream h2 { font-size: 1.15rem; margin: 0; }
-.stream .item.essay h2 { font-size: 1.35rem; }
-.stream h2 a { color: var(--fg); text-decoration: none; }
-.stream h2 a:hover { color: var(--accent); text-decoration: underline; }
+.stream h3 { font-size: 1.15rem; margin: 0; }
+.stream .item.essay h3 { font-size: 1.35rem; }
+.stream h3 a { color: var(--fg); text-decoration: none; }
+.stream h3 a:hover { color: var(--accent); text-decoration: underline; }
+.stream .host { color: var(--muted); font: 400 0.75em var(--font-meta); }
 .stream .summary { margin: 0.3rem 0 0; color: var(--muted); }
 .stream .body { margin-top: 0.4rem; }
 .stream .body > :last-child { margin-bottom: 0; }
+.stream .tags { display: none; }
+/* A date carries its year only when the list is sorted by length and the year markers are gone. */
+.stream .yr { display: none; }
+.stream[data-sort='longest'] .yr { display: inline; }
 .stream .year { margin: 1.75rem 0 0.25rem; }
 .stream .year span { display: inline-block; font: 600 0.75rem/1.6 var(--font-meta); letter-spacing: 0.04em; padding: 0.05rem 0.6rem; border-radius: 999px; background: var(--year-bg, var(--fg)); color: var(--bg); }
 :root[data-variant] .post-meta { font-family: var(--font-meta); font-size: 0.8rem; display: flex; flex-wrap: wrap; gap: 0 0.9rem; }
@@ -132,14 +95,13 @@
 
 /* On wide screens dates hang in a gutter, joined to the text by one continuous rule. */
 @media (min-width: 64rem) {
-  :root[data-variant] {
+  :root[data-timeline] {
     & .wrap { max-width: calc(var(--measure) + var(--gutter) + 2rem); padding-left: calc(var(--gutter) + 1rem); }
     & :is(.site-header, .site-footer) .wrap { padding-left: 1rem; }
-    & .stream { position: relative; }
-    & .stream::before { content: ''; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--line-x)); border-left: var(--line); }
+    & .writing::before { content: ''; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--line-x)); border-left: var(--line); }
     & .stream .item { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); margin-left: calc(-1 * var(--gutter)); }
     & .stream .item > .meta { flex-direction: column; gap: 0.1rem; padding: 0.2rem calc(var(--line-x) + 1rem) 0 0; margin: 0; text-align: right; }
-    & .stream .item::before { content: ''; position: absolute; left: calc(var(--gutter) - var(--line-x) - var(--dot) / 2 + 0.5px); top: 1.55rem; width: var(--dot); height: var(--dot); border-radius: 50%; background: var(--bg); border: 2px solid var(--t-type); box-sizing: border-box; }
+    & .stream .item::before { content: ''; position: absolute; left: calc(var(--gutter) - var(--line-x) - var(--dot) / 2 + 0.5px); top: calc(var(--dot-y) - var(--dot) / 2); width: var(--dot); height: var(--dot); border-radius: 50%; background: var(--bg); border: 2px solid var(--t-type); box-sizing: border-box; }
     & .stream .item.t-essay::before { background: var(--t-type); }
     & .stream .type::before { display: none; }
     & .stream .year { position: relative; height: 1.75rem; margin: 1rem 0 0.25rem; }
@@ -149,30 +111,39 @@
   }
 }
 
-/* ---------- G: Garden ---------- */
-:root[data-variant='g'] .site-name { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; }
-:root[data-variant='g'] .site-nav { font-family: var(--font-body); font-size: 0.95rem; }
-:root[data-variant='g'] a:hover { text-decoration-color: var(--plum); }
-:root[data-variant='g'] .stream h2 a:hover { color: var(--fg); text-decoration: underline 2px var(--plum); }
-:root[data-variant='g'] .intro { align-items: flex-start; margin-bottom: 2.75rem; }
-:root[data-variant='g'] .intro .avatar { color: #fff; background: linear-gradient(135deg, var(--accent), var(--plum)); }
-:root[data-variant='g'] .intro .hello { font-size: 1.5rem; line-height: 1.3; margin-bottom: 0.6rem; }
-:root[data-variant='g'] .intro .hello strong { color: var(--plum); }
-:root[data-variant='g'] .post-header h1 { color: var(--fg); }
-:root[data-variant='g'] .epistemic { border-left-color: var(--plum); }
+/* Post-type markers by shape (round 4). The phone marker sits before the type label; the
+   desktop one sits on the timeline rule. */
+:root[data-list] .stream .type::before { width: var(--dot); height: var(--dot); vertical-align: 0; }
+:root[data-list] .stream .item::before,
+:root[data-list] .stream .type::before { border: 0; border-radius: 50%; background: var(--t-type); }
+:root[data-list] .stream .item.t-note::before,
+:root[data-list] .stream .t-note .type::before { background: var(--bg); border: 1.5px solid var(--t-type); }
+:root[data-list] .stream .item.t-til::before,
+:root[data-list] .stream .t-til .type::before { border-radius: 1px; transform: rotate(45deg); }
+
+/* ---------- Avatar as the timeline's first node (H, J, L) ---------- */
+:root[data-timeline] .intro { display: block; position: relative; margin: 0.75rem 0 0; padding-bottom: 0.75rem; }
+:root[data-timeline] .intro .avatar { width: 4rem; height: 4rem; margin-bottom: 1.1rem; font-size: 1.25rem; font-weight: 800; background: var(--sun); color: #1b2436; box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--sun); }
+@media (min-width: 64rem) {
+  /* The avatar sits on the rule, which runs down from it into the list. */
+  :root[data-timeline] .intro { padding-bottom: 2.25rem; }
+  :root[data-timeline] .intro .avatar { position: absolute; width: var(--avatar); height: var(--avatar); font-size: 1.05rem; left: calc(-1 * var(--line-x) - var(--avatar) / 2 + 0.5px); top: 0.2rem; margin: 0; }
+  :root[data-timeline] .intro::after { content: ''; position: absolute; left: calc(-1 * var(--line-x)); top: calc(0.2rem + var(--avatar) + 0.65rem); bottom: 0; border-left: var(--line); }
+}
+
+/* Shared by every candidate: the Sunroom title bar, sunflower link underlines and selection. */
+:root[data-variant]:not([data-variant='k']) .post-header h1::before { content: ''; display: block; width: 3rem; height: 0.4rem; background: var(--sun); border-radius: 2px; margin-bottom: 1rem; }
+:root[data-variant] :is(.post-body, .stream .body) a { text-decoration-color: var(--sun); text-decoration-thickness: 0.15em; }
+:root[data-variant] ::selection { background: var(--hl); color: var(--fg); }
 
 /* ---------- H: Sunroom ---------- */
-:root[data-variant='h'] :is(h1, .stream h2, .site-name) { font-weight: 800; letter-spacing: -0.01em; }
+:root[data-variant='h'] :is(h1, .stream h3, .site-name) { font-weight: 800; letter-spacing: -0.01em; }
 :root[data-variant='h'] .site-name { font-family: var(--font-heading); font-size: 1.15rem; }
 :root[data-variant='h'] .site-nav { font-family: var(--font-body); font-size: 0.95rem; }
-:root[data-variant='h'] ::selection { background: var(--hl); color: var(--fg); }
-:root[data-variant='h'] .stream .type { color: var(--muted); }
-:root[data-variant='h'] :is(.post-body, .stream .body) a { text-decoration-color: var(--sun); text-decoration-thickness: 0.15em; }
-:root[data-variant='h'] .stream h2 a { background: linear-gradient(var(--hl), var(--hl)) no-repeat 0 88% / 0 0.42em; transition: background-size 0.25s ease; }
-:root[data-variant='h'] .stream h2 a:hover { color: var(--fg); text-decoration: none; background-size: 100% 0.42em; }
+:root[data-variant='h'] .stream .type { color: var(--muted); text-transform: lowercase; }
+:root[data-variant='h'] .stream h3 a { background: linear-gradient(var(--hl), var(--hl)) no-repeat 0 88% / 0 0.42em; transition: background-size 0.25s ease; }
+:root[data-variant='h'] .stream h3 a:hover { color: var(--fg); text-decoration: none; background-size: 100% 0.42em; }
 :root[data-variant='h'] .stream .item.t-essay .content { background: var(--card); margin: 0 -0.6rem; padding: 0.8rem 0.6rem; border-radius: 6px; }
-:root[data-variant='h'] .intro { display: block; position: relative; margin: 0.75rem 0 0; padding-bottom: 0.75rem; }
-:root[data-variant='h'] .intro .avatar { width: 4rem; height: 4rem; margin-bottom: 1.1rem; font-size: 1.25rem; font-weight: 800; background: var(--sun); color: #1b2436; box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--sun); }
 :root[data-variant='h'] .intro .hello { font: 800 clamp(1.55rem, 1.1rem + 1.6vw, 2.1rem) / 1.2 var(--font-heading); letter-spacing: -0.015em; margin: 0 0 0.75rem; text-wrap: balance; }
 :root[data-variant='h'] .intro .hello strong { color: var(--name-fg); background: linear-gradient(transparent 58%, var(--name-hl) 58%, var(--name-hl) 92%, transparent 92%); padding: 0 0.1em; margin: 0 -0.1em; }
 :root[data-variant='h'] .intro .bio { font-size: 1.1rem; line-height: 1.5; max-width: 36rem; margin-bottom: 1.1rem; }
@@ -183,13 +154,6 @@
 :root[data-variant='h'] .intro .intro-links li { margin: 0; }
 :root[data-variant='h'] .intro .intro-links a { color: var(--muted); text-decoration: underline 0.15em var(--sun); text-underline-offset: 0.25em; }
 :root[data-variant='h'] .intro .intro-links a:hover { color: var(--fg); }
-@media (min-width: 64rem) {
-  /* The avatar is the timeline's first node: it sits on the rule, which runs down from it into the posts. */
-  :root[data-variant='h'] .intro { padding-bottom: 2.25rem; }
-  :root[data-variant='h'] .intro .avatar { position: absolute; width: 3.25rem; height: 3.25rem; font-size: 1.05rem; left: calc(-1 * var(--line-x) - 1.625rem + 0.5px); top: 0.2rem; margin: 0; }
-  :root[data-variant='h'] .intro::after { content: ''; position: absolute; left: calc(-1 * var(--line-x)); top: 4.1rem; bottom: 0; border-left: var(--line); }
-}
-:root[data-variant='h'] .post-header h1::before { content: ''; display: block; width: 3rem; height: 0.4rem; background: var(--sun); border-radius: 2px; margin-bottom: 1rem; }
 :root[data-variant='h'] .signup { background: var(--card); border-color: transparent; }
 :root[data-variant='h'] .signup button { background: var(--fg); color: var(--bg); }
 @media (min-width: 64rem) {
@@ -197,22 +161,296 @@
   :root[data-variant='h'] .stream .item.t-essay > .meta { padding-top: 0.85rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  :root[data-variant='h'] .stream h2 a { transition: none; }
+  :root[data-variant='h'] .stream h3 a { transition: none; }
 }
 
-/* ---------- I: Field notes ---------- */
-:root[data-variant='i'] .site-name { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; }
-:root[data-variant='i'] .site-nav { font-family: var(--font-body); font-size: 0.95rem; gap: 0.25rem; }
-:root[data-variant='i'] .site-nav a { padding: 0.1rem 0.65rem; border-radius: 999px; }
-:root[data-variant='i'] .site-nav a:hover { background: var(--card); color: var(--fg); }
-:root[data-variant='i'] .stream .meta { font-size: 0.85rem; }
-:root[data-variant='i'] .stream .item::before { box-shadow: 0 0 0 4px var(--bg); }
-:root[data-variant='i'] .intro { background: var(--card); border-radius: 14px; padding: 1.1rem 1.25rem; }
-:root[data-variant='i'] .intro .avatar { background: var(--accent); color: var(--bg); }
-:root[data-variant='i'] .intro .now-label::before { content: ''; display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--accent); margin-right: 0.4rem; vertical-align: 0.05em; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
-:root[data-variant='i'] .epistemic { background: var(--card); border-left: 0; border-radius: var(--radius); padding: 0.75rem 1rem; }
-:root[data-variant='i'] .signup { background: var(--card); border: 0; border-radius: 14px; }
-:root[data-variant='i'] :is(.signup input, .signup button) { border-radius: 999px; }
+/* ---------- Round 4 shared: prose intro, filters, contents, end mark ---------- */
+.prose-intro .intro-text p { margin: 0 0 0.9rem; }
+.prose-intro .intro-text p:last-child { margin-bottom: 0; }
+.prose-intro a { color: var(--fg); text-decoration: underline 0.12em var(--sun); text-underline-offset: 0.2em; }
+.prose-intro a:hover { background: var(--hl); }
+:root[data-list] .post-meta .badge { color: var(--fg); }
+
+.writing-title { margin: 0; }
+.filters { margin: 0 0 1rem; }
+.filters fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.filters legend { padding: 0; }
+/* The radios stay in the page for keyboard and screen-reader use; their labels are what shows. */
+.filters input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.filters label { cursor: pointer; }
+.filters label:has(input:focus-visible) > span { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.filters .n { font-variant-numeric: tabular-nums lining-nums; }
+.filters label.none > span { opacity: 0.45; }
+.f-status { margin: 0; color: var(--muted); }
+.f-empty { color: var(--muted); margin: 1.5rem 0; }
+.f-empty button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+
+.toc { margin: 0 0 2.25rem; font-size: 0.9rem; line-height: 1.45; }
+.toc summary { cursor: pointer; font-weight: 600; }
+.toc ol { list-style: none; padding: 0; margin: 0.6rem 0 0; }
+.toc li { margin: 0; }
+.toc li + li { margin-top: 0.35rem; }
+.toc .depth-3 { padding-left: 1rem; }
+.toc a { color: var(--muted); text-decoration: none; }
+.toc a:hover { color: var(--fg); text-decoration: underline 0.12em var(--sun); text-underline-offset: 0.2em; }
+.post-body :is(h2, h3) { scroll-margin-top: 1.5rem; }
+
+.end-mark { display: flex; align-items: center; gap: 1rem; color: var(--sun); margin: 3rem 0 1.75rem; }
+.end-mark::before, .end-mark::after { content: ''; flex: 1; border-top: 1px solid var(--rule); }
+.end-mark svg { flex: none; }
+.end-mark + .discuss { margin-top: 0; }
+
+/* ---------- J: Reading room (after joecarlsmith.com) ---------- */
+:root[data-variant='j'] {
+  --font-body: 'Source Serif 4 Variable', Charter, 'Iowan Old Style', Georgia, serif;
+  --font-heading: var(--font-body);
+  --font-meta: 'Instrument Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, Menlo, Consolas, monospace;
+  --fs: 18px;
+  --measure: 680px;
+  --gutter: 11rem;
+  --line-x: 2.6rem;
+  --dot-y: 1.58rem;
+}
+:root[data-variant='j'] :is(h1, h2, h3, h4) { font-weight: 600; letter-spacing: -0.012em; }
+/* A ruled masthead, as in a magazine. */
+:root[data-variant='j'] .site-header .wrap { position: relative; padding-bottom: 1.1rem; }
+:root[data-variant='j'] .site-header .wrap::after { content: ''; position: absolute; left: 1rem; right: 1rem; bottom: 0; border-bottom: 1px solid var(--fg); }
+:root[data-variant='j'] .site-name { font: 500 1.35rem var(--font-heading); letter-spacing: -0.01em; }
+:root[data-variant='j'] .site-nav { font-size: 0.85rem; }
+
+:root[data-variant='j'] .prose-intro { margin-top: 2.25rem; padding-bottom: 2.75rem; }
+:root[data-variant='j'] .prose-intro .lede { font-size: 1.42rem; line-height: 1.38; letter-spacing: -0.006em; }
+:root[data-variant='j'] .prose-intro .lede strong { font-weight: 650; }
+
+:root[data-variant='j'] .writing-title { font: 400 2.5rem/1.1 var(--font-heading); letter-spacing: -0.025em; padding-bottom: 0.7rem; margin-bottom: 0.9rem; border-bottom: 1px solid var(--fg); }
+:root[data-variant='j'] .filters { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'type status' 'tag sort'; gap: 0.55rem 1.5rem; align-items: baseline; font-family: var(--font-meta); padding-bottom: 0.9rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.25rem; }
+:root[data-variant='j'] .f-type { grid-area: type; }
+:root[data-variant='j'] .f-tag { grid-area: tag; }
+:root[data-variant='j'] .f-sort { grid-area: sort; }
+:root[data-variant='j'] .f-status { grid-area: status; font-size: 0.8rem; }
+:root[data-variant='j'] .filters legend { float: left; margin-right: 0.7rem; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); line-height: 2.1; }
+:root[data-variant='j'] .f-type legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:root[data-variant='j'] .filters label { display: inline-block; margin-right: 1.05rem; }
+:root[data-variant='j'] .filters label:last-of-type { margin-right: 0; }
+:root[data-variant='j'] .filters label > span { color: var(--muted); border-bottom: 2px solid transparent; padding-bottom: 0.1rem; }
+:root[data-variant='j'] .f-type label > span { font-size: 0.98rem; font-weight: 500; }
+:root[data-variant='j'] :is(.f-tag, .f-sort) label > span { font-size: 0.84rem; }
+:root[data-variant='j'] .filters label:hover > span { color: var(--fg); }
+:root[data-variant='j'] .filters label:has(input:checked) > span { color: var(--fg); border-bottom-color: var(--sun); }
+:root[data-variant='j'] .filters .n { font-size: 0.72em; color: var(--muted); margin-left: 0.1em; vertical-align: 0.35em; }
+@media (max-width: 40rem) {
+  :root[data-variant='j'] .filters { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'type' 'tag' 'sort' 'status'; }
+}
+
+:root[data-variant='j'] .stream .item { padding: 0.8rem 0; }
+:root[data-variant='j'] .stream .type { color: var(--muted); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+:root[data-variant='j'] .stream h3 { font-size: 1.12rem; font-weight: 500; line-height: 1.32; }
+:root[data-variant='j'] .stream .item.essay { padding: 1.15rem 0; }
+:root[data-variant='j'] .stream .item.essay h3 { font-size: 1.5rem; font-weight: 600; line-height: 1.2; letter-spacing: -0.015em; }
+:root[data-variant='j'] .stream .summary { font-style: italic; font-size: 1.05rem; margin-top: 0.2rem; }
+:root[data-variant='j'] .stream h3 a:hover { color: var(--fg); text-decoration: underline 0.08em var(--sun); text-underline-offset: 0.16em; }
+@media (min-width: 64rem) {
+  :root[data-variant='j'] .stream .item.essay { --dot-y: 2.05rem; }
+  :root[data-variant='j'] .stream .item.essay > .meta { padding-top: 0.3rem; }
+}
+
+:root[data-variant='j'] .post-header h1 { font-size: 2.45rem; line-height: 1.12; letter-spacing: -0.022em; }
+:root[data-variant='j'] .post-subtitle { font-style: italic; font-size: 1.3rem; line-height: 1.35; }
+:root[data-variant='j'] .post-body h2 { font-size: 1.6rem; }
+:root[data-variant='j'] .post-body h3 { font-size: 1.22rem; }
+:root[data-variant='j'] .epistemic { border-left-color: var(--sun); }
+:root[data-variant='j'] .toc { font-family: var(--font-meta); font-size: 0.85rem; border-left: 3px solid var(--sun); padding-left: 1rem; }
+:root[data-variant='j'] .toc summary { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+@media (min-width: 75rem) {
+  /* On essays the margin that holds dates on the home page holds the contents instead. */
+  :root[data-variant='j'] .post.essay { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); margin-left: calc(-1 * var(--gutter)); }
+  :root[data-variant='j'] .post.essay > .post-header { grid-column: 2; grid-row: 1; }
+  :root[data-variant='j'] .post.essay > .post-main { grid-column: 2; grid-row: 2; }
+  :root[data-variant='j'] .post.essay > .toc { grid-column: 1; grid-row: 2; align-self: start; position: sticky; top: 1.5rem; max-height: calc(100vh - 3rem); overflow-y: auto; margin: 0; padding: 0 1.5rem 0 0; border: 0; font-size: 0.8rem; }
+  :root[data-variant='j'] .post.essay > .toc summary { list-style: none; pointer-events: none; }
+  :root[data-variant='j'] .post.essay > .toc summary::-webkit-details-marker { display: none; }
+}
+:root[data-variant='j'] .discuss { font-family: var(--font-meta); font-size: 0.85rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; color: var(--muted); }
+:root[data-variant='j'] .discuss .sep { display: none; }
+:root[data-variant='j'] .discuss a { color: var(--fg); text-decoration: none; border: 1px solid var(--fg); border-radius: 3px; padding: 0.3rem 0.85rem; }
+:root[data-variant='j'] .discuss a:hover { background: var(--hl); }
+:root[data-variant='j'] .cite summary { font-family: var(--font-meta); font-size: 0.85rem; }
+:root[data-variant='j'] .signup { font-family: var(--font-meta); }
+:root[data-variant='j'] .signup button { background: var(--fg); color: var(--bg); }
+
+/* ---------- K: Book (after turntrout.com) ---------- */
+:root[data-variant='k'] {
+  --font-body: 'Alegreya Variable', 'Iowan Old Style', Palatino, 'Palatino Linotype', Georgia, serif;
+  --font-heading: var(--font-body);
+  --font-meta: var(--font-body);
+  /* Alegreya ships small caps as a separate family; lowercase text set in it reads as small caps. */
+  --font-sc: 'Alegreya SC', var(--font-body);
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, Menlo, Consolas, monospace;
+  --fs: 20px;
+  --lh: 1.55;
+  --measure: 700px;
+  --rail: 11rem;
+  --bg: light-dark(#fcfcfe, #10172a);
+}
+:root[data-variant='k'] body { font-variant-numeric: oldstyle-nums; }
+:root[data-variant='k'] :is(h1, h2, h3, h4) { font-weight: 500; }
+:root[data-variant='k'] :is(.stream .type, .filters legend, .toc summary, .post-meta .badge, .cite summary) { font-family: var(--font-sc); font-weight: 500; text-transform: lowercase; letter-spacing: 0.04em; }
+:root[data-variant='k'] .site-header .wrap { align-items: center; }
+:root[data-variant='k'] .site-name { display: inline-flex; align-items: center; gap: 0.65rem; font: 500 1.3rem var(--font-heading); }
+:root[data-variant='k'] .site-avatar { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--sun); color: #1b2436; font: 700 0.7rem var(--font-body); box-shadow: 0 0 0 3px var(--bg), 0 0 0 4.5px var(--sun); }
+:root[data-variant='k'] .site-nav { font-size: 1rem; }
+
+:root[data-variant='k'] .prose-intro { display: block; margin: 1.75rem 0 2.5rem; }
+:root[data-variant='k'] .prose-intro .avatar { display: none; }
+:root[data-variant='k'] .prose-intro .lede strong { font-family: var(--font-sc); font-weight: 500; text-transform: lowercase; letter-spacing: 0.03em; }
+/* A drop cap on a sunflower tile opens the page, the way a book opens its first chapter. */
+:root[data-variant='k'] .prose-intro .lede::first-letter { float: left; font-family: var(--font-body); text-transform: uppercase; font-size: 3.1em; line-height: 1; font-weight: 500; padding: 0.06em 0.14em 0; margin: 0.08em 0.12em 0 0; background: var(--sun); color: #1b2436; border-radius: 4px; }
+
+:root[data-variant='k'] .writing-title { font-size: 1.8rem; margin: 0 0 0.6rem; }
+:root[data-variant='k'] .filters { display: grid; gap: 0.35rem; font-size: 0.9rem; padding: 0.65rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+:root[data-variant='k'] .filters legend { float: left; width: 4rem; color: var(--muted); font-size: 0.95rem; }
+:root[data-variant='k'] .filters label { display: inline-block; margin-right: 0.95rem; }
+:root[data-variant='k'] .filters label > span { color: var(--muted); }
+:root[data-variant='k'] .filters label:hover > span { color: var(--fg); }
+:root[data-variant='k'] .filters label:has(input:checked) > span { color: var(--fg); font-weight: 600; }
+:root[data-variant='k'] .filters label:has(input:checked) > span::before { content: ''; display: inline-block; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--sun); margin-right: 0.35rem; vertical-align: 0.12em; }
+:root[data-variant='k'] .filters .n { font-size: 0.8em; color: var(--muted); font-weight: 400; }
+:root[data-variant='k'] .f-status { font-style: italic; font-size: 0.85rem; }
+
+:root[data-variant='k'] .stream .item { padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
+:root[data-variant='k'] .stream .meta { font-size: 0.85rem; gap: 0 0.7rem; }
+:root[data-variant='k'] .stream .type { color: var(--muted); font-size: 0.9rem; }
+:root[data-variant='k'] .stream h3 { font-size: 1.12rem; font-weight: 500; line-height: 1.3; }
+:root[data-variant='k'] .stream .item.essay h3 { font-size: 1.32rem; }
+:root[data-variant='k'] .stream h3 a { color: var(--accent); text-decoration: underline 1px color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 0.18em; }
+:root[data-variant='k'] .stream h3 a:hover { text-decoration-color: var(--sun); text-decoration-thickness: 0.12em; }
+:root[data-variant='k'] .stream .summary { font-style: italic; margin-top: 0.15rem; }
+:root[data-variant='k'] .stream .host { font-size: 0.62em; }
+:root[data-variant='k'] .stream .tags { display: flex; flex-wrap: wrap; gap: 0 0.8rem; margin: 0.3rem 0 0; font: 0.66rem var(--font-mono); color: var(--muted); }
+/* Years as a centred divider between ruled entries. */
+:root[data-variant='k'] .stream .year { display: flex; align-items: center; gap: 1rem; margin: 1.6rem 0 0.2rem; }
+:root[data-variant='k'] .stream .year::before,
+:root[data-variant='k'] .stream .year::after { content: ''; flex: 1; border-top: 1px solid var(--rule); }
+:root[data-variant='k'] .stream .year span { background: none; color: var(--muted); padding: 0; font: 500 1.05rem var(--font-body); letter-spacing: 0.04em; }
+@media (min-width: 40rem) {
+  :root[data-variant='k'] .stream .item { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); column-gap: 1.25rem; }
+  :root[data-variant='k'] .stream .meta { flex-direction: column; align-items: flex-end; text-align: right; gap: 0; margin: 0; padding-top: 0.12rem; }
+}
+
+:root[data-variant='k'] .post-header h1 { font-size: 2.3rem; line-height: 1.12; }
+:root[data-variant='k'] .post-subtitle { font-style: italic; font-size: 1.2rem; }
+:root[data-variant='k'] .post-meta { font-family: var(--font-body); font-size: 0.92rem; gap: 0 0.45rem; }
+:root[data-variant='k'] .post-meta .sep { display: inline; }
+:root[data-variant='k'] .post-meta .badge { font-size: 0.95rem; }
+:root[data-variant='k'] .post-body h2 { font-size: 1.55rem; }
+:root[data-variant='k'] .epistemic { border-left-color: var(--sun); }
+:root[data-variant='k'] .toc { background: var(--code-bg); border: 1px solid var(--rule); border-radius: 6px; padding: 0.8rem 1.1rem; }
+:root[data-variant='k'] .toc summary { font-size: 1rem; color: var(--fg); }
+:root[data-variant='k'] .end-mark { justify-content: center; }
+:root[data-variant='k'] .end-mark::before,
+:root[data-variant='k'] .end-mark::after { flex: 0 0 4rem; }
+:root[data-variant='k'] .discuss { text-align: center; font-style: italic; }
+:root[data-variant='k'] .signup { background: var(--code-bg); border-color: var(--rule); border-radius: 6px; }
+:root[data-variant='k'] .signup button { background: var(--fg); color: var(--bg); }
+
+@media (min-width: 80rem) {
+  /* A book's margins: the site's name and pages in the left one; the list's controls, or an
+     essay's contents, in the right one. */
+  :root[data-variant='k'] .site-header { position: fixed; top: 4.5rem; left: calc(50% - var(--measure) / 2 - 1rem - var(--rail) - 1.5rem); width: var(--rail); padding: 0; }
+  :root[data-variant='k'] .site-header .wrap { flex-direction: column; align-items: flex-end; gap: 1.1rem; padding: 0; max-width: none; text-align: right; }
+  :root[data-variant='k'] .site-name { flex-direction: column; align-items: flex-end; gap: 0.9rem; font-size: 1.45rem; line-height: 1.15; }
+  :root[data-variant='k'] .site-avatar { width: 4.25rem; height: 4.25rem; font-size: 1.2rem; box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--sun); }
+  :root[data-variant='k'] .site-nav { flex-direction: column; align-items: flex-end; gap: 0.2rem; }
+  :root[data-variant='k'] main { padding-top: 2.5rem; }
+  :root[data-variant='k'] :is(.writing, .post.essay) { display: grid; grid-template-columns: minmax(0, 1fr) var(--rail); column-gap: 1.5rem; margin-right: calc(-1 * (var(--rail) + 1.5rem)); }
+  :root[data-variant='k'] :is(.writing, .post.essay) > * { grid-column: 1; }
+  :root[data-variant='k'] :is(.writing > .filters, .post.essay > .toc) { grid-column: 2; grid-row: 1 / span 3; align-self: start; position: sticky; top: 2rem; max-height: calc(100vh - 4rem); overflow-y: auto; }
+  :root[data-variant='k'] .writing > .filters { gap: 1.1rem; padding: 0; border: 0; font-size: 0.85rem; }
+  :root[data-variant='k'] .filters legend { float: none; width: auto; margin-bottom: 0.15rem; }
+  :root[data-variant='k'] .filters label { display: block; margin: 0; }
+  :root[data-variant='k'] .post.essay > .toc { background: none; border: 0; padding: 0; margin: 0; font-size: 0.82rem; }
+  :root[data-variant='k'] .post.essay > .toc summary { list-style: none; pointer-events: none; }
+  :root[data-variant='k'] .post.essay > .toc summary::-webkit-details-marker { display: none; }
+}
+
+/* ---------- L: Notebook (after Lil'Log; closest to H) ---------- */
+:root[data-variant='l'] {
+  --font-body: 'Figtree Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-heading: 'Bricolage Grotesque Variable', var(--font-body);
+  --font-meta: 'JetBrains Mono Variable', ui-monospace, Menlo, Consolas, monospace;
+  --font-mono: var(--font-meta);
+  --lh: 1.65;
+  /* Keeps the avatar's ring clear of the highlighted lede beside it. */
+  --line-x: 2.6rem;
+}
+:root[data-variant='l'] :is(h1, h2, h3, h4, .site-name) { font-family: var(--font-heading); font-weight: 800; letter-spacing: -0.015em; }
+:root[data-variant='l'] .site-name { font-size: 1.2rem; }
+:root[data-variant='l'] .site-nav { font-family: var(--font-body); font-size: 0.95rem; }
+
+:root[data-variant='l'] .prose-intro .lede { font: 800 clamp(1.45rem, 1.05rem + 1.4vw, 1.95rem) / 1.22 var(--font-heading); letter-spacing: -0.02em; text-wrap: balance; margin-bottom: 1rem; }
+:root[data-variant='l'] .prose-intro .lede strong { color: var(--name-fg); background: linear-gradient(transparent 58%, var(--name-hl) 58%, var(--name-hl) 92%, transparent 92%); padding: 0 0.1em; margin: 0 -0.1em; }
+:root[data-variant='l'] .prose-intro p:not(.lede) { font-size: 1.08rem; max-width: 38rem; }
+
+:root[data-variant='l'] .writing-title { font: 600 0.72rem var(--font-meta); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.4rem; }
+:root[data-variant='l'] .filters { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'type status' 'tag sort'; gap: 0.6rem 1rem; align-items: center; padding: 0.7rem 0 0.8rem; background: var(--bg); border-bottom: 1px solid var(--rule); margin-bottom: 0.4rem; }
+:root[data-variant='l'] .f-type { grid-area: type; }
+:root[data-variant='l'] .f-tag { grid-area: tag; }
+:root[data-variant='l'] .f-sort { grid-area: sort; }
+:root[data-variant='l'] .f-status { grid-area: status; justify-self: end; font: 0.72rem var(--font-meta); }
+:root[data-variant='l'] .filters fieldset { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+:root[data-variant='l'] .filters legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:root[data-variant='l'] .filters label > span { display: inline-flex; align-items: baseline; gap: 0.35rem; padding: 0.2rem 0.75rem; border: 1px solid var(--rule); border-radius: 999px; font-size: 0.9rem; font-weight: 500; }
+:root[data-variant='l'] :is(.f-tag, .f-sort) label > span { font-size: 0.8rem; padding: 0.1rem 0.6rem; }
+:root[data-variant='l'] .f-tag label:not(:first-of-type) > span::before { content: '#'; opacity: 0.45; margin-right: -0.25rem; }
+:root[data-variant='l'] .filters label:hover > span { border-color: var(--sun); }
+:root[data-variant='l'] .filters label:has(input:checked) > span { background: var(--sun); border-color: var(--sun); color: #1b2436; font-weight: 700; }
+:root[data-variant='l'] .filters .n { font: 0.7rem var(--font-meta); opacity: 0.7; }
+/* The sort options join into one segmented control. */
+:root[data-variant='l'] .f-sort { gap: 0; }
+:root[data-variant='l'] .f-sort label > span { border-radius: 0; margin-left: -1px; }
+:root[data-variant='l'] .f-sort label:first-of-type > span { border-radius: 999px 0 0 999px; margin-left: 0; }
+:root[data-variant='l'] .f-sort label:last-of-type > span { border-radius: 0 999px 999px 0; }
+@media (min-width: 64rem) {
+  /* The controls stay in reach while the list scrolls beneath them. */
+  :root[data-variant='l'] .filters { position: sticky; top: 0; z-index: 2; }
+}
+@media (max-width: 40rem) {
+  :root[data-variant='l'] .filters { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'type' 'tag' 'sort' 'status'; }
+  :root[data-variant='l'] .f-status { justify-self: start; }
+}
+
+:root[data-variant='l'] .stream .item { padding: 0.75rem 0; }
+:root[data-variant='l'] .stream .type { color: var(--muted); text-transform: lowercase; }
+:root[data-variant='l'] .stream h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
+:root[data-variant='l'] .stream .item.essay h3 { font-size: 1.4rem; font-weight: 800; }
+:root[data-variant='l'] .stream h3 a { background: linear-gradient(var(--hl), var(--hl)) no-repeat 0 88% / 0 0.42em; transition: background-size 0.25s ease; }
+:root[data-variant='l'] .stream h3 a:hover { color: var(--fg); text-decoration: none; background-size: 100% 0.42em; }
+:root[data-variant='l'] .stream .item.t-essay .content { background: var(--card); margin: 0 -0.75rem; padding: 0.85rem 0.75rem; border-radius: 10px; }
+:root[data-variant='l'] .stream .summary { font-size: 1rem; }
+:root[data-variant='l'] .stream .tags { display: flex; gap: 0.7rem; margin: 0.25rem 0 0; font: 0.72rem var(--font-meta); color: var(--muted); }
+:root[data-variant='l'] .stream .tags span::before { content: '#'; }
+@media (min-width: 64rem) {
+  :root[data-variant='l'] .stream .item { --dot-y: 1.5rem; }
+  :root[data-variant='l'] .stream .item.essay { --dot-y: 2.5rem; }
+  :root[data-variant='l'] .stream .item.essay > .meta { padding-top: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-variant='l'] .stream h3 a { transition: none; }
+}
+
+:root[data-variant='l'] .post-header h1 { font-size: 2.3rem; line-height: 1.1; letter-spacing: -0.025em; }
+:root[data-variant='l'] .post-subtitle { font-size: 1.2rem; }
+:root[data-variant='l'] .epistemic { border-left-color: var(--sun); }
+:root[data-variant='l'] .toc { background: var(--code-bg); border-radius: 10px; padding: 0.7rem 1rem; }
+:root[data-variant='l'] .toc summary { font: 800 1rem var(--font-heading); }
+:root[data-variant='l'] .discuss { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+:root[data-variant='l'] .discuss .sep { display: none; }
+:root[data-variant='l'] .discuss a { padding: 0.25rem 0.9rem; border-radius: 999px; background: var(--card); color: var(--fg); font-weight: 600; text-decoration: none; }
+:root[data-variant='l'] .discuss a:hover { background: var(--sun); color: #1b2436; }
+:root[data-variant='l'] .signup { background: var(--card); border-color: transparent; border-radius: 10px; }
+:root[data-variant='l'] .signup button { background: var(--fg); color: var(--bg); }
+:root[data-variant='l'] :is(.signup input, .signup button) { border-radius: 999px; }
 
 /* ---------- Variation banner (preview only) ---------- */
 .vbanner { font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #1b1b1d; color: #e8e8e8; padding: 0.55rem 1rem; }

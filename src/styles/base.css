@@ -12,6 +12,8 @@
 :root[data-theme='dark'] { color-scheme: dark; }
 
 *, *::before, *::after { box-sizing: border-box; }
+/* Component display rules must not override the hidden attribute. */
+[hidden] { display: none !important; }
 
 html {
   font-size: var(--fs);

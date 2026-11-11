@@ -1,0 +1,30 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  /** Expanded suits a margin rail; folded suits a box above the text. */
+  open: boolean;
+}
+
+const { headings, open } = Astro.props;
+// remark-gfm adds a visually hidden "Footnotes" heading; readers reach footnotes from their markers.
+const entries = headings.filter((h) => h.depth <= 3 && h.slug !== 'footnote-label');
+---
+
+{
+  entries.length > 1 && (
+    <nav class="toc" aria-label="Contents">
+      <details open={open}>
+        <summary>Contents</summary>
+        <ol>
+          {entries.map((h) => (
+            <li class={`depth-${h.depth}`}>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </nav>
+  )
+}

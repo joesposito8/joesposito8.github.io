@@ -1,50 +1,61 @@
 ---
 import { render } from 'astro:content';
-import { formatDate, groupBy, hostname, readingMinutes, type Post } from '../../lib/posts';
-import type { DateStyle } from '../../lib/variations';
+import { TYPE_LABELS, formatDate, groupBy, hostname, readingMinutes, type Post } from '../../lib/posts';
 
 interface Props {
   posts: Post[];
   base: string;
-  dates: DateStyle;
-  /** Year labels on the timeline; ISO dates already carry the year. */
-  yearMarkers: boolean;
+  /** Show note, TIL and link bodies inline; otherwise every post is a title line. */
+  bodies: boolean;
 }
 
-const { posts, base, dates, yearMarkers } = Astro.props;
-const bodies = new Map(await Promise.all(posts.map(async (p) => [p.id, (await render(p)).Content] as const)));
+const { posts, base, bodies } = Astro.props;
+const bodyById = new Map(
+  bodies ? await Promise.all(posts.filter((p) => p.data.type !== 'essay').map(async (p) => [p.id, (await render(p)).Content] as const)) : [],
+);
 const href = (p: Post) => `${base}posts/${p.id}/`;
 const years = groupBy(posts, (p) => String(p.data.date.getUTCFullYear()));
 ---
 
+{/* The data attributes feed the filter and sort controls; without script the list stays newest first. */}
 <div class="stream">
   {
     years.map(([year, items]) => (
       <>
-        {yearMarkers && (
-          <div class="year">
-            <span>{year}</span>
-          </div>
-        )}
+        <div class="year" data-year={year}>
+          <span>{year}</span>
+        </div>
         {items.map((p) => {
-          const Body = p.data.type === 'essay' ? undefined : bodies.get(p.id);
+          const { type, title, subtitle, date, tags, url } = p.data;
+          const Body = bodyById.get(p.id);
+          const minutes = readingMinutes(p);
           return (
-            <article class={`item ${p.data.type} t-${p.data.type}`}>
+            <article class={`item ${type} t-${type}`} data-type={type} data-tags={tags.join(' ')} data-date={date.toISOString()} data-minutes={minutes}>
               <div class="meta">
-                <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date, dates)}</time>
-                <span class="type">{p.data.type}</span>
-                {p.data.type === 'essay' && <span>{readingMinutes(p)} min</span>}
+                <time datetime={date.toISOString()}>
+                  {formatDate(date, 'day-month')}
+                  <span class="yr"> {year}</span>
+                </time>
+                <span class="type">{TYPE_LABELS[type]}</span>
+                {type === 'essay' && <span class="mins">{minutes} min</span>}
               </div>
               <div class="content">
-                <h2>
-                  <a href={p.data.type === 'link' ? p.data.url : href(p)}>{p.data.title}</a>
-                  {p.data.type === 'link' && p.data.url && <span class="muted mono"> → {hostname(p.data.url)}</span>}
-                </h2>
-                {p.data.type === 'essay' && p.data.subtitle && <p class="summary">{p.data.subtitle}</p>}
+                <h3>
+                  <a href={type === 'link' ? url : href(p)}>{title}</a>
+                  {type === 'link' && url && <span class="host"> → {hostname(url)}</span>}
+                </h3>
+                {type === 'essay' && subtitle && <p class="summary">{subtitle}</p>}
                 {Body && (
                   <div class="body">
                     <Body />
                   </div>
+                )}
+                {tags.length > 0 && (
+                  <p class="tags">
+                    {tags.map((t) => (
+                      <span>{t}</span>
+                    ))}
+                  </p>
                 )}
               </div>
             </article>

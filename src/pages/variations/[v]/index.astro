@@ -1,7 +1,9 @@
 ---
 import VariationLayout from '../../../layouts/VariationLayout.astro';
 import Stream from '../../../components/variations/Stream.astro';
+import Filters from '../../../components/variations/Filters.astro';
 import Intro from '../../../components/variations/Intro.astro';
+import IntroProse from '../../../components/variations/IntroProse.astro';
 import { getPosts } from '../../../lib/posts';
 import { VARIATIONS, type VariationId } from '../../../lib/variations';
 
@@ -10,10 +12,15 @@ export function getStaticPaths() {
 }
 
 const variant = Astro.params.v as VariationId;
+const v = VARIATIONS[variant];
 const posts = await getPosts();
 ---
 
 <VariationLayout variant={variant} page="home" title={`Variation ${variant.toUpperCase()}: home`}>
-  {VARIATIONS[variant].intro && <Intro />}
-  <Stream posts={posts} base={`/variations/${variant}/`} dates={VARIATIONS[variant].dates} yearMarkers={VARIATIONS[variant].dates !== 'iso'} />
+  {v.intro === 'prose' ? <IntroProse /> : <Intro />}
+  <section class="writing" id="writing" aria-labelledby="writing-title">
+    <h2 id="writing-title" class={v.filters ? 'writing-title' : 'sr-only'}>Writing</h2>
+    {v.filters && <Filters posts={posts} />}
+    <Stream posts={posts} base={`/variations/${variant}/`} bodies={!v.filters} />
+  </section>
 </VariationLayout>
