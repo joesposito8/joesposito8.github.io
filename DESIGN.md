@@ -60,7 +60,9 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 | `--radius` | 6px |
 
 - Below 80rem (1280px): one column, `--measure` wide plus 1rem gutters. The header is a top
-  bar: avatar and name, then the nav.
+  bar: avatar and name, then the nav. The list's controls sit under the "Writing" heading
+  with no rules, one line per group; a group too long for the screen (usually Topic)
+  scrolls sideways under a fade at its right edge.
 - From 80rem: the body is a five-column grid (`1fr | rail | measure | rail | 1fr`). The
   header sits in the left rail, right-aligned and sticky: a 4.25rem avatar, the name, the
   nav. Pages that need it put a sticky panel in the right rail (`.with-rail`

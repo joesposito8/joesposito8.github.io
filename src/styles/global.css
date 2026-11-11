@@ -154,11 +154,15 @@ body:has(.writing) .site-footer { margin-top: 0; }
 
 .writing-title { font-size: 1.8rem; margin: 0 0 0.6rem; }
 
-.filters { display: grid; gap: 0.35rem; margin: 0 0 0.25rem; padding: 0.7rem 0; border-block: 1px solid var(--rule); font-size: 0.9rem; }
-.filters fieldset { display: grid; grid-template-columns: 4.25rem minmax(0, 1fr); align-items: baseline; min-width: 0; margin: 0; padding: 0; border: 0; }
+.filters { display: grid; gap: 0.3rem; margin: 0; font-size: 0.88rem; }
+.filters fieldset { display: grid; grid-template-columns: 3.1rem minmax(0, 1fr); align-items: baseline; min-width: 0; margin: 0; padding: 0; border: 0; }
 /* Floated, the legend becomes an ordinary grid item, so it lines up as a label column. */
 .filters legend { float: left; padding: 0; color: var(--muted); }
-.filters .options { display: flex; flex-wrap: wrap; gap: 0 1.1rem; }
+/* On narrow screens each group stays on one line and scrolls sideways when it overflows; the
+   fade at the right edge says there is more. The end padding sits under the fade, so a group
+   that fits shows no fade. The start padding leaves room for the selected dot. */
+.filters .options { display: flex; gap: 0 0.7rem; overflow-x: auto; scrollbar-width: none; white-space: nowrap; padding: 0 0.8rem 0 0.75rem; mask-image: linear-gradient(to right, #000 calc(100% - 0.8rem), transparent); }
+.filters .options::-webkit-scrollbar { display: none; }
 /* The radios stay in the page for keyboard and screen-reader use; their labels are what shows. */
 .filters input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
 .filters label { cursor: pointer; }
@@ -177,13 +181,13 @@ body:has(.writing) .site-footer { margin-top: 0; }
   .writing > .filters { gap: 1.1rem; margin: 0; padding: 0.5rem 0 0 0.7rem; border: 0; font-size: 0.85rem; }
   .filters fieldset { display: block; }
   .filters legend { float: none; margin-bottom: 0.1rem; }
-  .filters .options { flex-direction: column; }
+  .filters .options { flex-direction: column; overflow: visible; white-space: normal; padding: 0; mask-image: none; }
 }
 
 /* Years divide the list; an entry is a date column and a title column, ruled beneath. */
 .year { display: flex; align-items: center; gap: 1rem; margin: 0 0 0.2rem; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); }
 .year::before, .year::after { content: ''; flex: 1; border-top: 1px solid var(--rule); }
-.post-list > .year:first-child { margin-top: 1.6rem; }
+.post-list > .year:first-child { margin-top: 0.6rem; }
 /* A year's divider closes the year before it, so the entry above it needs no rule. */
 .entry:has(+ .year) { border-bottom: 0; }
 
