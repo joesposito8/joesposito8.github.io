@@ -16,6 +16,8 @@
   --gutter: 9.5rem;
   --line: 1px solid var(--rule);
   --dot: 9px;
+  /* Distance from the timeline rule to the text column. */
+  --line-x: 1.25rem;
 }
 
 /* E (round 2 reference): cool slate, teal accent */
@@ -54,6 +56,7 @@
 
 /* H: Sunroom. White and navy ink with a sunflower highlighter; lamplit navy at night. */
 :root[data-variant='h'] {
+  --line-x: 2.25rem;
   --bg: light-dark(#ffffff, #121a2b);
   --fg: light-dark(#1b2436, #e9edf5);
   --muted: light-dark(#5a6477, #9ba6bb);
@@ -61,6 +64,9 @@
   --accent: light-dark(#2343a0, #a3b8ff);
   --sun: light-dark(#f2b600, #f5c84c);
   --hl: light-dark(#ffd84d, rgb(245 200 76 / 0.35));
+  /* Yellow under navy text by day; on the navy night page a highlighter turns muddy, so the name itself turns yellow. */
+  --name-hl: light-dark(#ffd84d, transparent);
+  --name-fg: light-dark(#1b2436, #f5c84c);
   --card: light-dark(#fff8da, #1a2338);
   --code-bg: light-dark(#f4f6fa, #19223a);
   --t-essay: var(--sun);
@@ -120,6 +126,8 @@
 .intro .avatar { flex: 0 0 3.75rem; height: 3.75rem; border-radius: 50%; display: grid; place-items: center; font: 700 1.05rem var(--font-heading); }
 .intro .hello { margin: 0 0 0.35rem; font-size: 1.2rem; line-height: 1.4; }
 .intro .now { margin: 0; font-size: 0.92rem; color: var(--muted); }
+.intro .bio { margin: 0 0 0.5rem; color: var(--muted); }
+.intro .intro-links { display: none; }
 .intro .now-label { font: 600 0.72rem var(--font-meta); text-transform: uppercase; letter-spacing: 0.08em; margin-right: 0.45rem; color: var(--accent); }
 
 /* On wide screens dates hang in a gutter, joined to the text by one continuous rule. */
@@ -128,14 +136,14 @@
     & .wrap { max-width: calc(var(--measure) + var(--gutter) + 2rem); padding-left: calc(var(--gutter) + 1rem); }
     & :is(.site-header, .site-footer) .wrap { padding-left: 1rem; }
     & .stream { position: relative; }
-    & .stream::before { content: ''; position: absolute; top: 0; bottom: 0; left: -1.25rem; border-left: var(--line); }
+    & .stream::before { content: ''; position: absolute; top: 0; bottom: 0; left: calc(-1 * var(--line-x)); border-left: var(--line); }
     & .stream .item { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); margin-left: calc(-1 * var(--gutter)); }
-    & .stream .item > .meta { flex-direction: column; gap: 0.1rem; padding: 0.2rem 2.25rem 0 0; margin: 0; text-align: right; }
-    & .stream .item::before { content: ''; position: absolute; left: calc(var(--gutter) - 1.25rem - var(--dot) / 2 + 0.5px); top: 1.55rem; width: var(--dot); height: var(--dot); border-radius: 50%; background: var(--bg); border: 2px solid var(--t-type); box-sizing: border-box; }
+    & .stream .item > .meta { flex-direction: column; gap: 0.1rem; padding: 0.2rem calc(var(--line-x) + 1rem) 0 0; margin: 0; text-align: right; }
+    & .stream .item::before { content: ''; position: absolute; left: calc(var(--gutter) - var(--line-x) - var(--dot) / 2 + 0.5px); top: 1.55rem; width: var(--dot); height: var(--dot); border-radius: 50%; background: var(--bg); border: 2px solid var(--t-type); box-sizing: border-box; }
     & .stream .item.t-essay::before { background: var(--t-type); }
     & .stream .type::before { display: none; }
     & .stream .year { position: relative; height: 1.75rem; margin: 1rem 0 0.25rem; }
-    & .stream .year span { position: absolute; left: -1.25rem; top: 50%; transform: translate(-50%, -50%); }
+    & .stream .year span { position: absolute; left: calc(-1 * var(--line-x)); top: 50%; transform: translate(-50%, -50%); }
     & .post-header { position: relative; }
     & .post-header .post-meta { position: absolute; left: calc(-1 * var(--gutter)); width: calc(var(--gutter) - 1.5rem); top: 0.4rem; font-size: 0.78rem; flex-direction: column; gap: 0.1rem; }
   }
@@ -163,8 +171,24 @@
 :root[data-variant='h'] .stream h2 a { background: linear-gradient(var(--hl), var(--hl)) no-repeat 0 88% / 0 0.42em; transition: background-size 0.25s ease; }
 :root[data-variant='h'] .stream h2 a:hover { color: var(--fg); text-decoration: none; background-size: 100% 0.42em; }
 :root[data-variant='h'] .stream .item.t-essay .content { background: var(--card); margin: 0 -0.6rem; padding: 0.8rem 0.6rem; border-radius: 6px; }
-:root[data-variant='h'] .intro .avatar { background: var(--sun); color: #1b2436; }
-:root[data-variant='h'] .intro .hello strong { background: linear-gradient(transparent 55%, var(--hl) 55%); }
+:root[data-variant='h'] .intro { display: block; position: relative; margin: 0.75rem 0 0; padding-bottom: 0.75rem; }
+:root[data-variant='h'] .intro .avatar { width: 4rem; height: 4rem; margin-bottom: 1.1rem; font-size: 1.25rem; font-weight: 800; background: var(--sun); color: #1b2436; box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--sun); }
+:root[data-variant='h'] .intro .hello { font: 800 clamp(1.55rem, 1.1rem + 1.6vw, 2.1rem) / 1.2 var(--font-heading); letter-spacing: -0.015em; margin: 0 0 0.75rem; text-wrap: balance; }
+:root[data-variant='h'] .intro .hello strong { color: var(--name-fg); background: linear-gradient(transparent 58%, var(--name-hl) 58%, var(--name-hl) 92%, transparent 92%); padding: 0 0.1em; margin: 0 -0.1em; }
+:root[data-variant='h'] .intro .bio { font-size: 1.1rem; line-height: 1.5; max-width: 36rem; margin-bottom: 1.1rem; }
+:root[data-variant='h'] .intro .now { display: inline-flex; align-items: baseline; gap: 0.6rem; background: var(--card); color: var(--fg); padding: 0.45rem 0.9rem; border-radius: 999px; font-size: 0.92rem; line-height: 1.4; }
+:root[data-variant='h'] .intro .now-label { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0; color: var(--fg); font-weight: 700; }
+:root[data-variant='h'] .intro .now-label::before { content: ''; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--sun); }
+:root[data-variant='h'] .intro .intro-links { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; list-style: none; padding: 0; margin: 1.1rem 0 0; font-size: 0.92rem; }
+:root[data-variant='h'] .intro .intro-links li { margin: 0; }
+:root[data-variant='h'] .intro .intro-links a { color: var(--muted); text-decoration: underline 0.15em var(--sun); text-underline-offset: 0.25em; }
+:root[data-variant='h'] .intro .intro-links a:hover { color: var(--fg); }
+@media (min-width: 64rem) {
+  /* The avatar is the timeline's first node: it sits on the rule, which runs down from it into the posts. */
+  :root[data-variant='h'] .intro { padding-bottom: 2.25rem; }
+  :root[data-variant='h'] .intro .avatar { position: absolute; width: 3.25rem; height: 3.25rem; font-size: 1.05rem; left: calc(-1 * var(--line-x) - 1.625rem + 0.5px); top: 0.2rem; margin: 0; }
+  :root[data-variant='h'] .intro::after { content: ''; position: absolute; left: calc(-1 * var(--line-x)); top: 4.1rem; bottom: 0; border-left: var(--line); }
+}
 :root[data-variant='h'] .post-header h1::before { content: ''; display: block; width: 3rem; height: 0.4rem; background: var(--sun); border-radius: 2px; margin-bottom: 1rem; }
 :root[data-variant='h'] .signup { background: var(--card); border-color: transparent; }
 :root[data-variant='h'] .signup button { background: var(--fg); color: var(--bg); }
