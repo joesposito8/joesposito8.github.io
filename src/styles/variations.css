@@ -1,40 +1,8 @@
-/* Token sets and stream treatments for the three candidate designs.
-   light-dark() resolves against color-scheme, which the theme switch sets on <html>. */
+/* Token sets and stream treatments for the candidate designs.
+   light-dark() resolves against color-scheme, which the theme switch sets on <html>.
+   Every candidate shares the mono-metadata stream markup; they differ in tokens and setup. */
 
-/* A: Log (simonwillison.net, jefftk.com) */
-:root[data-variant='a'] {
-  --font-body: var(--font-sans);
-  --font-heading: var(--font-sans);
-  --fs: 17px;
-  --lh: 1.6;
-  --measure: 700px;
-  --bg: light-dark(#ffffff, #111315);
-  --fg: light-dark(#1f2328, #e4e6e8);
-  --muted: light-dark(#5b6570, #98a2ad);
-  --rule: light-dark(#dde1e6, #2c3138);
-  --accent: light-dark(#0b5cad, #6cb0f5);
-  --code-bg: light-dark(#f4f6f8, #1a1e23);
-  --badge-bg: light-dark(#eef2f6, #1f252c);
-}
-
-/* B: Plain (danluu.com, karpathy.bearblog.dev) */
-:root[data-variant='b'] {
-  --font-body: var(--font-serif);
-  --font-heading: var(--font-serif);
-  --fs: 18px;
-  --lh: 1.55;
-  --measure: 680px;
-  --bg: light-dark(#fffefa, #161514);
-  --fg: light-dark(#222120, #e6e2da);
-  --muted: light-dark(#6b6862, #9d988e);
-  --rule: light-dark(#e6e2d8, #33302c);
-  --accent: light-dark(#1d4f8a, #8fb6ea);
-  --code-bg: light-dark(#f5f3ec, #1f1d1b);
-  --badge-bg: transparent;
-}
-
-/* C: Mono-meta (an engineer's changelog) */
-:root[data-variant='c'] {
+:root[data-variant] {
   --font-body: var(--font-sans);
   --font-heading: var(--font-sans);
   --font-badge: var(--font-mono);
@@ -42,75 +10,120 @@
   --lh: 1.6;
   --measure: 720px;
   --gutter: 9.5rem;
+}
+
+/* C (round 1 reference): warm paper, rust accent, airy gutter */
+:root[data-variant='c'] {
   --bg: light-dark(#fbfaf7, #141312);
   --fg: light-dark(#262522, #e6e2db);
   --muted: light-dark(#76726a, #9b968c);
   --rule: light-dark(#e7e3db, #2e2b27);
   --accent: light-dark(#a8481f, #e48d5f);
   --code-bg: light-dark(#f3f1ec, #1d1b19);
-  --badge-bg: transparent;
+  --t-essay: var(--accent); --t-note: var(--accent); --t-til: var(--accent); --t-link: var(--accent);
 }
 
-/* ---------- A: Log ---------- */
-.stream-a .day { margin: 0 0 2.25rem; }
-.stream-a .day-date { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: 0.3rem; margin: 0 0 1rem; }
-.stream-a .item { margin: 0 0 1.75rem; }
-.stream-a .item .badge { display: inline-block; background: var(--badge-bg); padding: 0.1rem 0.4rem; border-radius: var(--radius); margin-right: 0.5rem; vertical-align: 0.15em; }
-.stream-a .item h2 { display: inline; font-size: 1.25rem; margin: 0; }
-.stream-a .item h2 a { color: var(--fg); text-decoration: none; }
-.stream-a .item h2 a:hover { color: var(--accent); }
-.stream-a .item.essay h2 { font-size: 1.45rem; }
-.stream-a .item .summary { margin: 0.4rem 0 0; }
-.stream-a .item .body { margin-top: 0.5rem; }
-.stream-a .item .body > :last-child { margin-bottom: 0; }
-.stream-a .item .foot { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; }
-.stream-a .item .foot a { color: var(--muted); }
+/* D: Log line. Pure white, cobalt links, colour-coded post types, no gutter. */
+:root[data-variant='d'] {
+  --measure: 700px;
+  --bg: light-dark(#ffffff, #0e1013);
+  --fg: light-dark(#16181c, #e3e5e8);
+  --muted: light-dark(#5f6670, #9299a3);
+  --rule: light-dark(#e4e7eb, #252a31);
+  --accent: light-dark(#2554c7, #86a6ff);
+  --code-bg: light-dark(#f4f5f7, #171a1f);
+  --t-essay: light-dark(#2554c7, #86a6ff);
+  --t-note: light-dark(#17804a, #5fcf8f);
+  --t-til: light-dark(#7a3fc2, #b99af0);
+  --t-link: light-dark(#5a6470, #9aa5b1);
+}
 
-/* ---------- B: Plain ---------- */
-:root[data-variant='b'] .site-header .wrap { display: block; }
-:root[data-variant='b'] .site-nav { margin-top: 0.25rem; font-size: 0.95rem; }
-:root[data-variant='b'] .site-nav a { color: var(--accent); text-decoration: underline; }
-:root[data-variant='b'] h1 { font-weight: 700; }
-.stream-b .lede { margin: 0 0 2rem; color: var(--muted); }
-.stream-b .year { font-size: 1.1rem; margin: 2rem 0 0.6rem; }
-.stream-b ul { list-style: none; padding: 0; margin: 0; }
-.stream-b li { display: flex; gap: 1rem; margin: 0 0 0.45rem; }
-.stream-b time { flex: 0 0 4.2rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.stream-b .kind { color: var(--muted); font-size: 0.85rem; font-style: italic; }
-.stream-b .ext { color: var(--muted); font-size: 0.85rem; }
+/* E: Timeline. Cool slate, teal accent, dates on a ruled timeline. */
+:root[data-variant='e'] {
+  --bg: light-dark(#ffffff, #0f1317);
+  --fg: light-dark(#1b2027, #dfe5ec);
+  --muted: light-dark(#5d6976, #8f9ba8);
+  --rule: light-dark(#dbe1e8, #29323c);
+  --accent: light-dark(#0b7480, #4cc2cc);
+  --code-bg: light-dark(#f3f6f8, #161c22);
+  --t-essay: light-dark(#0b7480, #4cc2cc);
+  --t-note: light-dark(#3b7a2a, #8fd17a);
+  --t-til: light-dark(#6a49c0, #b39cf0);
+  --t-link: light-dark(#6b7480, #9aa4b0);
+}
 
-/* ---------- C: Mono-meta ---------- */
-:root[data-variant='c'] .site-name { font-family: var(--font-mono); font-size: 1rem; }
-:root[data-variant='c'] .site-nav { font-family: var(--font-mono); font-size: 0.82rem; }
-.stream-c .item { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
-.stream-c .item:last-child { border-bottom: 1px solid var(--rule); }
-.stream-c .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); display: flex; gap: 0.9rem; margin-bottom: 0.3rem; }
-.stream-c .meta .type { color: var(--accent); }
-.stream-c h2 { font-size: 1.15rem; margin: 0; }
-.stream-c .item.essay h2 { font-size: 1.35rem; }
-.stream-c h2 a { color: var(--fg); text-decoration: none; }
-.stream-c h2 a:hover { color: var(--accent); }
-.stream-c .summary { margin: 0.3rem 0 0; color: var(--muted); }
-.stream-c .body { margin-top: 0.4rem; }
-.stream-c .body > :last-child { margin-bottom: 0; }
+/* F: Graphite. Monochrome; links are underlined ink; types are inverted chips. */
+:root[data-variant='f'] {
+  --bg: light-dark(#ffffff, #111111);
+  --fg: light-dark(#111111, #ececec);
+  --muted: light-dark(#666666, #9c9c9c);
+  --rule: light-dark(#e2e2e2, #2a2a2a);
+  --accent: light-dark(#111111, #ececec);
+  --code-bg: light-dark(#f4f4f4, #1b1b1b);
+  --t-essay: var(--fg); --t-note: var(--fg); --t-til: var(--fg); --t-link: var(--fg);
+}
 
-/* On wide screens C hangs metadata in a gutter left of the text column. */
+/* ---------- Shared stream ---------- */
+:root[data-variant] .site-name { font-family: var(--font-mono); font-size: 1rem; }
+:root[data-variant] .site-nav { font-family: var(--font-mono); font-size: 0.82rem; }
+.stream .item { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+.stream .item:last-child { border-bottom: 1px solid var(--rule); }
+.stream .meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0 0.9rem; margin-bottom: 0.3rem; }
+.stream .type, .post-meta .badge { color: var(--t-type, var(--accent)); }
+.t-essay { --t-type: var(--t-essay); }
+.t-note { --t-type: var(--t-note); }
+.t-til { --t-type: var(--t-til); }
+.t-link { --t-type: var(--t-link); }
+.stream h2 { font-size: 1.15rem; margin: 0; }
+.stream .item.essay h2 { font-size: 1.35rem; }
+.stream h2 a { color: var(--fg); text-decoration: none; }
+.stream h2 a:hover { color: var(--accent); text-decoration: underline; }
+.stream .summary { margin: 0.3rem 0 0; color: var(--muted); }
+.stream .body { margin-top: 0.4rem; }
+.stream .body > :last-child { margin-bottom: 0; }
+:root[data-variant] .post-meta { font-family: var(--font-mono); font-size: 0.8rem; display: flex; flex-wrap: wrap; gap: 0 0.9rem; }
+:root[data-variant] .post-meta .sep { display: none; }
+
+/* C, E and F hang metadata in a gutter left of the text column on wide screens. */
 @media (min-width: 64rem) {
-  :root[data-variant='c'] .wrap { max-width: calc(var(--measure) + var(--gutter) + 2rem); padding-left: calc(var(--gutter) + 1rem); }
-  :root[data-variant='c'] .site-header .wrap,
-  :root[data-variant='c'] .site-footer .wrap { padding-left: 1rem; max-width: calc(var(--measure) + var(--gutter) + 2rem); }
-  .stream-c .item { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); margin-left: calc(-1 * var(--gutter)); }
-  .stream-c .item > * { grid-column: 2; }
-  .stream-c .item > .meta { grid-column: 1; grid-row: 1 / span 3; flex-direction: column; gap: 0.1rem; padding-top: 0.2rem; margin: 0; }
-  .stream-c .item { border-image: linear-gradient(to right, transparent var(--gutter), var(--rule) var(--gutter)) 1; }
-  :root[data-variant='c'] .post-header .post-meta { position: absolute; left: calc(-1 * var(--gutter)); width: calc(var(--gutter) - 1.5rem); top: 0.4rem; font-family: var(--font-mono); font-size: 0.78rem; display: flex; flex-direction: column; gap: 0.1rem; }
-  :root[data-variant='c'] .post-header { position: relative; }
+  :root:is([data-variant='c'], [data-variant='e'], [data-variant='f']) {
+    & .wrap { max-width: calc(var(--measure) + var(--gutter) + 2rem); padding-left: calc(var(--gutter) + 1rem); }
+    & :is(.site-header, .site-footer) .wrap { padding-left: 1rem; }
+    & .stream .item { display: grid; grid-template-columns: var(--gutter) minmax(0, 1fr); margin-left: calc(-1 * var(--gutter)); border-image: linear-gradient(to right, transparent var(--gutter), var(--rule) var(--gutter)) 1; }
+    & .stream .item > * { grid-column: 2; }
+    & .stream .item > .meta { grid-column: 1; grid-row: 1 / span 3; flex-direction: column; gap: 0.1rem; padding-top: 0.2rem; margin: 0; }
+    & .post-header { position: relative; }
+    & .post-header .post-meta { position: absolute; left: calc(-1 * var(--gutter)); width: calc(var(--gutter) - 1.5rem); top: 0.4rem; font-size: 0.78rem; flex-direction: column; gap: 0.1rem; }
+  }
 }
-:root[data-variant='c'] .post-meta { font-family: var(--font-mono); font-size: 0.8rem; }
-:root[data-variant='c'] .post-meta .sep { display: none; }
-@media (max-width: 63.99rem) {
-  :root[data-variant='c'] .post-meta { display: flex; flex-wrap: wrap; gap: 0 0.9rem; }
+
+/* ---------- D: Log line ---------- */
+:root[data-variant='d'] .stream .item { border: 0; padding: 0.9rem 0 0.9rem 0.9rem; border-left: 3px solid var(--t-type); margin: 0 0 0.6rem; }
+:root[data-variant='d'] .stream .meta { margin-bottom: 0.15rem; }
+:root[data-variant='d'] .stream .type { font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+:root[data-variant='d'] .post-meta .badge { font-weight: 700; }
+:root[data-variant='d'] .site-header { border-bottom: 1px solid var(--rule); margin-bottom: 1.75rem; padding-bottom: 1rem; }
+
+/* ---------- E: Timeline ---------- */
+:root[data-variant='e'] .stream .item { border: 0; position: relative; }
+:root[data-variant='e'] .stream .type::before { content: ''; display: inline-block; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--t-type); margin-right: 0.4rem; vertical-align: 0.05em; }
+@media (min-width: 64rem) {
+  :root[data-variant='e'] .stream { position: relative; }
+  /* One continuous line between the date gutter and the text. */
+  :root[data-variant='e'] .stream::before { content: ''; position: absolute; top: 0; bottom: 0; left: -1.25rem; border-left: 1px solid var(--rule); }
+  :root[data-variant='e'] .stream .item::before { content: ''; position: absolute; left: calc(var(--gutter) - 1.25rem - 4.5px); top: 1.55rem; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2px solid var(--t-type); box-sizing: border-box; }
+  :root[data-variant='e'] .stream .item.t-essay::before { background: var(--t-type); }
+  :root[data-variant='e'] .stream .type::before { display: none; }
+  :root[data-variant='e'] .stream .item > .meta { text-align: right; padding-right: 2.25rem; }
 }
+
+/* ---------- F: Graphite ---------- */
+:root[data-variant='f'] a { text-decoration-color: var(--muted); }
+:root[data-variant='f'] a:hover { text-decoration-color: var(--fg); }
+:root[data-variant='f'] :is(.stream .type, .post-meta .badge) { align-self: flex-start; background: var(--fg); color: var(--bg); padding: 0 0.35rem; border-radius: 2px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; }
+:root[data-variant='f'] .stream h2 a:hover { color: var(--fg); }
+:root[data-variant='f'] .signup button { background: var(--fg); color: var(--bg); }
+:root[data-variant='f'] h1, :root[data-variant='f'] .stream .item.essay h2 { letter-spacing: -0.02em; }
 
 /* ---------- Variation banner (preview only) ---------- */
 .vbanner { font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: #1b1b1d; color: #e8e8e8; padding: 0.55rem 1rem; }

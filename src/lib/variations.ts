@@ -1,7 +1,11 @@
+// Round 1 offered A Log, B Plain and C Mono-meta. Joey preferred C but found its warm
+// palette and setup too Anthropic-like; round 2 keeps C's structure with new palettes
+// and setups. C stays here as the reference point.
 export const VARIATIONS = {
-  a: { name: 'Log', spec: 'System sans 17px / 1.6 · 700px column · day-grouped stream, short posts inline' },
-  b: { name: 'Plain', spec: 'System serif 18px / 1.55 · 680px column · title index by year' },
-  c: { name: 'Mono-meta', spec: 'System sans 17px / 1.6 · 720px column + mono metadata gutter on wide screens' },
+  c: { name: 'Mono-meta (round 1)', spec: 'Warm paper, rust accent, mono metadata gutter' },
+  d: { name: 'Log line', spec: 'Pure white, cobalt links, colour-coded type rail, single 700px column' },
+  e: { name: 'Timeline', spec: 'Cool slate, teal accent, dates on a ruled timeline with type dots' },
+  f: { name: 'Graphite', spec: 'Monochrome ink, underlined links, inverted type chips, mono gutter' },
 } as const;
 
 export type VariationId = keyof typeof VARIATIONS;

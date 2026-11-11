@@ -1,8 +1,6 @@
 ---
 import VariationLayout from '../../../layouts/VariationLayout.astro';
-import StreamA from '../../../components/variations/StreamA.astro';
-import StreamB from '../../../components/variations/StreamB.astro';
-import StreamC from '../../../components/variations/StreamC.astro';
+import Stream from '../../../components/variations/Stream.astro';
 import { getPosts } from '../../../lib/posts';
 import { VARIATIONS, type VariationId } from '../../../lib/variations';
 
@@ -12,7 +10,6 @@ export function getStaticPaths() {
 
 const variant = Astro.params.v as VariationId;
 const posts = await getPosts();
-const Stream = { a: StreamA, b: StreamB, c: StreamC }[variant];
 ---
 
 <VariationLayout variant={variant} page="home" title={`Variation ${variant.toUpperCase()}: home`}>

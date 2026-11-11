@@ -19,7 +19,7 @@ const { Content } = await render(post);
     <h1>{type === 'link' && url ? <a href={url}>{title}</a> : title}</h1>
     {subtitle && <p class="post-subtitle">{subtitle}</p>}
     <div class="post-meta">
-      <span class="badge">{TYPE_LABELS[type]}</span>
+      <span class={`badge t-${type}`}>{TYPE_LABELS[type]}</span>
       <span class="sep"> · </span>
       <time datetime={date.toISOString()}>{formatDate(date)}</time>
       {

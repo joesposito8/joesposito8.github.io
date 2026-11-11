@@ -12,12 +12,12 @@ const bodies = new Map(await Promise.all(posts.map(async (p) => [p.id, (await re
 const href = (p: Post) => `${base}posts/${p.id}/`;
 ---
 
-<div class="stream-c">
+<div class="stream">
   {
     posts.map((p) => {
       const Body = p.data.type === 'essay' ? undefined : bodies.get(p.id);
       return (
-        <article class={`item ${p.data.type}`}>
+        <article class={`item ${p.data.type} t-${p.data.type}`}>
           <div class="meta">
             <time datetime={p.data.date.toISOString()}>{formatDate(p.data.date, 'iso')}</time>
             <span class="type">{p.data.type}</span>
