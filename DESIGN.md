@@ -97,10 +97,9 @@ essay a sunflower disc, note an ink ring, TIL an ink diamond, link a small grey 
 |---|---|
 | `/` | Intro, then "Writing": filters and the full list. With no posts yet, the Writing section is left out and the page is the intro alone. |
 | `/posts/<slug>/` | Essay, note, TIL or link post. Link posts' titles point to the linked page. KaTeX's stylesheet loads only when the post contains math. |
-| `/archive/` | Compact list by year: date, title, type |
 | `/about/` | Prose page with an "Elsewhere" list of profiles |
 | `/evals/` | Intro line and eval cards. Unpublished until its text is written: the page is `src/pages/_evals.astro` and Evals is out of the nav. The `evals-*` screenshots show its design. |
-| `/404` | "Page not found" with links to the list and archive |
+| `/404` | "Page not found" with a link to the list |
 | `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, avatar mark, title in Alegreya, "Joey Esposito · joesposito.com" |
 
 Client JavaScript: the filter script on `/`. Nothing else.
@@ -127,6 +126,8 @@ Client JavaScript: the filter script on `/`. Nothing else.
    controls start below it, and the gap between the "Writing" heading and the first year
    divider shrank from 2.2rem to 1rem. The 375px layout is unchanged.
 8. Joey dropped the theme button: the site follows the reader's system setting.
+9. Joey dropped the archive page: the home list already shows every post by year, with
+   filters. The nav is Writing and About.
 
 ## Notes
 

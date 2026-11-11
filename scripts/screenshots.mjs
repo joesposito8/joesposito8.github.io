@@ -15,7 +15,6 @@ const OUT = 'design/screenshots';
 
 const PAGES = {
   home: '/',
-  archive: '/archive/',
   essay: '/posts/lorem-ipsum-dolor-sit-amet/',
   note: '/posts/note-ut-enim-ad-minim/',
   til: '/posts/til-duis-aute-irure/',

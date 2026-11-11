@@ -6,7 +6,6 @@ export const SITE = {
 
 export const NAV = [
   { href: '/', label: 'Writing' },
-  { href: '/archive/', label: 'Archive' },
   { href: '/about/', label: 'About' },
 ];
 
