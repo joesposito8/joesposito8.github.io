@@ -66,7 +66,8 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
   nav. Pages that need it put a sticky panel in the right rail (`.with-rail`
   and `.rail`): the writing list's controls, an essay's contents.
 - Home page, from 80rem: the intro and the margin's avatar, name and nav form
-  one top band, and "Writing" with its controls starts below the taller of the two. The
+  one top band, aligned at the bottom so the intro's last line and the last nav item share a
+  baseline, and "Writing" with its controls starts below the band. The
   header holds only that band here, so it scrolls away with it; the controls stay sticky.
   The first year divider sits 0.4rem under the "Writing" heading.
 
@@ -128,6 +129,8 @@ Client JavaScript: the filter script on `/`. Nothing else.
 8. Joey dropped the theme button: the site follows the reader's system setting.
 9. Joey dropped the archive page: the home list already shows every post by year, with
    filters. The nav is Writing and About.
+10. Joey asked for the home band's two sides to sit flush at the bottom: the intro and the
+    margin's name and nav now align to the band's bottom edge instead of its top.
 
 ## Notes
 
