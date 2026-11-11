@@ -12,9 +12,13 @@ const posts = await getPosts();
 <Base>
   <h1 class="sr-only">{SITE.name}</h1>
   <Intro />
-  <section class="writing with-rail" id="writing" aria-labelledby="writing-title">
-    <h2 id="writing-title" class="writing-title">Writing</h2>
-    <PostFilters posts={posts} />
-    <PostList posts={posts} />
-  </section>
+  {
+    posts.length > 0 && (
+      <section class="writing with-rail" id="writing" aria-labelledby="writing-title">
+        <h2 id="writing-title" class="writing-title">Writing</h2>
+        <PostFilters posts={posts} />
+        <PostList posts={posts} />
+      </section>
+    )
+  }
 </Base>

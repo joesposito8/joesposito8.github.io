@@ -1,7 +1,9 @@
 // Captures every page type at phone and desktop widths, in light and dark, from a running
 // `astro preview`, into design/screenshots/. Also copies one social card beside them.
 //
-//   npm run build && npm run preview     # in one shell
+// The pages below are the lorem sample posts, so build with them:
+//
+//   SAMPLE_POSTS=design/sample-posts npm run build && npm run preview     # in one shell
 //   npm run screenshots                  # in another; PREVIEW_URL overrides the address
 //
 // Uses the system Chrome (channel 'chrome'), so no Playwright browser download is needed.

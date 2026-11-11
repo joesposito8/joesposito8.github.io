@@ -5,7 +5,9 @@ import { z } from 'astro/zod';
 export const POST_TYPES = ['essay', 'note', 'til', 'link'] as const;
 
 const posts = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+  // SAMPLE_POSTS points a build at a folder of sample posts (design/sample-posts for the
+  // screenshots); deploy builds never set it, so samples cannot reach the live site.
+  loader: glob({ pattern: '**/*.md', base: process.env.SAMPLE_POSTS ?? './src/content/posts' }),
   schema: z
     .object({
       type: z.enum(POST_TYPES),
