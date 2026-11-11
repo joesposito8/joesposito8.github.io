@@ -14,7 +14,7 @@ const { post } = Astro.props as { post: Post };
 const hasMath = /\$/.test(post.body ?? '');
 ---
 
-<Base title={post.data.title} description={post.data.subtitle} type="article">
+<Base title={post.data.title} description={post.data.subtitle} type="article" image={`/og/${post.id}.png`}>
   {hasMath && <link slot="head" rel="stylesheet" href={katexStylesheet} />}
   <Article post={post} />
 </Base>
