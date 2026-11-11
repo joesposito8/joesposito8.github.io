@@ -70,7 +70,7 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 
 | Component | File | Notes |
 |---|---|---|
-| Base layout | `src/layouts/Base.astro` | Head (title, description, canonical, Open Graph and Twitter card tags, feed discovery links, `rel="me"` profile links, the GoatCounter counter when `GOATCOUNTER_CODE` is set, a `head` slot), header, footer with profile links, theme button |
+| Base layout | `src/layouts/Base.astro` | Head (title, description, canonical, Open Graph and Twitter card tags, feed discovery links, `rel="me"` profile links, a `head` slot), header, footer with profile links, theme button |
 | Intro | `src/components/Intro.astro` | Prose paragraph in Joey's voice. The first words are set in small capitals (`.lede strong`). Links are underlined in sunflower; topic links open the list pre-filtered (`/?tag=…#writing`). No drop cap. |
 | PostFilters | `src/components/PostFilters.astro` | Radio groups Show (All/Essays/Notes/TILs/Links with counts), Topic (tags by frequency), Sort (Newest/Oldest/Longest), plus a live count. Hidden until its script runs. Counts follow the chosen topic; options with zero matches fade. State is mirrored in the query string, so filtered views are linkable. |
 | PostList | `src/components/PostList.astro` | Year dividers (centred year between hairlines) and ruled entries: date column (date, type mark, minutes for essays) and title column (title link, essay subtitle in italic, topic links in mono). Sorted by length, the dividers disappear and each date shows its year. |
@@ -99,9 +99,7 @@ essay a sunflower disc, note an ink ring, TIL an ink diamond, link a small grey 
 | `/404` | "Page not found" with links to the list and archive |
 | `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, avatar mark, title in Alegreya, "Joey Esposito · joesposito.com" |
 
-Client JavaScript: the filter script on `/` and the theme button. When `GOATCOUNTER_CODE`
-is set, GoatCounter's counter script also loads; it is the site's only request to another
-host.
+Client JavaScript: the filter script on `/` and the theme button. Nothing else.
 
 ## Design history
 

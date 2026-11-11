@@ -25,6 +25,3 @@ export const EXTRA_REL_ME = ['https://www.linkedin.com/in/joseph-esposito8'];
 
 /** Shows the email signup at the end of every essay. */
 export const SUBSTACK_SIGNUP = true;
-
-/** GoatCounter site code (the `<code>` in https://<code>.goatcounter.com); null turns analytics off. */
-export const GOATCOUNTER_CODE: string | null = null;

@@ -47,8 +47,6 @@ between `$…$` or `$$…$$`; KaTeX's stylesheet loads only on posts that use it
 
 - `SUBSTACK_URL`: the Substack publication the signup form submits to.
 - `SUBSTACK_SIGNUP`: `true` shows the signup box at the end of each essay.
-- `GOATCOUNTER_CODE`: the GoatCounter site code (the `<code>` in
-  `https://<code>.goatcounter.com`); `null` turns analytics off.
 - `PROFILES`, `EXTRA_REL_ME`: profile links for the footer and the `rel="me"` tags.
 - `NAV`: the pages in the site menu.
 

@@ -10,7 +10,7 @@ DESIGN.md for every token, component and page.
 - DESIGN.md: the design record and its history
 - src/styles/tokens.css, src/styles/global.css: theme styles
 - src/layouts/Base.astro, src/components/: layout and components
-- src/config.ts: site name, nav, profile links, SUBSTACK_URL, SUBSTACK_SIGNUP, GOATCOUNTER_CODE
+- src/config.ts: site name, nav, profile links, SUBSTACK_URL, SUBSTACK_SIGNUP
 - src/content.config.ts: the post schema
 - src/lib/feed.ts, src/pages/feeds/: RSS feeds; /feeds/lesswrong.xml is registered with LessWrong, so keep its path and guids
 - scripts/check-dist.mjs, scripts/check-feeds.mjs, lychee.toml: checks run in CI
