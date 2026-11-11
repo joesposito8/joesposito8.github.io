@@ -73,7 +73,8 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
   header sits in the left rail, right-aligned and sticky: a 4.25rem avatar, the name, the
   nav. Pages that need it put a sticky panel in the right rail (`.with-rail`
   and `.rail`): the writing list's controls, an essay's contents.
-- Home page, from 80rem: the intro and the margin's avatar, name and nav form
+- Home page: the header shows the name without the avatar.
+- Home page, from 80rem: the intro and the margin's name and nav form
   one top band, the two centred on each other, and "Writing" with its controls starts below
   the band. The
   header holds only that band here, so it scrolls away with it; the controls stay sticky.
