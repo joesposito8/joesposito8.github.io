@@ -12,9 +12,22 @@ export async function getStaticPaths() {
 const { post } = Astro.props as { post: Post };
 // KaTeX's stylesheet and fonts load only on posts that contain math.
 const hasMath = /\$/.test(post.body ?? '');
+const { type, report, title, date, updated } = post.data;
+// Google Scholar reads dates as YYYY/MM/DD.
+const scholarDate = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '/');
 ---
 
-<Base title={post.data.title} description={post.data.subtitle} type="article" image={`/og/${post.id}.png`}>
+<Base title={title} description={post.data.subtitle} type="article" image={`/og/${post.id}.png`}>
   {hasMath && <link slot="head" rel="stylesheet" href={katexStylesheet} />}
+  {
+    type === 'essay' && report && (
+      <Fragment slot="head">
+        <meta name="citation_title" content={title} />
+        <meta name="citation_author" content="Esposito, Joey" />
+        <meta name="citation_publication_date" content={scholarDate(date)} />
+        <meta name="citation_online_date" content={scholarDate(updated ?? date)} />
+      </Fragment>
+    )
+  }
   <Article post={post} />
 </Base>

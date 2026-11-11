@@ -19,6 +19,8 @@ const posts = defineCollection({
       tags: z.array(z.string()).default([]),
       // Adds the post to the full-content feed that LessWrong imports.
       lesswrong: z.boolean().default(false),
+      // Marks a report-style essay: adds citation_* meta tags so Google Scholar can index it.
+      report: z.boolean().default(false),
       // The page a link post points at.
       url: z.url().optional(),
       syndication: z
