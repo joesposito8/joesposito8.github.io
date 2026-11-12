@@ -72,8 +72,9 @@ sup { line-height: 0; }
 
 .site-header, .page, .site-footer { width: 100%; max-width: calc(var(--measure) + 2rem); margin-inline: auto; padding-inline: 1rem; }
 
-/* The same header on every page: the name, with the pages beneath it. */
-.site-header { display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem; padding-block: 1.25rem 0.5rem; }
+/* The same header on every page: the name, with the pages beneath it, centred on narrow
+   screens (wide screens set it right-aligned in the left margin). */
+.site-header { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding-block: 1.25rem 0.5rem; text-align: center; }
 .site-name { font-size: 1.3rem; font-weight: 500; line-height: 1.2; color: var(--fg); text-decoration: none; }
 .site-nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 1rem; }
 .site-nav a { color: var(--muted); text-decoration: none; }
