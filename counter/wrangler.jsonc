@@ -1,0 +1,23 @@
+// The site's view counter, served at pv.joesposito.com. See "View counter" in the README.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "joesposito-views",
+  "main": "src/index.js",
+  // Without this the bundler reads the site's tsconfig, which extends Astro's.
+  "tsconfig": "tsconfig.json",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  // Workers Logs would keep request metadata, and the counter keeps nothing about a visitor.
+  "observability": { "enabled": false },
+  "routes": [{ "pattern": "pv.joesposito.com", "custom_domain": true }],
+  "vars": {
+    // Pages allowed to record a view (space-separated origins).
+    "ALLOWED_ORIGINS": "https://joesposito.com",
+    // Only paths listed here are counted.
+    "SITEMAP_URL": "https://joesposito.com/sitemap-0.xml",
+    // A /posts/ path missing from a sitemap copy at least this old fetches the sitemap again.
+    "SITEMAP_REFRESH_SECONDS": "60"
+  },
+  "d1_databases": [{ "binding": "DB", "database_name": "joesposito-views", "migrations_dir": "migrations" }]
+}
