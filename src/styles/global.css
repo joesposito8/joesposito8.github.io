@@ -213,8 +213,8 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 /* A year's divider closes the year before it, so the entry above it needs no rule. */
 .entry:has(+ .year) { border-bottom: 0; }
 
-/* On phones the title column comes first and the date and type stand at the right, level with
-   the title's first line; from 40rem the date column moves to the left. */
+/* The title, subtitle and topics are flush with the text's left edge; the date and type stand
+   at its right edge, level with the title's first line. */
 .entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: first baseline; column-gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
 /* The footer's rule closes the list, so the last entry needs none of its own. */
 .entry:last-child { border-bottom: 0; }
@@ -234,11 +234,6 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 .yr { display: none; }
 .post-list[data-sort='popular'] .yr { display: inline; }
 
-@media (min-width: 40rem) {
-  .entry { grid-template-columns: 5.5rem minmax(0, 1fr); align-items: start; column-gap: 1.25rem; }
-  .entry .meta { grid-column: 1; padding-top: 0.12rem; }
-  .entry .content { grid-column: 2; }
-}
 
 /* ---------- Posts ---------- */
 .post-header { margin-bottom: 2rem; }
