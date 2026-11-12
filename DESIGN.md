@@ -63,9 +63,7 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 | `--space` | 1.5rem paragraph spacing |
 | `--radius` | 6px |
 
-- The header is the same on every page: the name, with the nav (Home, Writing, About)
-  beneath it. Writing links to the home page's "Writing" heading (`/#writing`), which lands
-  1.5rem below the top of the screen.
+- The header is the same on every page: the name, with the nav (Home, About) beneath it.
   There is no avatar.
 - Below 80rem (1280px): one column, `--measure` wide plus 1rem gutters. The header is at
   the top, the name and nav centred on the text column (Joey compared this with the nav

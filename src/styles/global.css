@@ -161,7 +161,7 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 .intro a:hover { background: var(--hl); }
 
 .writing-title { font-size: 1.8rem; margin: 0 0 0.6rem; }
-/* The nav's Writing link lands here; leave room above the heading. */
+/* Topic links (/?tag=…#writing) land here; leave room above the heading. */
 #writing { scroll-margin-top: 1.5rem; }
 /* Centred under the centred header on narrow screens; in the wide layout it heads the column. */
 @media not all and (min-width: 80rem) { .writing-title { text-align: center; } }
@@ -209,7 +209,9 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 }
 
 /* Years divide the list; an entry is a date column and a title column, ruled beneath. */
-.year { display: flex; align-items: center; gap: 1rem; margin: 0 0 0.2rem; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); }
+/* The year's hairlines run through the middle of its line; the negative bottom margin of half
+   a line starts the next entry as far below them as an entry starts below an entry's rule. */
+.year { display: flex; align-items: center; gap: 1rem; margin: 0 0 -0.5lh; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); }
 .year::before, .year::after { content: ''; flex: 1; border-top: 1px solid var(--rule); }
 .post-list > .year:first-child { margin-top: 0.6rem; }
 /* A year's divider closes the year before it, so the entry above it needs no rule. */
