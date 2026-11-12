@@ -6,6 +6,8 @@ import DiscussLinks from './DiscussLinks.astro';
 import SubstackSignup from './SubstackSignup.astro';
 import Contents from './Contents.astro';
 import EndMark from './EndMark.astro';
+import LessWrongComments from './LessWrongComments.astro';
+import { getLessWrongComments } from '../lib/lesswrong-comments';
 
 interface Props {
   post: Post;
@@ -15,6 +17,7 @@ const { post } = Astro.props;
 const { type, title, subtitle, date, updated, epistemic, tags, url } = post.data;
 const { Content, headings } = await render(post);
 const essay = type === 'essay';
+const comments = await getLessWrongComments(post);
 ---
 
 <article class:list={['post', type, { 'with-rail': essay }]}>
@@ -65,6 +68,7 @@ const essay = type === 'essay';
     </div>
     {essay && <EndMark />}
     <DiscussLinks post={post} />
+    <LessWrongComments comments={comments} />
     {essay && SUBSTACK_SIGNUP && <SubstackSignup />}
   </div>
 </article>

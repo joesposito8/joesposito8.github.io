@@ -1,0 +1,33 @@
+---
+import type { LessWrongComment } from '../lib/lesswrong-comments';
+import { threadComments } from '../lib/lesswrong-reader.mjs';
+import { formatDate } from '../lib/posts';
+interface Props { comments: LessWrongComment[] }
+const { comments } = Astro.props;
+const threaded = threadComments(comments);
+const commentIds = new Set(comments.map(comment => comment.id));
+---
+{comments.length > 0 && (
+  <section class="lw-comments" aria-labelledby="lw-comments-title">
+    <h2 id="lw-comments-title">Discussion on LessWrong</h2>
+    <p class="comment-note">Comments at the time this page was built. Follow the source links for the latest discussion.</p>
+    {threaded.map((comment) => (
+      <article id={`lw-${comment.id}`} class="lw-comment" style={`--depth: ${comment.depth}`}>
+        <p class="comment-meta">
+          <strong>{comment.author}</strong> · <time datetime={comment.postedAt.toISOString()}>{formatDate(comment.postedAt)}</time>
+          {' · '}{comment.karma} karma · <a href={comment.url}>Source</a>
+          {comment.parentId && commentIds.has(comment.parentId) && <> · <a href={`#lw-${comment.parentId}`}>Parent</a></>}
+        </p>
+        <div class="post-body comment-body" set:html={comment.html} />
+      </article>
+    ))}
+  </section>
+)}
+<style>
+  .lw-comments { margin-top: 2.5rem; border-top: 1px solid var(--rule); }
+  .comment-note, .comment-meta { color: var(--muted); font-size: .85rem; }
+  .lw-comment { margin: 1.25rem 0 1.25rem calc(var(--depth) * .65rem); padding-left: .65rem; border-left: 1px solid var(--rule); }
+  .comment-meta { margin-bottom: .5rem; }
+  .comment-body { overflow-wrap: anywhere; }
+  .comment-body :global(pre), .comment-body :global(table) { overflow-x: auto; max-width: 100%; }
+</style>

@@ -170,6 +170,11 @@ footer's "Email" link (hidden without JavaScript). Nothing else.
 
 ## Notes
 
+- LessWrong discussions sit below the discussion links, separated by the existing
+  hairline rule. Comments use the body type and muted metadata (author, date, karma,
+  source and parent links), with a left rule and capped reply indentation. The display
+  is static and includes a note that source links carry the latest discussion.
+
 - Screenshots are taken on a Linux box whose only system fonts are Liberation. The theme's
   own fonts load from the site, so pages look as they will elsewhere, except for glyphs
   Alegreya lacks: the footnote back-link arrow (↩) shows as a missing-glyph box there, and

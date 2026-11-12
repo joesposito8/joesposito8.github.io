@@ -165,9 +165,23 @@ npx wrangler deploy
 
 ## LessWrong comments
 
-`src/lib/lesswrong-comments.ts` defines the comment type and `getLessWrongComments(post)`,
-which the build will use to show LessWrong comments under a post. It returns none for now,
-and no comment component exists yet.
+`src/lib/lesswrong-comments.ts` fetches the comments for each post with a
+`syndication.lesswrong` URL at build time. Requests are serialized with at least three
+seconds between them; pagination preserves full comment bodies and reply relationships.
+The threaded discussion shows author, date, karma, source and parent links using the
+site typography. Indentation stops growing after four levels for narrow screens.
+
+Remote HTML passes through an allowlist sanitizer: prose and safe links remain; scripts,
+event handlers, styles, embedded frames and images are removed. The source link gives
+access to the original formatting/media. Deleted comments retain a labeled placeholder.
+An API failure fails the build so the previously deployed page stays intact rather than
+silently replacing its discussion with an empty list. There are no browser-side comments
+requests or scheduled rebuilds.
+
+`npm test` checks pagination, sanitization, threading and the metadata exporter.
+`npm run export:posts` prints a JSON manifest of every post's front matter, canonical
+URL, Astro-compatible ID and complete Markdown body without running a site build.
+The exporter is a generic local read tool; it does not publish anything.
 
 ## Sample posts and screenshots
 

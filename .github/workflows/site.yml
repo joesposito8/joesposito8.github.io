@@ -19,6 +19,7 @@ jobs:
           node-version: 22.23.4
           cache: npm
       - run: npm ci
+      - run: npm test
       - run: npm run build
       - name: Page weight, canary and placeholders
         run: npm run check
