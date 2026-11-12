@@ -1,7 +1,6 @@
 export const SITE = {
   name: 'Joey Esposito',
-  // Placeholder until Joey writes the site description.
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  description: 'Joey Esposito · AI Safety',
 };
 
 export const NAV = [
