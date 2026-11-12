@@ -6,7 +6,7 @@ import '@fontsource/alegreya-sc/500.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
-import { EXTRA_REL_ME, NAV, PROFILES, SITE } from '../config';
+import { CONTACT_EMAIL, EXTRA_REL_ME, NAV, PROFILES, SITE } from '../config';
 
 interface Props {
   /** Page title; the site name is appended except on the home page. */
@@ -22,6 +22,12 @@ const fullTitle = title ? `${title} · ${SITE.name}` : SITE.name;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = image ? new URL(image, Astro.site) : undefined;
 const current = (href: string) => (href === '/' ? Astro.url.pathname === '/' : Astro.url.pathname.startsWith(href));
+// The address goes into the page reversed and base64-encoded; the footer script decodes it.
+const encodedEmail = CONTACT_EMAIL && btoa([...`${CONTACT_EMAIL.user}@${CONTACT_EMAIL.domain}`].reverse().join(''));
+const EMAIL_SCRIPT = `for (const el of document.querySelectorAll('.footer-email')) {
+  el.querySelector('a').href = 'mailto:' + [...atob(el.dataset.e)].reverse().join('');
+  el.hidden = false;
+}`;
 ---
 
 <!doctype html>
@@ -72,6 +78,15 @@ const current = (href: string) => (href === '/' ? Astro.url.pathname === '/' : A
           </>
         ))
       }
+      {
+        encodedEmail && (
+          <span class="footer-email" data-e={encodedEmail} hidden>
+            {' · '}
+            <a>Email</a>
+          </span>
+        )
+      }
     </footer>
+    {encodedEmail && <script is:inline set:html={EMAIL_SCRIPT} />}
   </body>
 </html>

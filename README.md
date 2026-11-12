@@ -49,6 +49,10 @@ between `$…$` or `$$…$$`; KaTeX's stylesheet loads only on posts that use it
 - `SUBSTACK_SIGNUP`: `true` shows the signup box at the end of each essay.
 - `PROFILES`, `EXTRA_REL_ME`: profile links for the footer and the `rel="me"` tags.
 - `NAV`: the pages in the site menu.
+- `CONTACT_EMAIL`: `{ user, domain }` for the footer's "Email" link, or `null` for none. The
+  page carries the address reversed and base64-encoded, and a few lines of script assemble the
+  `mailto:` link in the browser, so the address never appears whole in the source or the HTML.
+  `npm run check` fails if a whole address reaches any built page.
 - `VIEWS_URL`: the view counter's public read endpoint, a JSON object mapping each page
   path (`/posts/<slug>/`) to its view count. When set, the home list offers "Most popular",
   which fetches it in the reader's browser (no credentials); while `null`, Sort offers only

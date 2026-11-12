@@ -4,7 +4,8 @@
 //   they have their own FONT_BUDGET instead of counting against every page;
 // - canary: every file published under /evals/data/ carries the canary string, so
 //   training-data filters can exclude eval data;
-// - placeholders: no lorem ipsum reaches the live site.
+// - placeholders: no lorem ipsum reaches the live site;
+// - email: no whole email address appears in a page, feed or text file.
 //
 //   npm run build && npm run check
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
@@ -46,7 +47,11 @@ for (const file of existsSync(evalData) ? walk(evalData) : []) {
 }
 
 for (const file of files.filter((f) => /\.(html|xml|txt)$/.test(f))) {
-  if (/lorem ipsum/i.test(readFileSync(file, 'utf8'))) problems.push(`${relative(DIST, file)}: placeholder lorem ipsum`);
+  const text = readFileSync(file, 'utf8');
+  if (/lorem ipsum/i.test(text)) problems.push(`${relative(DIST, file)}: placeholder lorem ipsum`);
+  // The footer's email link is assembled in the browser; a whole address in a file is a leak.
+  const email = text.match(/[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}/i);
+  if (email) problems.push(`${relative(DIST, file)}: email address in the page (${email[0].replace(/^(.).*@/, '$1…@')})`);
 }
 
 console.log(`Heaviest page: ${relative(DIST, heaviest.page)} at ${kb(heaviest.bytes)}; fonts ${kb(fontBytes)}`);

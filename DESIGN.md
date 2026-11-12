@@ -118,7 +118,8 @@ set at 0.8em; Alegreya has no lozenge, so it is an SVG mask in `global.css`.
 | `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, title in Alegreya, "Joey Esposito · joesposito.com" |
 
 Client JavaScript: the filter script on `/`, which requests the view counts only when a
-reader picks "Most popular". Nothing else.
+reader picks "Most popular", and, once `CONTACT_EMAIL` is set, a few lines that assemble the
+footer's "Email" link (hidden without JavaScript). Nothing else.
 
 ## Design history
 

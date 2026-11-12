@@ -22,6 +22,13 @@ export const PROFILES = [
 /** rel="me" only: profiles that verify the site without a link in the footer. */
 export const EXTRA_REL_ME = ['https://www.linkedin.com/in/joseph-esposito8'];
 
+/**
+ * The footer's "Email" link. The address is split here and assembled only in the reader's
+ * browser, so it never appears whole in the source or the HTML, where address harvesters
+ * look. null hides the link.
+ */
+export const CONTACT_EMAIL: { user: string; domain: string } | null = null;
+
 /** Shows the email signup at the end of every essay. */
 export const SUBSTACK_SIGNUP = true;
 
