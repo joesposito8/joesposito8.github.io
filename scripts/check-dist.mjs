@@ -5,7 +5,7 @@
 // - canary: every file published under /evals/data/ carries the canary string, so
 //   training-data filters can exclude eval data;
 // - placeholders: no lorem ipsum reaches the live site;
-// - email: no whole email address appears in a page, feed or text file.
+// - email: no whole email address appears in a page, feed or text file, except example.com.
 //
 //   npm run build && npm run check
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
@@ -50,7 +50,9 @@ for (const file of files.filter((f) => /\.(html|xml|txt)$/.test(f))) {
   const text = readFileSync(file, 'utf8');
   if (/lorem ipsum/i.test(text)) problems.push(`${relative(DIST, file)}: placeholder lorem ipsum`);
   // The footer's email link is assembled in the browser; a whole address in a file is a leak.
-  const email = text.match(/[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}/i);
+  // example.com is allowed for placeholders such as the signup input.
+  const email = [...text.matchAll(/[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}/gi)]
+    .find((match) => !match[0].toLowerCase().endsWith('@example.com'));
   if (email) problems.push(`${relative(DIST, file)}: email address in the page (${email[0].replace(/^(.).*@/, '$1…@')})`);
 }
 
