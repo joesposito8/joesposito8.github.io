@@ -74,6 +74,9 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
   preferred the dots.)
 - From 80rem: the body is a five-column grid (`1fr | rail | measure | rail | 1fr`). The
   header sits in the left rail, right-aligned and sticky, its top 4rem down on every page.
+  The tops of the name's letters line up with the tops of the first line beside it: a post
+  title does so by itself, and the home intro and the about page's opening paragraph are
+  raised 0.275rem to offset their wider leading.
   Pages that need it put a sticky panel in the right rail (`.with-rail` and `.rail`): the
   writing list's controls, an essay's contents.
 - Home page, from 80rem: the intro and the margin's name and nav form one top band, and

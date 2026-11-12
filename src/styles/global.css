@@ -126,6 +126,9 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
   .home { display: contents; }
   .home > .intro { grid-row: 1; align-self: center; max-width: var(--measure); margin-bottom: 2rem; }
   .home > .writing { grid-row: 2; align-self: start; }
+  /* The opening paragraph's wider leading sets its first letters 5.5px below the name's;
+     raising it lines their tops up on the home and about pages. Post titles already align. */
+  .prose-page .lede, .home > .intro { margin-top: -0.275rem; }
   /* With the controls out in the rail, the first year divider sits right under the heading. */
   .writing .post-list > .year:first-child { margin-top: 0.4rem; }
 }
