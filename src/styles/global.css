@@ -273,6 +273,8 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 }
 
 .end-mark { display: flex; justify-content: center; align-items: center; gap: 1rem; margin: 3rem 0 1.5rem; color: var(--sun); }
+/* The discussion links belong to the end mark, so they sit just under it. */
+.end-mark:has(+ .discuss) { margin-bottom: 0.3rem; }
 .end-mark::before, .end-mark::after { content: ''; flex: 0 0 4rem; border-top: 1px solid var(--rule); }
 .end-mark svg { flex: none; }
 
