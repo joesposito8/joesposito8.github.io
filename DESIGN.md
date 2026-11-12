@@ -50,7 +50,7 @@ visit renders once in the right fonts instead of drawing a fallback serif and re
 figures.
 
 Sizes (in rem of the 20px root): h1 `clamp(1.8rem, 1.2rem + 2.4vw, 2.3rem)`, h2 1.55rem,
-h3 1.2rem, headings weight 500. Intro lede 1.15rem. List titles 1.12rem (essays 1.32rem).
+h3 1.2rem, headings weight 500. Intro lede 1.15rem. List titles 1.32rem for every type.
 Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 
 ### Layout
@@ -97,7 +97,7 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 | Base layout | `src/layouts/Base.astro` | Head (title, description, canonical, Open Graph and Twitter card tags, feed discovery links, `rel="me"` profile links, a `head` slot), header, footer with profile links |
 | Intro | `src/components/Intro.astro` | Prose paragraph in Joey's voice. The first words are set in small capitals (`.lede strong`). Links are underlined in sunflower; topic links open the list pre-filtered (`/?tag=…#writing`). No drop cap. |
 | PostFilters | `src/components/PostFilters.astro` | Radio groups Show (All/Essays/Projects/Notes), Topic (tags by frequency), Sort (Newest/Most popular). The post count is read to screen readers but not shown, except to say view counts are loading or unavailable. Hidden until its script runs. A type with no posts in the chosen topic fades. State is mirrored in the query string, so filtered views are linkable. Sort always shows "Newest"; "Most popular" appears once `VIEWS_URL` is set, and fetches the view counts once, and if they fail to load the list falls back to newest and says so. |
-| PostList | `src/components/PostList.astro` | Under a "Writing" heading (centred below 80rem). Year dividers (centred year between hairlines) and ruled entries, spaced alike. At every width an entry's title, subtitle and topics are flush with the text's left edge, and its date and type stand at the right edge, level with the title's first line; a year's divider takes the place of the rule under the entry above it, and the footer's rule closes the list: a title column (title link, a project's "→ host" repo link in mono, essay subtitle in italic, topic links in mono) and, at the right, a date column (date, type mark). Sorted by views, the dividers disappear and each date shows its year. |
+| PostList | `src/components/PostList.astro` | Under a "Writing" heading (centred below 80rem). Year dividers (centred year between hairlines) and ruled entries, spaced alike. At every width an entry's title, subtitle and topics are flush with the text's left edge, and its date, with the type directly beneath, stands at the right edge, the date's top level with the title's (both trimmed to the top of their letters with `text-box`); a year's divider takes the place of the rule under the entry above it, and the footer's rule closes the list: a title column (title link, a project's "→ host" repo link in mono, essay subtitle in italic, topic links in mono) and, at the right, a date column (date, type mark). Sorted by views, the dividers disappear and each date shows its year. |
 | Article | `src/components/Article.astro` | Post header (title, subtitle, meta line, epistemic status), contents, body, end mark, discussion links, citation, signup. |
 | Contents | `src/components/Contents.astro` | Essays with two or more headings. Box above the text on narrow screens; sticky right rail on wide ones. |
 | EndMark | `src/components/EndMark.astro` | Small sun between two short rules, closing an essay. |
