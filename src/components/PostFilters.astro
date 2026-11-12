@@ -24,14 +24,12 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
   <fieldset>
     <legend class="sc">Show</legend>
     <div class="options">
-      <label><input type="radio" name="type" value="all" checked /><span>All <span class="n" data-count="all">{posts.length}</span></span></label>
+      <label><input type="radio" name="type" value="all" checked /><span>All</span></label>
       {
         POST_TYPES.map((type) => (
           <label>
             <input type="radio" name="type" value={type} />
-            <span>
-              {PLURALS[type]} <span class="n" data-count={type}>{posts.filter((p) => p.data.type === type).length}</span>
-            </span>
+            <span>{PLURALS[type]}</span>
           </label>
         ))
       }
@@ -131,12 +129,9 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
         }
       }
       const inTopic = entries.filter((el) => state.tag === 'all' || el.dataset.tags!.split(' ').includes(state.tag));
-      // Type counts follow the chosen topic, so each option says how many posts it would show.
-      for (const n of form.querySelectorAll<HTMLElement>('[data-count]')) {
-        const type = n.dataset.count;
-        const count = type === 'all' ? inTopic.length : inTopic.filter((el) => el.dataset.type === type).length;
-        n.textContent = String(count);
-        n.closest('label')!.classList.toggle('none', count === 0);
+      // A type with no posts in the chosen topic fades, so readers can see it would show nothing.
+      for (const input of form.querySelectorAll<HTMLInputElement>('input[name="type"]:not([value="all"])')) {
+        input.closest('label')!.classList.toggle('none', !inTopic.some((el) => el.dataset.type === input.value));
       }
       const shown = inTopic.filter((el) => state.type === 'all' || el.dataset.type === state.type).sort(order);
 

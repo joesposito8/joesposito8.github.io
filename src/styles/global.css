@@ -167,7 +167,6 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
    a sideways row escape the row and widen the page. */
 .filters label { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .filters label.none > span { opacity: 0.45; }
-.filters .n { font-size: 0.8em; font-weight: 400; color: var(--muted); font-variant-numeric: lining-nums tabular-nums; }
 .f-status { margin: 0; font-size: 0.85rem; font-style: italic; color: var(--muted); }
 .f-empty { margin: 1.5rem 0; color: var(--muted); font-style: italic; }
 .f-empty button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
