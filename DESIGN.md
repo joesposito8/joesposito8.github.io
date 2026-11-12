@@ -86,8 +86,7 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 - Home page, from 80rem: the intro and the margin's name and nav form one top band, and
   "Writing" with its controls starts below the band. The header keeps its usual top; the
   intro centres in the band, so its top is level with the header's whenever it is the
-  taller. The header holds only that band here, so it scrolls away with it; the controls
-  stay sticky.
+  taller. The header stays sticky here as on every page, and so do the controls.
   The first year divider sits 0.4rem under the "Writing" heading.
 
 ## Components
