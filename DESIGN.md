@@ -122,6 +122,7 @@ set at 0.8em; Alegreya has no lozenge, so it is an SVG mask in `global.css`.
 | `/evals/` | Intro line and eval cards. Unpublished until its text is written: the page is `src/pages/_evals.astro` and Evals is out of the nav. The `evals-*` screenshots show its design. |
 | `/404` | "Page not found" with a link to the list |
 | `/og/<slug>.png`, `/og/index.png` | 1200×630 social cards: paper background, sunflower left edge, title in Alegreya, "Joey Esposito · joesposito.com" |
+| `/favicon.svg` | The tab icon: "JE" in navy Alegreya Bold on a sunflower disc. The letters are outlines taken from the font (browsers don't load web fonts for favicons), so it renders the same everywhere. |
 
 Client JavaScript: the filter script on `/`, which requests the view counts only when a
 reader picks "Most popular", and, once `CONTACT_EMAIL` is set, a few lines that assemble the
