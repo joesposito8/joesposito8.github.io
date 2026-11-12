@@ -16,6 +16,7 @@ DESIGN.md for every token, component and page.
 - scripts/check-dist.mjs, scripts/check-feeds.mjs, lychee.toml: checks run in CI
 - .github/workflows/site.yml: build, check, deploy
 - scripts/screenshots.mjs: page screenshots into design/screenshots/
+- counter/: the view counter (Cloudflare Worker + D1 at pv.joesposito.com); README "View counter". Its own package.json; `npm test` there
 
 ## Gotchas
 - Astro 7 needs Node >= 22.23.4.
