@@ -7,6 +7,10 @@ import '@fontsource-variable/jetbrains-mono/wght.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
 import { CONTACT_EMAIL, EXTRA_REL_ME, NAV, PROFILES, SITE } from '../config';
+// Every page sets its name, nav and opening text in these two faces; preloading them starts
+// the downloads with the page instead of after the stylesheet.
+import alegreyaUrl from '@fontsource-variable/alegreya/files/alegreya-latin-wght-normal.woff2?url';
+import alegreyaScUrl from '@fontsource/alegreya-sc/files/alegreya-sc-latin-500-normal.woff2?url';
 
 interface Props {
   /** Page title; the site name is appended except on the home page. */
@@ -35,6 +39,8 @@ const EMAIL_SCRIPT = `for (const el of document.querySelectorAll('.footer-email'
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={alegreyaUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={alegreyaScUrl} as="font" type="font/woff2" crossorigin />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

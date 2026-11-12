@@ -24,3 +24,4 @@ DESIGN.md for every token, component and page.
 - The social card renderer loads static Alegreya files from @fontsource/alegreya, not the variable package.
 - `SAMPLE_POSTS=<dir>` swaps the posts folder; a deploy build must never set it. `npm run check` fails on any lorem ipsum in dist/.
 - The installed gh (2.4.0) has no `search` command; use `gh api search/...`.
+- Fontsource's CSS says `font-display: swap`; a Vite plugin in `astro.config.mjs` rewrites it to `block`. Font preloads (`?url` imports) must name the same files the CSS uses, or the browser downloads both.

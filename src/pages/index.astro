@@ -5,11 +5,24 @@ import PostFilters from '../components/PostFilters.astro';
 import PostList from '../components/PostList.astro';
 import { SITE } from '../config';
 import { getPosts } from '../lib/posts';
+// The list's subtitles are italic and its topics are in the mono face. On wide screens the list
+// shows at load, so these are preloaded to appear with the page. On phones the list starts
+// below the fold, and preloading them would slow the two faces the top of the page needs.
+import alegreyaItalicUrl from '@fontsource-variable/alegreya/files/alegreya-latin-wght-italic.woff2?url';
+import monoUrl from '@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2?url';
 
 const posts = await getPosts();
 ---
 
 <Base>
+  {
+    posts.length > 0 && (
+      <Fragment slot="head">
+        <link rel="preload" href={alegreyaItalicUrl} as="font" type="font/woff2" crossorigin media="(min-width: 80rem)" />
+        <link rel="preload" href={monoUrl} as="font" type="font/woff2" crossorigin media="(min-width: 80rem)" />
+      </Fragment>
+    )
+  }
   <h1 class="sr-only">{SITE.name}</h1>
   <div class="home">
     <Intro />

@@ -41,7 +41,11 @@ Rule: no colour per post type. Types are told apart by shape (see Post-type mark
 | `--lh` | 1.55 |
 
 Fonts are self-hosted from `@fontsource` packages and bundled by Vite: no request leaves the
-site, and a browser downloads only the faces a page uses. Body text uses old-style figures
+site, and a browser downloads only the faces a page uses. Every page preloads Alegreya roman
+and Alegreya SC (its name, nav and opening text), and the home page also preloads the italic
+and mono faces on wide screens, where the list shows at load. The fonts use
+`font-display: block` (rewritten from Fontsource's `swap` in `astro.config.mjs`), so a first
+visit renders once in the right fonts instead of drawing a fallback serif and redrawing. Body text uses old-style figures
 (`font-variant-numeric: oldstyle-nums`); tables, counts and eval numbers use lining tabular
 figures.
 
