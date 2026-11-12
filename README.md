@@ -16,8 +16,8 @@ npm run preview    # serve dist/
 ```
 
 `astro preview` runs in the background; manage it with `npx astro preview status|stop|logs`.
-Both servers bind the address set in `astro.config.mjs`; pass `--host` and `--port` to
-override them.
+Both servers listen on `localhost:7578`. To serve on another address, pass Astro's flags,
+e.g. `npm run preview -- --host <address> --allowed-hosts <name>`.
 
 ## Writing a post
 

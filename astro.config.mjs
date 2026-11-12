@@ -18,13 +18,8 @@ const fontDisplayBlock = {
 export default defineConfig({
   site: 'https://joesposito.com',
   integrations: [sitemap()],
-  // Design previews are served on this box's Tailscale address only. Vite rejects
-  // unknown Host headers, so the MagicDNS name is allowed alongside the IP.
-  server: {
-    host: 'localhost',
-    port: 7578,
-    allowedHosts: ['localhost'],
-  },
+  // Dev and preview listen on localhost; pass --host and --allowed-hosts to serve elsewhere.
+  server: { port: 7578 },
   vite: { plugins: [fontDisplayBlock] },
   markdown: {
     // Astro 7's default processor (Satteri) cannot run remark/rehype plugins, and KaTeX
