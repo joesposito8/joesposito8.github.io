@@ -280,9 +280,6 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 
 .discuss { margin: 2.5rem 0 0; text-align: center; font-style: italic; }
 .end-mark + .discuss { margin-top: 0; }
-.cite { margin-top: 2rem; }
-.cite summary { cursor: pointer; font-size: 0.95rem; color: var(--muted); }
-.cite pre { margin-top: 0.75rem; white-space: pre-wrap; }
 
 .signup { margin-top: 2.5rem; padding: 1.1rem 1.25rem; background: var(--code-bg); border: 1px solid var(--rule); border-radius: var(--radius); }
 .signup p { margin: 0 0 0.75rem; font-size: 0.95rem; }

@@ -44,19 +44,3 @@ export function groupBy<T>(items: T[], key: (item: T) => string): [string, T[]][
   }
   return [...groups];
 }
-
-export function bibtex(post: Post, site: URL): string {
-  const { title, date } = post.data;
-  const year = date.getUTCFullYear();
-  const month = date.toLocaleDateString('en-GB', { timeZone: 'UTC', month: 'short' }).toLowerCase();
-  const firstWord = title.toLowerCase().match(/[a-z]+/)?.[0] ?? 'post';
-  return [
-    `@misc{esposito${year}${firstWord},`,
-    `  author = {Esposito, Joey},`,
-    `  title  = {${title}},`,
-    `  year   = {${year}},`,
-    `  month  = ${month},`,
-    `  url    = {${new URL(postUrl(post), site)}},`,
-    `}`,
-  ].join('\n');
-}

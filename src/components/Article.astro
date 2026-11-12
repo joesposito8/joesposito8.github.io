@@ -3,7 +3,6 @@ import { render } from 'astro:content';
 import { TYPE_LABELS, formatDate, hostname, type Post } from '../lib/posts';
 import { SUBSTACK_SIGNUP } from '../config';
 import DiscussLinks from './DiscussLinks.astro';
-import CiteBlock from './CiteBlock.astro';
 import SubstackSignup from './SubstackSignup.astro';
 import Contents from './Contents.astro';
 import EndMark from './EndMark.astro';
@@ -66,7 +65,6 @@ const essay = type === 'essay';
     </div>
     {essay && <EndMark />}
     <DiscussLinks post={post} />
-    {essay && <CiteBlock post={post} />}
     {essay && SUBSTACK_SIGNUP && <SubstackSignup />}
   </div>
 </article>

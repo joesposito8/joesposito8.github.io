@@ -97,11 +97,10 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 | Intro | `src/components/Intro.astro` | Prose paragraph in Joey's voice. The first words are set in small capitals (`.lede strong`). Links are underlined in sunflower; topic links open the list pre-filtered (`/?tag=…#writing`). No drop cap. |
 | PostFilters | `src/components/PostFilters.astro` | Radio groups Type (All/Essays/Projects/Notes), Topic (tags by frequency), Sort (Newest/Most popular). The post count is read to screen readers but not shown, except to say view counts are loading or unavailable. Hidden until its script runs. A type with no posts in the chosen topic fades. State is mirrored in the query string, so filtered views are linkable. Sort always shows "Newest"; "Most popular" appears once `VIEWS_URL` is set, and fetches the view counts once, and if they fail to load the list falls back to newest and says so. When nothing matches, "Nothing matches. Show everything" stands where the list would begin, in the first year divider's place and centred like it. |
 | PostList | `src/components/PostList.astro` | Under a "Writing" heading (centred below 80rem). Year dividers (centred year between hairlines) and ruled entries, spaced alike. At every width an entry's title, subtitle and topics are flush with the text's left edge, and its date, with the type directly beneath, stands at the right edge, the date's top level with the title's (both trimmed to the top of their letters with `text-box`); a year's divider takes the place of the rule under the entry above it, and the footer's rule closes the list: a title column (title link, a project's "→ host" repo link in mono, essay subtitle in italic, topic links in mono) and, at the right, a date column (date, type mark). Sorted by views, the dividers disappear and each date shows its year. |
-| Article | `src/components/Article.astro` | Post header (title, then subtitle and meta line set close beneath it, then epistemic status), contents, body, end mark, discussion links, citation, signup. |
+| Article | `src/components/Article.astro` | Post header (title, then subtitle and meta line set close beneath it, then epistemic status), contents, body, end mark, discussion links, signup. |
 | Contents | `src/components/Contents.astro` | Essays with two or more headings. Box above the text on narrow screens; sticky right rail on wide ones. |
 | EndMark | `src/components/EndMark.astro` | Small sun between two short rules, closing an essay. |
-| DiscussLinks | `src/components/DiscussLinks.astro` | "Discuss on LessWrong · X", centred italic, from the post's syndication URLs. |
-| CiteBlock | `src/components/CiteBlock.astro` | Folded "Cite this essay (BibTeX)" built from front matter. |
+| DiscussLinks | `src/components/DiscussLinks.astro` | "Discuss on LessWrong · X", centred italic, from the post's syndication URLs; set just under the end mark (8px below the sun). |
 | SubstackSignup | `src/components/SubstackSignup.astro` | Boxed email form at the end of essays, behind `SUBSTACK_SIGNUP` in `src/config.ts`. It submits to the Substack publication (`SUBSTACK_URL`) rather than embedding Substack's iframe, so it keeps the site's look. |
 | EvalCard | `src/components/EvalCard.astro` | Kind label, title, summary, a row of stats, links. Used by the evals page, unpublished for now. |
 
@@ -166,6 +165,8 @@ footer's "Email" link (hidden without JavaScript). Nothing else.
 13. Joey removed the JE avatar everywhere (header and social cards) and asked for one header
     on every page: the name with Writing and About beneath it. On the home page the header
     now keeps the same top as elsewhere rather than centring on the intro.
+14. Joey removed the "Cite this essay (BibTeX)" block. Report-style essays keep their
+    `citation_*` meta tags for Google Scholar.
 
 ## Notes
 
