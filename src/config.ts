@@ -27,7 +27,7 @@ export const EXTRA_REL_ME = ['https://www.linkedin.com/in/joseph-esposito8'];
  * browser, so it never appears whole in the source or the HTML, where address harvesters
  * look. null hides the link.
  */
-export const CONTACT_EMAIL: { user: string; domain: string } | null = null;
+export const CONTACT_EMAIL: { user: string; domain: string } | null = { user: 'joesposito8', domain: 'gmail.com' };
 
 /** Shows the email signup at the end of every essay. */
 export const SUBSTACK_SIGNUP = true;
