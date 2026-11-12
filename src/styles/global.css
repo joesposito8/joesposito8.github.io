@@ -162,7 +162,9 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 .filters legend { padding: 0; color: var(--muted); }
 /* The radios stay in the page for keyboard and screen-reader use; their labels are what shows. */
 .filters input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
-.filters label { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+/* Positioned, the label holds its hidden radio; otherwise radios for options scrolled out of
+   a sideways row escape the row and widen the page. */
+.filters label { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .filters label.none > span { opacity: 0.45; }
 .filters .n { font-size: 0.8em; font-weight: 400; color: var(--muted); font-variant-numeric: lining-nums tabular-nums; }
 .f-status { margin: 0; font-size: 0.85rem; font-style: italic; color: var(--muted); }
