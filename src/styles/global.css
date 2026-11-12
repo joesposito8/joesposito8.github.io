@@ -210,8 +210,8 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 
 /* Years divide the list; an entry is a date column and a title column, ruled beneath. */
 /* The year's hairlines run through the middle of its line; the negative bottom margin of half
-   a line starts the next entry as far below them as an entry starts below an entry's rule. */
-.year { display: flex; align-items: center; gap: 1rem; margin: 0 0 -0.5lh; font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); }
+   a line, less a little room for the year itself, starts the next entry just below them. */
+.year { display: flex; align-items: center; gap: 1rem; margin: 0 0 calc(0.4rem - 0.5lh); font-size: 1.05rem; font-weight: 500; letter-spacing: 0.04em; color: var(--muted); }
 .year::before, .year::after { content: ''; flex: 1; border-top: 1px solid var(--rule); }
 .post-list > .year:first-child { margin-top: 0.6rem; }
 /* A year's divider closes the year before it, so the entry above it needs no rule. */
