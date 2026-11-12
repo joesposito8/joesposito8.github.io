@@ -161,6 +161,8 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 .intro a:hover { background: var(--hl); }
 
 .writing-title { font-size: 1.8rem; margin: 0 0 0.6rem; }
+/* The nav's Writing link lands here; leave room above the heading. */
+#writing { scroll-margin-top: 1.5rem; }
 /* Centred under the centred header on narrow screens; in the wide layout it heads the column. */
 @media not all and (min-width: 80rem) { .writing-title { text-align: center; } }
 
