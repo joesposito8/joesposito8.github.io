@@ -19,5 +19,5 @@
     // A /posts/ path missing from a sitemap copy at least this old fetches the sitemap again.
     "SITEMAP_REFRESH_SECONDS": "60"
   },
-  "d1_databases": [{ "binding": "DB", "database_name": "joesposito-views", "migrations_dir": "migrations" }]
+  "d1_databases": [{ "binding": "DB", "database_name": "joesposito-views", "database_id": "e88869d1-8189-41ce-bf0d-da2d025fc150", "migrations_dir": "migrations" }]
 }
