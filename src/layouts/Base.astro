@@ -6,7 +6,7 @@ import '@fontsource/alegreya-sc/500.css';
 import '@fontsource-variable/jetbrains-mono/wght.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
-import { CONTACT_EMAIL, EXTRA_REL_ME, NAV, PROFILES, SITE } from '../config';
+import { CONTACT_EMAIL, COUNTER_URL, EXTRA_REL_ME, NAV, PROFILES, SITE } from '../config';
 // Every page sets its name, nav and opening text in these two faces; preloading them starts
 // the downloads with the page instead of after the stylesheet.
 import alegreyaUrl from '@fontsource-variable/alegreya/files/alegreya-latin-wght-normal.woff2?url';
@@ -31,6 +31,17 @@ const encodedEmail = CONTACT_EMAIL && btoa([...`${CONTACT_EMAIL.user}@${CONTACT_
 const EMAIL_SCRIPT = `for (const el of document.querySelectorAll('.footer-email')) {
   el.querySelector('a').href = 'mailto:' + [...atob(el.dataset.e)].reverse().join('');
   el.hidden = false;
+}`;
+// One cookieless request per page shown. A prerendered page waits until the reader opens it,
+// and automated browsers send nothing.
+const COUNTER_SCRIPT = `const send = () => {
+  const ref = document.referrer && new URL(document.referrer).hostname;
+  fetch(${JSON.stringify(COUNTER_URL)}, { method: 'POST', mode: 'no-cors', keepalive: true, credentials: 'omit',
+    body: JSON.stringify({ p: location.pathname, r: ref }) }).catch(() => {});
+};
+if (!navigator.webdriver) {
+  if (document.prerendering) document.addEventListener('prerenderingchange', send, { once: true });
+  else send();
 }`;
 ---
 
@@ -94,5 +105,6 @@ const EMAIL_SCRIPT = `for (const el of document.querySelectorAll('.footer-email'
       }
     </footer>
     {encodedEmail && <script is:inline set:html={EMAIL_SCRIPT} />}
+    {COUNTER_URL && <script is:inline set:html={COUNTER_SCRIPT} />}
   </body>
 </html>

@@ -33,6 +33,12 @@ export const CONTACT_EMAIL: { user: string; domain: string } | null = { user: 'j
 export const SUBSTACK_SIGNUP = true;
 
 /**
+ * The view counter's endpoint (counter/ in this repo). When set, every page reports its
+ * path and referrer host there once it is shown; null sends nothing.
+ */
+export const COUNTER_URL: string | null = null;
+
+/**
  * The view counter's public read endpoint: a JSON object mapping each page path
  * ("/posts/<slug>/") to its view count. When set, the list offers "Most popular", which
  * fetches it in the reader's browser; while null, Sort offers only "Newest".
