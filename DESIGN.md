@@ -78,9 +78,9 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
   preferred the dots.)
 - From 80rem: the body is a five-column grid (`1fr | rail | measure | rail | 1fr`). The
   header sits in the left rail, right-aligned and sticky, its top 4rem down on every page.
-  The tops of the name's letters line up with the tops of the first line beside it: a post
-  title does so by itself, and the home intro and the about page's opening paragraph are
-  raised 0.275rem to offset their wider leading.
+  The tops of the name's letters line up with the tops of the first line beside it: the home
+  intro and the about page's opening paragraph are raised 0.275rem to offset their wider
+  leading, and a post title 0.175rem so its capitals meet the name's.
   Pages that need it put a sticky panel in the right rail (`.with-rail` and `.rail`): the
   writing list's controls, an essay's contents.
 - Home page, from 80rem: the intro and the margin's name and nav form one top band, and
@@ -97,7 +97,7 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 | Intro | `src/components/Intro.astro` | Prose paragraph in Joey's voice. The first words are set in small capitals (`.lede strong`). Links are underlined in sunflower; topic links open the list pre-filtered (`/?tag=…#writing`). No drop cap. |
 | PostFilters | `src/components/PostFilters.astro` | Radio groups Type (All/Essays/Projects/Notes), Topic (tags by frequency), Sort (Newest/Most popular). The post count is read to screen readers but not shown, except to say view counts are loading or unavailable. Hidden until its script runs. A type with no posts in the chosen topic fades. State is mirrored in the query string, so filtered views are linkable. Sort always shows "Newest"; "Most popular" appears once `VIEWS_URL` is set, and fetches the view counts once, and if they fail to load the list falls back to newest and says so. |
 | PostList | `src/components/PostList.astro` | Under a "Writing" heading (centred below 80rem). Year dividers (centred year between hairlines) and ruled entries, spaced alike. At every width an entry's title, subtitle and topics are flush with the text's left edge, and its date, with the type directly beneath, stands at the right edge, the date's top level with the title's (both trimmed to the top of their letters with `text-box`); a year's divider takes the place of the rule under the entry above it, and the footer's rule closes the list: a title column (title link, a project's "→ host" repo link in mono, essay subtitle in italic, topic links in mono) and, at the right, a date column (date, type mark). Sorted by views, the dividers disappear and each date shows its year. |
-| Article | `src/components/Article.astro` | Post header (title, subtitle, meta line, epistemic status), contents, body, end mark, discussion links, citation, signup. |
+| Article | `src/components/Article.astro` | Post header (title, then subtitle and meta line set close beneath it, then epistemic status), contents, body, end mark, discussion links, citation, signup. |
 | Contents | `src/components/Contents.astro` | Essays with two or more headings. Box above the text on narrow screens; sticky right rail on wide ones. |
 | EndMark | `src/components/EndMark.astro` | Small sun between two short rules, closing an essay. |
 | DiscussLinks | `src/components/DiscussLinks.astro` | "Discuss on LessWrong · X", centred italic, from the post's syndication URLs. |

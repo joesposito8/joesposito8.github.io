@@ -127,8 +127,10 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
   .home > .intro { grid-row: 1; align-self: center; max-width: var(--measure); margin-bottom: 2rem; }
   .home > .writing { grid-row: 2; align-self: start; }
   /* The opening paragraph's wider leading sets its first letters 5.5px below the name's;
-     raising it lines their tops up on the home and about pages. Post titles already align. */
+     raising it lines their tops up on the home and about pages. A post title's capitals sit
+     3.5px below the name's, so it rises by that much. */
   .prose-page .lede, .home > .intro { margin-top: -0.275rem; }
+  .post-header h1 { margin-top: -0.175rem; }
   /* With the controls out in the rail, the first year divider sits right under the heading. */
   .writing .post-list > .year:first-child { margin-top: 0.4rem; }
 }
@@ -242,9 +244,10 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 
 /* ---------- Posts ---------- */
 .post-header { margin-bottom: 2rem; }
+.post-header h1 { margin-bottom: 0.3rem; }
 .post-header h1 a { color: inherit; }
-.post-subtitle { margin: 0.45rem 0 0.8rem; font-size: 1.2rem; font-style: italic; line-height: 1.35; color: var(--muted); }
-.post-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.45rem; margin: 0.6rem 0 0; font-size: 0.92rem; color: var(--muted); }
+.post-subtitle { margin: 0 0 0.2rem; font-size: 1.2rem; font-style: italic; line-height: 1.35; color: var(--muted); }
+.post-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.45rem; margin: 0; font-size: 0.92rem; color: var(--muted); }
 .post-meta a { color: var(--muted); }
 .post-meta .type { font-size: 0.95rem; color: var(--fg); }
 .post-tags { display: inline-flex; gap: 0.6rem; }
