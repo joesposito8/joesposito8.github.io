@@ -64,7 +64,8 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
       }
     </div>
   </fieldset>
-  <p class="f-status" aria-live="polite"></p>
+  {/* The post count is for screen readers; it shows on screen only to say view counts are loading or failed. */}
+  <p class="f-status sr-only" aria-live="polite"></p>
 </form>
 <p class="f-empty" hidden>Nothing matches. <button type="button">Show everything</button></p>
 
@@ -118,6 +119,7 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
       let note = '';
       if (state.sort === 'popular') {
         status.textContent = 'Loading view counts…';
+        status.classList.remove('sr-only');
         const counts = await (views ??= loadViews());
         if (counts) order = mostViewed(counts);
         else {
@@ -152,6 +154,7 @@ const tags = [...tagCounts].sort(([a, m], [b, n]) => n - m || a.localeCompare(b)
       list.dataset.sort = state.sort;
       const count = shown.length === entries.length ? `${entries.length} posts` : `${shown.length} of ${entries.length} posts`;
       status.textContent = note + count;
+      status.classList.toggle('sr-only', !note);
       empty.hidden = shown.length > 0;
 
       const query = new URLSearchParams(KEYS.filter((k) => state[k] !== DEFAULTS[k]).map((k) => [k, state[k]])).toString();
