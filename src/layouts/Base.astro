@@ -75,11 +75,10 @@ const EMAIL_SCRIPT = `for (const el of document.querySelectorAll('.footer-email'
       <slot />
     </main>
     <footer class="site-footer">
-      {SITE.name}
       {
-        PROFILES.map(({ label, href }) => (
+        PROFILES.map(({ label, href }, i) => (
           <>
-            {' · '}
+            {i > 0 && ' · '}
             <a href={href} rel="me">{label}</a>
           </>
         ))
