@@ -112,6 +112,9 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
   .home > .with-rail { max-width: none; display: grid; grid-template-columns: var(--measure) var(--rail); column-gap: var(--rail-gap); }
   .with-rail > * { grid-column: 1; }
   .with-rail > .rail { grid-column: 2; grid-row: 1 / span 3; align-self: start; position: sticky; top: 2rem; max-height: calc(100vh - 4rem); overflow-y: auto; }
+  /* The rail is taller than a short or empty list; its extra height goes to the last row, so
+     the heading and the "nothing matches" line keep their natural height. */
+  .writing.with-rail { grid-template-rows: auto auto 1fr; }
   .site-footer { grid-column: 3; grid-row: 2; max-width: none; margin-inline: 0; padding-inline: 0; }
 
   /* Home: the intro and the margin's name and pages form one band, and the writing list
@@ -132,7 +135,7 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
   .prose-page .lede, .home > .intro { margin-top: -0.275rem; }
   .post-header h1 { margin-top: -0.175rem; }
   /* With the controls out in the rail, the first year divider sits right under the heading. */
-  .writing .post-list > .year:first-child { margin-top: 0.4rem; }
+  .writing .post-list > .year:first-child, .writing .f-empty { margin-top: 0.4rem; }
 }
 
 /* ---------- Post-type marks ---------- */
@@ -177,7 +180,8 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 .filters label { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .filters label.none > span { opacity: 0.45; }
 .f-status { margin: 0; font-size: 0.85rem; font-style: italic; color: var(--muted); }
-.f-empty { margin: 1.5rem 0; color: var(--muted); font-style: italic; }
+/* Stands where the list would begin, centred like a year divider. */
+.f-empty { margin: 0.6rem 0 0; text-align: center; color: var(--muted); font-style: italic; }
 .f-empty button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
 
 /* Narrow screens: each group is a row running the full width of the screen (out through the
