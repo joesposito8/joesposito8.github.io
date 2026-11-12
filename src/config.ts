@@ -36,11 +36,11 @@ export const SUBSTACK_SIGNUP = true;
  * The view counter's endpoint (counter/ in this repo). When set, every page reports its
  * path and referrer host there once it is shown; null sends nothing.
  */
-export const COUNTER_URL: string | null = null;
+export const COUNTER_URL: string | null = 'https://pv.joesposito.com/p';
 
 /**
  * The view counter's public read endpoint: a JSON object mapping each page path
  * ("/posts/<slug>/") to its view count. When set, the list offers "Most popular", which
  * fetches it in the reader's browser; while null, Sort offers only "Newest".
  */
-export const VIEWS_URL: string | null = null;
+export const VIEWS_URL: string | null = 'https://pv.joesposito.com/tally';
