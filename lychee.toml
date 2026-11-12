@@ -4,9 +4,11 @@
 max_retries = 2
 
 exclude = [
-    # X and LinkedIn answer automated requests with errors whether or not the page exists.
+    # X and LinkedIn answer automated requests with errors whether or not the page exists, and
+    # Substack answers requests from CI runners' addresses with 403.
     '^https://(www\.)?(x|twitter)\.com',
     '^https://(www\.)?linkedin\.com',
+    '^https://[a-z0-9-]+\.substack\.com',
     # The site's own absolute URLs (canonical, Open Graph) repeat its internal links, which
     # are checked as files, and do not resolve before the first deploy.
     '^https://joesposito\.com',
