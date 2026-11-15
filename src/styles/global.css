@@ -255,7 +255,6 @@ body:has(.prose-page) .site-footer { margin-top: 2rem; }
 .post-meta a { color: var(--muted); }
 .post-meta .type { font-size: 0.95rem; color: var(--fg); }
 .post-tags { display: inline-flex; gap: 0.6rem; }
-.epistemic { margin: 1.25rem 0 0; padding-left: 0.9rem; border-left: 3px solid var(--sun); font-size: 0.92rem; font-style: italic; color: var(--muted); }
 .post-body :is(h2, h3) { scroll-margin-top: 1.5rem; }
 
 .toc { margin: 0 0 2.25rem; padding: 0.8rem 1.1rem; font-size: 0.9rem; line-height: 1.45; background: var(--code-bg); border: 1px solid var(--rule); border-radius: var(--radius); }

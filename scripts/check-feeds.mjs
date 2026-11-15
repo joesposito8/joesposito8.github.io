@@ -1,6 +1,6 @@
 // Checks the built feeds in dist/feeds/:
-// - every item has a guid equal to its link, an absolute joesposito.com URL, because
-//   LessWrong's importer deduplicates on the guid and uses the link as the canonical URL;
+// - every item has a guid equal to its link, an absolute joesposito.com URL, because feed
+//   readers deduplicate on the guid and use the link as the canonical URL;
 // - every item carries its full HTML in content:encoded;
 // - the W3C Feed Validation Service finds the feed valid. Its warnings are printed but do
 //   not fail the check. --local skips this step and sends nothing off the machine.

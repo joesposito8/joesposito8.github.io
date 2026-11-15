@@ -31,10 +31,8 @@ Posts are Markdown files in `src/content/posts/`. The file name is the URL slug
 | `subtitle` | text | Shown under the title and in the feeds |
 | `date` | `YYYY-MM-DD` | Required |
 | `updated` | `YYYY-MM-DD` | |
-| `epistemic` | text | Epistemic status line |
 | `tags` | list | Topics; the home page filters by them |
 | `url` | URL | Projects only: the repo or demo, shown as "→ host" in the list and the post header |
-| `lesswrong` | `true`/`false` | Adds the post to `/feeds/lesswrong.xml`, which LessWrong imports |
 | `report` | `true`/`false` | On an essay, adds `citation_*` meta tags for Google Scholar |
 | `syndication` | `lesswrong`, `substack`, `x`, `linkedin` URLs | LessWrong and X show as "Discuss on" links |
 
@@ -67,7 +65,6 @@ between `$…$` or `$$…$$`; KaTeX's stylesheet loads only on posts that use it
 |---|---|
 | `/feeds/all.xml` | Every post, full text |
 | `/feeds/essays.xml` | Essays, full text |
-| `/feeds/lesswrong.xml` | Posts with `lesswrong: true`, full text. LessWrong imports this URL; do not move it. |
 | `/llms.txt` | The site in the [llms.txt](https://llmstxt.org) format |
 | `/robots.txt`, `/sitemap-index.xml` | Crawlers |
 | `/og/<slug>.png` | Social card for each post |
