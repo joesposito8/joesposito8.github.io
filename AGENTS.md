@@ -12,7 +12,7 @@ DESIGN.md for every token, component and page.
 - src/layouts/Base.astro, src/components/: layout and components
 - src/config.ts: site name, nav, profile links, SUBSTACK_URL, SUBSTACK_SIGNUP
 - src/content.config.ts: the post schema
-- src/lib/feed.ts, src/pages/feeds/: RSS feeds; /feeds/lesswrong.xml is registered with LessWrong, so keep its path and guids
+- src/lib/feed.ts, src/pages/feeds/: RSS feeds; keep their paths and guids, which subscribers depend on
 - scripts/check-dist.mjs, scripts/check-feeds.mjs, lychee.toml: checks run in CI
 - .github/workflows/site.yml: build, check, deploy
 - scripts/screenshots.mjs: page screenshots into design/screenshots/

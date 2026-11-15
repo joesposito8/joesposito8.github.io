@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { type, title, subtitle, date, updated, epistemic, tags, url } = post.data;
+const { type, title, subtitle, date, updated, tags, url } = post.data;
 const { Content, headings } = await render(post);
 const essay = type === 'essay';
 const comments = await getLessWrongComments(post);
@@ -59,7 +59,6 @@ const comments = await getLessWrongComments(post);
         )
       }
     </p>
-    {epistemic && <p class="epistemic">Epistemic status: {epistemic}</p>}
   </header>
   {essay && <Contents headings={headings} />}
   <div class="post-main">

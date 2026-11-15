@@ -15,10 +15,7 @@ const posts = defineCollection({
       subtitle: z.string().optional(),
       date: z.coerce.date(),
       updated: z.coerce.date().optional(),
-      epistemic: z.string().optional(),
       tags: z.array(z.string()).default([]),
-      // Adds the post to the full-content feed that LessWrong imports.
-      lesswrong: z.boolean().default(false),
       // Marks a report-style essay: adds citation_* meta tags so Google Scholar can index it.
       report: z.boolean().default(false),
       // A project's repo or demo.
