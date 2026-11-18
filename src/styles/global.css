@@ -54,6 +54,10 @@ pre { font-size: 0.72rem; line-height: 1.6; padding: 0.9rem 1rem; overflow-x: au
 blockquote { margin-left: 0; padding-left: 1rem; border-left: 3px solid var(--rule); color: var(--muted); }
 figure { margin-inline: 0; }
 img { display: block; max-width: 100%; height: auto; }
+/* Figures are often transparent PNGs in dark ink; at night each sits on a card of the day's page. */
+@media (prefers-color-scheme: dark) {
+  .post-body img { color-scheme: light; background: var(--bg); padding: 0.5rem 0.7rem; border-radius: var(--radius); }
+}
 figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
 
 table { border-collapse: collapse; width: 100%; font-size: 0.9rem; display: block; overflow-x: auto; font-variant-numeric: lining-nums tabular-nums; }
