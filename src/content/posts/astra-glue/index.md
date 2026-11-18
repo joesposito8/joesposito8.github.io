@@ -7,6 +7,7 @@ tags:
 subtitle: A case study on my personal workflow
 syndication:
   x: "https://x.com/joesposito8/status/2123104994010464666"
+  substack: "https://joesposito8.substack.com/p/gpt-6-astra-glues-text-during-inter"
 ---
 ### **TLDR**
 - Starting on October 1st, 2026, many of Astra’s tool calls in my personal workflow that included free text exhibited the removal of spaces, for example turning “correct 120/120” into “correct120/120”.
