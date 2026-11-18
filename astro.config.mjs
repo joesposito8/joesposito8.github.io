@@ -15,6 +15,17 @@ const fontDisplayBlock = {
   },
 };
 
+// A list typed on the paragraph's next line belongs to it; HTML can't show that, so mark the paragraph.
+const remarkListLead = () => function mark(node) {
+  node.children?.forEach((child, i) => {
+    const prev = node.children[i - 1];
+    if (child.type === 'list' && prev?.type === 'paragraph' && child.position.start.line === prev.position.end.line + 1) {
+      prev.data = { ...prev.data, hProperties: { ...prev.data?.hProperties, className: ['list-lead'] } };
+    }
+    mark(child);
+  });
+};
+
 export default defineConfig({
   site: 'https://joesposito.com',
   integrations: [sitemap()],
@@ -24,7 +35,7 @@ export default defineConfig({
   markdown: {
     // Astro 7's default processor (Satteri) cannot run remark/rehype plugins, and KaTeX
     // math needs them, so posts render through the unified pipeline.
-    processor: unified({ remarkPlugins: [remarkMath], rehypePlugins: [rehypeKatex] }),
+    processor: unified({ remarkPlugins: [remarkMath, remarkListLead], rehypePlugins: [rehypeKatex] }),
     shikiConfig: {
       themes: { light: 'github-light', dark: 'github-dark' },
       defaultColor: false,

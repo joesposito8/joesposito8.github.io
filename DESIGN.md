@@ -177,6 +177,9 @@ footer's "Email" link (hidden without JavaScript). Nothing else.
 - In the dark theme, images in a post or comment body sit on a card of the light page colour
   (`--bg` under `color-scheme: light`, 10px by 14px padding, `--radius` corners), so
   transparent figures drawn in dark ink stay readable. Light-theme images have no card.
+- A list typed on the line straight after a paragraph sits at the bullet gap (0.25em); a
+  blank line between them keeps the `--space` gap. A remark plugin in `astro.config.mjs`
+  marks that paragraph `.list-lead`, since the HTML is the same either way.
 
 - Screenshots are taken on a Linux box whose only system fonts are Liberation. The theme's
   own fonts load from the site, so pages look as they will elsewhere, except for glyphs
