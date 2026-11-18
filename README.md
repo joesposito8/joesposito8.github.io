@@ -82,8 +82,9 @@ docker run --rm -v "$PWD:/site:ro" -w /site lycheeverse/lychee --config lychee.t
   --root-dir /site/dist --no-progress 'dist/**/*.html'   # links
 ```
 
-Budgets: each page's own bytes (gzipped HTML plus its CSS, JS and images) at most 100KB;
-the shared latin font files at most 180KB.
+Budgets: what a page downloads when it opens (gzipped HTML plus its CSS, JS and images) at
+most 100KB; each image marked `loading="lazy"`, which loads only as the reader scrolls to
+it, at most 150KB; the shared latin font files at most 180KB.
 
 Eval data published under `/evals/data/` must contain this canary string, so that
 training-data filters can exclude it:
