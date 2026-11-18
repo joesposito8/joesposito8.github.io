@@ -34,7 +34,7 @@ Posts are Markdown files in `src/content/posts/`. The file name is the URL slug
 | `tags` | list | Topics; the home page filters by them |
 | `url` | URL | Projects only: the repo or demo, shown as "→ host" in the list and the post header |
 | `report` | `true`/`false` | On an essay, adds `citation_*` meta tags for Google Scholar |
-| `syndication` | `lesswrong`, `substack`, `x`, `linkedin` URLs | LessWrong, X and Substack show as "Discuss on" links |
+| `syndication` | `lesswrong`, `substack`, `x`, `linkedin` URLs | LessWrong, Substack and X show as "Discuss on" links, in alphabetical order |
 
 Any other field, or a field of the wrong type, fails the build. Math is written in TeX
 between `$…$` or `$$…$$`; KaTeX's stylesheet loads only on posts that use it.

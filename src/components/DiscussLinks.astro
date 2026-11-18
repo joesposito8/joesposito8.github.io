@@ -5,12 +5,15 @@ interface Props {
   post: Post;
 }
 
-const { lesswrong, x, substack } = Astro.props.post.data.syndication;
-const links = [
-  lesswrong && { label: 'LessWrong', href: lesswrong },
-  x && { label: 'X', href: x },
-  substack && { label: 'Substack', href: substack },
-].filter(Boolean) as { label: string; href: string }[];
+const { lesswrong, substack, x } = Astro.props.post.data.syndication;
+// Alphabetical by name, so the order never depends on which link was added first.
+const links = (
+  [
+    lesswrong && { label: 'LessWrong', href: lesswrong },
+    substack && { label: 'Substack', href: substack },
+    x && { label: 'X', href: x },
+  ].filter(Boolean) as { label: string; href: string }[]
+).sort((a, b) => a.label.localeCompare(b.label));
 ---
 
 {
