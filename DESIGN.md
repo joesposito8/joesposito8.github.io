@@ -100,7 +100,7 @@ Meta 0.85–0.92rem. Inline code 0.8em; code blocks 0.72rem (14.4px).
 | Article | `src/components/Article.astro` | Post header (title, then subtitle and meta line set close beneath it), contents, body, end mark, discussion links, signup. |
 | Contents | `src/components/Contents.astro` | Essays with two or more headings. Box above the text on narrow screens; sticky right rail on wide ones. |
 | EndMark | `src/components/EndMark.astro` | Small sun between two short rules, closing an essay. |
-| DiscussLinks | `src/components/DiscussLinks.astro` | "Discuss on LessWrong · X", centred italic, from the post's syndication URLs; set just under the end mark (8px below the sun). |
+| DiscussLinks | `src/components/DiscussLinks.astro` | "Discuss on LessWrong · X · Substack", centred italic, from the post's syndication URLs; set just under the end mark (8px below the sun). |
 | SubstackSignup | `src/components/SubstackSignup.astro` | Boxed email form at the end of essays, behind `SUBSTACK_SIGNUP` in `src/config.ts`. It submits to the Substack publication (`SUBSTACK_URL`) rather than embedding Substack's iframe, so it keeps the site's look. |
 | EvalCard | `src/components/EvalCard.astro` | Kind label, title, summary, a row of stats, links. Used by the evals page, unpublished for now. |
 

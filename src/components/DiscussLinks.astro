@@ -5,10 +5,11 @@ interface Props {
   post: Post;
 }
 
-const { lesswrong, x } = Astro.props.post.data.syndication;
+const { lesswrong, x, substack } = Astro.props.post.data.syndication;
 const links = [
   lesswrong && { label: 'LessWrong', href: lesswrong },
   x && { label: 'X', href: x },
+  substack && { label: 'Substack', href: substack },
 ].filter(Boolean) as { label: string; href: string }[];
 ---
 
