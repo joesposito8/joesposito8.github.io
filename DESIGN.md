@@ -174,6 +174,9 @@ footer's "Email" link (hidden without JavaScript). Nothing else.
   hairline rule. Comments use the body type and muted metadata (author, date, karma,
   source and parent links), with a left rule and capped reply indentation. The display
   is static and includes a note that source links carry the latest discussion.
+- In the dark theme, images in a post or comment body sit on a card of the light page colour
+  (`--bg` under `color-scheme: light`, 10px by 14px padding, `--radius` corners), so
+  transparent figures drawn in dark ink stay readable. Light-theme images have no card.
 
 - Screenshots are taken on a Linux box whose only system fonts are Liberation. The theme's
   own fonts load from the site, so pages look as they will elsewhere, except for glyphs
